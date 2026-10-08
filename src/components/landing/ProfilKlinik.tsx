@@ -7,7 +7,7 @@ const WA_KLINIK = "https://wa.me/6287878847788";
 
 const nav = [
   { label: "Beranda", href: "/" },
-  { label: "Dokter", href: "/#dokter" },
+  { label: "Dokter", href: "/dokter-klinik" },
   { label: "Layanan", href: "/layanan-klinik" },
   { label: "Fasilitas", href: "/fasilitas-klinik" },
   { label: "Promo", href: "/promo-klinik" },

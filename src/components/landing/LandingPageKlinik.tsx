@@ -84,7 +84,7 @@ const services = [
           alt=""
           width={34.3992}
           height={32.8749}
-          className="absolute left-5 top-[19px]"
+          className="absolute left-5 top-4.75"
         />
       </span>
     ),
@@ -218,7 +218,9 @@ export default function LandingPageKlinik() {
                         ? "/profil-klinik"
                         : item === "Promo"
                           ? "/promo-klinik"
-                          : `#${item.toLowerCase()}`
+                          : item === "Dokter"
+                            ? "/dokter-klinik"
+                            : `#${item.toLowerCase()}`
                     }
                     className="text-muted opacity-80"
                   >
@@ -304,7 +306,7 @@ export default function LandingPageKlinik() {
                   alt=""
                   width={70}
                   height={70}
-                  className="absolute -left-[19px] -top-[15px]"
+                  className="absolute left-[-19px] top-[-15px]"
                 />
                 <span className="absolute left-1 top-[3px]">
                   <Stethoscope />

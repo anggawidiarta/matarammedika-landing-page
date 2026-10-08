@@ -1,7 +1,6 @@
-import PromoCard from "./PromoCard";
-import { promoKlinikItems } from "./promoData";
+import { clinicDoctors } from "./doctorData";
 import SiteFooter from "./SiteFooter";
-import { Logo, Segmented, gradientBg } from "./ui";
+import { Logo, gradientBg } from "./ui";
 
 const nav = [
   { label: "Beranda", href: "/" },
@@ -12,10 +11,10 @@ const nav = [
   { label: "Profil", href: "/profil-klinik" },
 ];
 
-export default function PromoKlinik() {
+export default function DokterKlinik() {
   return (
     <div className="min-h-screen overflow-x-hidden bg-surface font-body text-heading">
-      <header className="bg-surface">
+      <header className="bg-surface-tint">
         <div className="mx-auto flex max-w-[1440px] justify-center px-4 py-4 lg:px-10">
           <div className="flex w-full max-w-[1280px] flex-wrap items-center justify-between gap-4 rounded-[40px] bg-white px-6 py-4 shadow-nav lg:px-10">
             <a href="/" aria-label="Beranda">
@@ -27,7 +26,7 @@ export default function PromoKlinik() {
                   key={item.label}
                   href={item.href}
                   className={
-                    item.label === "Promo"
+                    item.label === "Dokter"
                       ? "font-bold text-brand"
                       : "text-muted opacity-80"
                   }
@@ -46,23 +45,31 @@ export default function PromoKlinik() {
         </div>
       </header>
 
-      <main className="mx-auto flex max-w-[1228px] flex-col gap-10 px-6 pt-8 pb-24">
-        <div className="flex flex-col gap-3">
-          <div className="flex flex-wrap items-center gap-3">
-            <h1 className="font-body text-[32px] font-semibold text-heading">
-              Informasi Promo
+      <main className="bg-surface-tint pb-24">
+        <div className="mx-auto flex max-w-[1230px] flex-col items-center gap-12 px-6 pt-10">
+          <div className="flex flex-col items-center gap-3 text-center">
+            <h1 className="font-body text-[32px] font-semibold text-heading opacity-80">
+              Informasi Dokter
             </h1>
-            <Segmented active="klinik" />
+            <p className="max-w-[676px] font-body text-sm leading-5 text-muted opacity-80">
+              Tenaga medis profesional yang berdedikasi memberikan pelayanan
+              terbaik
+            </p>
           </div>
-          <p className="max-w-[721px] font-body text-base leading-6 text-muted opacity-80">
-            Kami menyediakan berbagai promo , Seperti
-          </p>
-        </div>
 
-        <div className="grid gap-10 lg:grid-cols-3">
-          {promoKlinikItems.map((promo) => (
-            <PromoCard key={promo.id} promo={promo} />
-          ))}
+          <ul className="grid w-full list-none grid-cols-1 justify-items-center gap-x-8 gap-y-10 p-0 sm:grid-cols-2 xl:grid-cols-3 xl:gap-x-16">
+            {clinicDoctors.map((doctor) => (
+              <li key={doctor.name} className="w-full max-w-[324px]">
+                <img
+                  src={doctor.card}
+                  alt={`${doctor.name}, ${doctor.specialty}`}
+                  width={324}
+                  height={456}
+                  className="h-auto w-full max-w-none"
+                />
+              </li>
+            ))}
+          </ul>
         </div>
       </main>
 

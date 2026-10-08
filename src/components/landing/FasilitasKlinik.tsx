@@ -18,7 +18,7 @@ import SiteFooter from "./SiteFooter";
 
 const nav = [
   { label: "Beranda", href: "/" },
-  { label: "Dokter", href: "/#dokter" },
+  { label: "Dokter", href: "/dokter-klinik" },
   { label: "Layanan", href: "/layanan-klinik" },
   { label: "Fasilitas", href: "/fasilitas-klinik" },
   { label: "Promo", href: "/promo-klinik" },
