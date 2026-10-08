@@ -1,0 +1,45 @@
+@theme {
+  /* Colors */
+  --color-heading: #031432;
+  --color-muted: #6c87ae;
+  --color-brand: #3a8ef6;
+  --color-brand-strong: #0d6af6;
+  --color-brand-violet: #6f3afa;
+  --color-surface: #f9fbfc;
+  --color-surface-tint: #f2f7ff;
+  --color-surface-highlight: #eff5ff;
+  --color-footer: #0a0e31;
+  --color-promo: #ff356b;
+  --color-promo-cta: #ff698d;
+  --color-promo-gradient-start: #ffbaba;
+  --color-promo-gradient-end: #ff0000;
+  --color-badge-neutral: #a4a4a4;
+  --color-badge-neutral-dark: #818181;
+
+  /* Gradients */
+  --background-image-gradient-brand: linear-gradient(
+    112deg,
+    var(--color-brand) 10.84%,
+    var(--color-brand-violet) 100%
+  );
+  --background-image-gradient-brand-text: linear-gradient(
+    141deg,
+    var(--color-brand) 11%,
+    var(--color-brand-violet) 100%
+  );
+  --background-image-gradient-promo: linear-gradient(
+    112deg,
+    var(--color-promo-gradient-start) 11%,
+    var(--color-promo-gradient-end) 100%
+  );
+
+  /* Shadows */
+  --shadow-card: 0 24px 16px rgb(3 9 50 / 0.04);
+  --shadow-nav: 0 12px 32px rgb(63 128 240 / 0.08);
+  --shadow-float: 0 12px 16px rgb(63 128 240 / 0.08);
+  --shadow-cta: 0 8px 11.5px rgb(65 132 247 / 0.24);
+
+  /* Fonts */
+  --font-body: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-accent: "Sora", ui-sans-serif, system-ui, sans-serif;
+}
