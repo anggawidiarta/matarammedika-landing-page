@@ -26,3 +26,5 @@ pnpm-debug.log*
 .agents/
 .cursor/
 skills-lock.json
+
+.vscode/
