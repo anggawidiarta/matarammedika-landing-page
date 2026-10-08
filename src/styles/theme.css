@@ -1,36 +1,44 @@
 @theme {
-  /* Colors */
+  /* Logo palette */
+  --color-blue: #0d6af6;
+  --color-green: #3dac9c;
+  --color-white: #ffffff;
+
+  /* Text */
   --color-heading: #031432;
   --color-muted: #6c87ae;
-  --color-brand: #3a8ef6;
-  --color-brand-strong: #0d6af6;
-  --color-brand-violet: #6f3afa;
+
+  /* Page backgrounds */
   --color-surface: #f9fbfc;
   --color-surface-tint: #f2f7ff;
   --color-surface-highlight: #eff5ff;
   --color-footer: #0a0e31;
+
+  /* Promo (red / pink — unchanged) */
   --color-promo: #ff356b;
   --color-promo-cta: #ff698d;
-  --color-promo-gradient-start: #ffbaba;
-  --color-promo-gradient-end: #ff0000;
-  --color-badge-neutral: #a4a4a4;
-  --color-badge-neutral-dark: #818181;
+  --color-promo-red-light: #ffbaba;
+  --color-promo-red: #ff0000;
 
-  /* Gradients */
-  --background-image-gradient-brand: linear-gradient(
+  /* Neutrals for badges */
+  --color-gray: #a4a4a4;
+  --color-gray-dark: #818181;
+
+  /* Gradients: blue → green (buttons, segmented, hero title) */
+  --background-image-gradient-blue-green: linear-gradient(
     112deg,
-    var(--color-brand) 10.84%,
-    var(--color-brand-violet) 100%
+    var(--color-blue) 10.84%,
+    var(--color-green) 100%
   );
-  --background-image-gradient-brand-text: linear-gradient(
+  --background-image-gradient-blue-green-text: linear-gradient(
     141deg,
-    var(--color-brand) 11%,
-    var(--color-brand-violet) 100%
+    var(--color-blue) 11%,
+    var(--color-green) 100%
   );
   --background-image-gradient-promo: linear-gradient(
     112deg,
-    var(--color-promo-gradient-start) 11%,
-    var(--color-promo-gradient-end) 100%
+    var(--color-promo-red-light) 11%,
+    var(--color-promo-red) 100%
   );
 
   /* Shadows */
