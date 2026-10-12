@@ -1,7 +1,9 @@
 import { createHash } from "node:crypto";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { requireServerEnv } from "@/lib/env";
-import { RATE_LIMIT_MAX, RATE_LIMIT_WINDOW_MS } from "./schema";
+
+export const RATE_LIMIT_MAX = 5;
+export const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000;
 
 export function resolveClientIp(
   request: Request,

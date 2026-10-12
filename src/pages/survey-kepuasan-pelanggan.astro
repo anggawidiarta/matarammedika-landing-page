@@ -1,10 +1,10 @@
 ---
 export const prerender = true;
-import SurveyKepuasanPelanggan from "@/components/klinik/pages/SurveyKepuasanPelanggan";
+import SurveyKepuasanPage from "@/components/survey/SurveyKepuasanPage";
 import Layout from "@/layouts/Layout.astro";
 import "@/styles/global.css";
 ---
 
-<Layout title="Survey Kepuasan Pelanggan — Mataram Medika">
-  <SurveyKepuasanPelanggan client:load />
+<Layout>
+  <SurveyKepuasanPage client:load />
 </Layout>

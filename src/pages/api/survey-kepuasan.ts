@@ -1,7 +1,8 @@
 import type { APIRoute } from "astro";
 import { getServiceSupabase } from "@/lib/supabase/server";
 import { hashClientIp, isRateLimited, resolveClientIp } from "@/lib/survey/rateLimit";
-import { parseSurveyPayload, type SurveyApiError } from "@/lib/survey/schema";
+import type { SurveyApiError } from "@/lib/survey/constants";
+import { parseSurveyPayload } from "@/lib/survey/schema";
 
 export const prerender = false;
 

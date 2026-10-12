@@ -1,12 +1,12 @@
 import { z } from "zod";
+import {
+  LAYANAN_VALUES,
+  NAMA_MAX,
+  SARAN_MAX,
+  type SurveyPayload,
+} from "./constants";
 
-export const LAYANAN_VALUES = ["Klinik", "Apotek", "Klinik & Apotek"] as const;
-export const SARAN_MAX = 500;
-export const NAMA_MAX = 120;
-export const RATE_LIMIT_MAX = 5;
-export const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000;
-
-export type SurveyApiError = "validation" | "rate_limited" | "server";
+export type { SurveyApiError, SurveyPayload } from "./constants";
 
 const rating = z.number().int().min(1).max(5);
 
@@ -47,14 +47,12 @@ export const surveyPayloadSchema = z.object({
   consent: z.literal(true),
 });
 
-export type SurveyPayload = z.infer<typeof surveyPayloadSchema>;
-
 export function parseSurveyPayload(
   input: unknown,
 ): { ok: true; data: SurveyPayload } | { ok: false; error: z.ZodError } {
   const result = surveyPayloadSchema.safeParse(input);
   if (result.success) {
-    return { ok: true, data: result.data };
+    return { ok: true, data: result.data as SurveyPayload };
   }
   return { ok: false, error: result.error };
 }
