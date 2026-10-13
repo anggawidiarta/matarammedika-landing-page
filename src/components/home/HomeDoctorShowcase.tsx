@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { clinicDoctors } from "@/components/dokter/doctorData";
-import { heroOutline } from "@/components/shared/data/assets";
+import { clinicDoctors, doctorOutline } from "@/components/dokter/doctorData";
 
 const ROTATE_MS = 3000;
 const FADE_MS = 600;
@@ -78,7 +77,7 @@ export default function HomeDoctorShowcase() {
     >
       {isFading ? (
         <img
-          src={heroOutline}
+          src={doctorOutline}
           alt=""
           aria-hidden
           width={378}
@@ -89,7 +88,7 @@ export default function HomeDoctorShowcase() {
 
       <img
         key={`outline-${currentDoctor.name}`}
-        src={heroOutline}
+        src={doctorOutline}
         alt=""
         aria-hidden
         width={378}

@@ -7,11 +7,14 @@ import rawFebrina from "@/assets/dokter/febrina-rambu.svg";
 import rawKristopher from "@/assets/dokter/kristopher-pamudji.svg";
 import rawMusa from "@/assets/dokter/musa-taufiq.svg";
 import rawNila from "@/assets/dokter/nila-febriana.svg";
+import rawOutline from "@/assets/dokter/outline.svg";
 import rawPanji from "@/assets/dokter/panji-syabila.svg";
 import rawRico from "@/assets/dokter/rico-novyanto.svg";
 import rawSlamet from "@/assets/dokter/slamet-tjahjono.svg";
 import rawZainul from "@/assets/dokter/zainul-mujahid.svg";
-import { assetUrl } from "@/components/shared/data/assets";
+import { assetUrl } from "@/components/shared/data/assetUrl";
+
+export const doctorOutline = assetUrl(rawOutline);
 
 export type DoctorProfile = {
   name: string;
