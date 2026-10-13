@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   bannerFamily,
   bannerTexture,
@@ -14,9 +15,9 @@ import {
   insurerYkkbi,
 } from "@/components/shared/data/assets";
 import { WA_KLINIK } from "@/components/shared/data/constants";
-import { fasilitasUmum } from "@/components/fasilitas/fasilitasData";
+import { fasilitasUmum, type FasilitasItem } from "@/components/fasilitas/fasilitasData";
 import HomeDoctorShowcase from "@/components/home/HomeDoctorShowcase";
-import { layananHomePreview } from "@/components/layanan/layananData";
+import { layananHomePreview, type LayananItem } from "@/components/layanan/layananData";
 import { promoKlinikPreview } from "@/components/promo/promoData";
 import IconFeatureCard from "@/components/shared/cards/IconFeatureCard";
 import PromoCard from "@/components/shared/cards/PromoCard";
@@ -29,6 +30,8 @@ import {
   Stethoscope,
   renderIcon,
 } from "@/components/shared/ui";
+import { fetchPublicFeatures } from "@/lib/cms/fetchPublicFeatures";
+import { toIconDescriptor } from "@/lib/cms/mapFeatureItem";
 import { MessageCircle } from "lucide-react";
 
 type InsurerLogo = { src: string; width: number; height: number };
@@ -90,6 +93,48 @@ function SectionTitleWithLink({
 }
 
 export default function LandingPageKlinik() {
+  const [layananPreview, setLayananPreview] = useState<LayananItem[]>(layananHomePreview);
+  const [fasilitasPreview, setFasilitasPreview] = useState<FasilitasItem[]>(fasilitasUmum);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    void (async () => {
+      try {
+        const [layanan, fasilitas] = await Promise.all([
+          fetchPublicFeatures("/api/public/layanan"),
+          fetchPublicFeatures("/api/public/fasilitas"),
+        ]);
+        if (cancelled) return;
+
+        const specialists = layanan
+          .filter((item) => item.section === "spesialis")
+          .slice(0, 6)
+          .map((item) => ({
+            title: item.title,
+            body: item.body,
+            icon: toIconDescriptor(item.icon),
+          }));
+        if (specialists.length > 0) setLayananPreview(specialists);
+
+        const umum = fasilitas
+          .filter((item) => item.section === "umum")
+          .map((item) => ({
+            title: item.title,
+            body: item.body,
+            icon: toIconDescriptor(item.icon),
+          }));
+        if (umum.length > 0) setFasilitasPreview(umum);
+      } catch {
+        // Keep hardcoded fallbacks when public CMS APIs are unavailable.
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   return (
     <KlinikPageShell activeLabel="Beranda" navVariant="home" headerTone="tint">
       <section id="beranda" className="bg-surface-tint">
@@ -145,7 +190,7 @@ export default function LandingPageKlinik() {
             </p>
           </div>
           <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-            {layananHomePreview.map((service) => (
+            {layananPreview.map((service) => (
               <IconFeatureCard
                 key={service.title}
                 icon={renderIcon(service.icon)}
@@ -189,7 +234,7 @@ export default function LandingPageKlinik() {
             Fasilitas Klinik
           </h3>
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-            {fasilitasUmum.map((item) => (
+            {fasilitasPreview.map((item) => (
               <IconFeatureCard
                 key={item.title}
                 titleSize="xl"
