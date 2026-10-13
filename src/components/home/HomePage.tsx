@@ -1,12 +1,6 @@
 import {
-  badgeGlow,
   bannerFamily,
   bannerTexture,
-  doctor,
-  doctorMask,
-  heroCircle,
-  heroOutline,
-  heroShape,
   insurerAdmedika,
   insurerBcaLife,
   insurerBni,
@@ -21,6 +15,7 @@ import {
 } from "@/components/shared/data/assets";
 import { WA_KLINIK } from "@/components/shared/data/constants";
 import { fasilitasUmum } from "@/components/fasilitas/fasilitasData";
+import HomeDoctorShowcase from "@/components/home/HomeDoctorShowcase";
 import { layananHomePreview } from "@/components/layanan/layananData";
 import { promoKlinikPreview } from "@/components/promo/promoData";
 import IconFeatureCard from "@/components/shared/cards/IconFeatureCard";
@@ -116,67 +111,7 @@ export default function LandingPageKlinik() {
             </div>
           </div>
 
-          <div className="relative mx-auto h-[520px] w-[min(100%,360px)] overflow-hidden sm:h-[582px] sm:w-[413px] sm:overflow-visible">
-            <img
-              src={heroShape}
-              alt=""
-              width={249.336}
-              height={249.417}
-              className="pointer-events-none absolute left-[20%] top-[27%]"
-            />
-            <img
-              src={heroOutline}
-              alt=""
-              width={377.455}
-              height={506.38}
-              className="pointer-events-none absolute left-[9%] top-[13%]"
-            />
-            <img
-              src={heroCircle}
-              alt=""
-              width={372.416}
-              height={372.536}
-              className="pointer-events-none absolute left-0 top-[21%]"
-            />
-            <img
-              src={doctor}
-              alt="dr. Kristopher May Pamudji, Spesialis Anak"
-              width={321}
-              height={490}
-              fetchPriority="high"
-              className="absolute left-[9%] top-0 h-[490px] w-[321px] object-cover object-top"
-              style={{
-                maskImage: `url("${doctorMask}")`,
-                WebkitMaskImage: `url("${doctorMask}")`,
-                maskRepeat: "no-repeat",
-                WebkitMaskRepeat: "no-repeat",
-                maskSize: "380px 381px",
-                WebkitMaskSize: "380px 381px",
-                maskPosition: "center 40px",
-                WebkitMaskPosition: "center 40px",
-              }}
-            />
-            <div className="absolute bottom-[16%] left-0 flex items-center gap-4 rounded-lg bg-white px-4 py-3.5 shadow-float">
-              <span className="relative size-8">
-                <img
-                  src={badgeGlow}
-                  alt=""
-                  width={70}
-                  height={70}
-                  className="absolute left-[-19px] top-[-15px]"
-                />
-                <span className="absolute left-1 top-[3px]">
-                  <Stethoscope />
-                </span>
-              </span>
-              <span>
-                <span className="block text-base font-semibold font-body text-heading">
-                  dr. Kristopher May Pamudji
-                </span>
-                <span className="block text-xs font-body text-muted">Spesialis Anak</span>
-              </span>
-            </div>
-          </div>
+          <HomeDoctorShowcase />
         </div>
       </section>
 
