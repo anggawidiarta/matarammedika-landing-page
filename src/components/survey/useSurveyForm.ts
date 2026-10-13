@@ -16,7 +16,8 @@ export function useSurveyForm() {
   const [nama, setNama] = useState("");
   const [tanggal, setTanggal] = useState("");
   const [layanan, setLayanan] = useState("");
-  const [ratings, setRatings] = useState<Ratings>(emptyRatings);
+  const [ratings, setRatings] = useState<Ratings>(() => emptyRatings());
+
   const [nps, setNps] = useState<number | null>(null);
   const [saran, setSaran] = useState("");
   const [consent, setConsent] = useState(false);
@@ -180,7 +181,10 @@ export function useSurveyForm() {
       setNps(score);
       clearError();
     },
-    setSaran,
+    setSaran: (value: string) => {
+      setSaran(value);
+      clearError();
+    },
     setConsent: (checked: boolean) => {
       setConsent(checked);
       clearError();

@@ -1,25 +1,13 @@
-import {
-  LAYANAN_VALUES,
-  NAMA_MAX,
-  SARAN_MAX,
-} from "@/lib/survey/constants";
+import { LIKERT, NAMA_MAX, SARAN_MAX, LAYANAN_VALUES } from "@/lib/survey/constants";
 
-export { NAMA_MAX, SARAN_MAX };
-export const REQUIRED_COUNT = 7;
+export { LIKERT, NAMA_MAX, SARAN_MAX };
+export type { LikertKey } from "@/lib/survey/constants";
+
+export const REQUIRED_COUNT = LIKERT.length + 1;
 
 export const LAYANAN_OPTIONS = LAYANAN_VALUES;
 
-export const LIKERT = [
-  { key: "pendaftaran", label: "Kemudahan pendaftaran & informasi" },
-  { key: "keramahan", label: "Keramahan petugas" },
-  { key: "tunggu", label: "Waktu tunggu" },
-  { key: "dokter", label: "Kualitas pemeriksaan & penjelasan dokter" },
-  { key: "kebersihan", label: "Kebersihan dan kenyamanan" },
-  { key: "keseluruhan", label: "Kepuasan keseluruhan" },
-] as const;
-
-export type LikertKey = (typeof LIKERT)[number]["key"];
-export type Ratings = Record<LikertKey, number | null>;
+export type Ratings = Record<(typeof LIKERT)[number]["key"], number | null>;
 export type FormStatus = "idle" | "loading" | "error" | "success";
 
 export const emptyRatings = (): Ratings =>

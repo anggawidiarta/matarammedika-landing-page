@@ -2,6 +2,17 @@ export const LAYANAN_VALUES = ["Klinik", "Apotek", "Klinik & Apotek"] as const;
 export const SARAN_MAX = 500;
 export const NAMA_MAX = 120;
 
+/** Single source of truth for Likert rating keys + UI labels (Zod + client form). */
+export const LIKERT = [
+  { key: "pendaftaran", label: "Kemudahan pendaftaran & informasi" },
+  { key: "keramahan", label: "Keramahan petugas" },
+  { key: "tunggu", label: "Waktu tunggu" },
+  { key: "dokter", label: "Kualitas pemeriksaan & penjelasan dokter" },
+  { key: "kebersihan", label: "Kebersihan dan kenyamanan" },
+  { key: "keseluruhan", label: "Kepuasan keseluruhan" },
+] as const;
+
+export type LikertKey = (typeof LIKERT)[number]["key"];
 export type LayananValue = (typeof LAYANAN_VALUES)[number];
 export type SurveyApiError = "validation" | "rate_limited" | "server";
 
@@ -9,14 +20,7 @@ export type SurveyPayload = {
   nama: string | null;
   tanggal: string | null;
   layanan: LayananValue;
-  ratings: {
-    pendaftaran: number;
-    keramahan: number;
-    tunggu: number;
-    dokter: number;
-    kebersihan: number;
-    keseluruhan: number;
-  };
+  ratings: Record<LikertKey, number>;
   nps: number;
   saran: string | null;
   consent: true;

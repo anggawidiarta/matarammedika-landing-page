@@ -5,6 +5,7 @@ import {
   type LayananValue,
   type SurveyPayload,
 } from "@/lib/survey/constants";
+import { isValidCalendarDate } from "@/lib/survey/date";
 import { LIKERT, type Ratings } from "./constants";
 
 export type SurveyFieldError =
@@ -22,11 +23,6 @@ export type ClientValidationResult =
 
 function isLayananValue(value: string): value is LayananValue {
   return (LAYANAN_VALUES as readonly string[]).includes(value);
-}
-
-function isValidTanggal(value: string): boolean {
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
-  return !Number.isNaN(Date.parse(`${value}T00:00:00Z`));
 }
 
 export function validateSurveyClient({
@@ -51,7 +47,7 @@ export function validateSurveyClient({
     return { ok: false, field: "nama" };
   }
 
-  if (tanggal && !isValidTanggal(tanggal)) {
+  if (tanggal && !isValidCalendarDate(tanggal)) {
     return { ok: false, field: "tanggal" };
   }
 

@@ -1,14 +1,21 @@
 import { z } from "zod";
 import {
   LAYANAN_VALUES,
+  LIKERT,
   NAMA_MAX,
   SARAN_MAX,
   type SurveyPayload,
 } from "./constants";
+import { isValidCalendarDate } from "./date";
 
 export type { SurveyApiError, SurveyPayload } from "./constants";
 
 const rating = z.number().int().min(1).max(5);
+
+const ratingsShape = Object.fromEntries(LIKERT.map((item) => [item.key, rating])) as Record<
+  (typeof LIKERT)[number]["key"],
+  typeof rating
+>;
 
 const optionalTrimmed = (max: number) =>
   z.preprocess((value) => {
@@ -24,24 +31,16 @@ const optionalTanggal = z.preprocess(
     .string()
     .regex(/^\d{4}-\d{2}-\d{2}$/)
     .nullable()
-    .refine(
-      (value) => value === null || !Number.isNaN(Date.parse(`${value}T00:00:00Z`)),
-      { message: "invalid_date" },
-    ),
+    .refine((value) => value === null || isValidCalendarDate(value), {
+      message: "invalid_date",
+    }),
 );
 
 export const surveyPayloadSchema = z.object({
   nama: optionalTrimmed(NAMA_MAX),
   tanggal: optionalTanggal,
   layanan: z.enum(LAYANAN_VALUES),
-  ratings: z.object({
-    pendaftaran: rating,
-    keramahan: rating,
-    tunggu: rating,
-    dokter: rating,
-    kebersihan: rating,
-    keseluruhan: rating,
-  }),
+  ratings: z.object(ratingsShape),
   nps: z.number().int().min(0).max(10),
   saran: optionalTrimmed(SARAN_MAX),
   consent: z.literal(true),

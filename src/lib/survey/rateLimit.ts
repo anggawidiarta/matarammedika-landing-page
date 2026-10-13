@@ -5,14 +5,32 @@ import { requireServerEnv } from "@/lib/env";
 export const RATE_LIMIT_MAX = 5;
 export const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000;
 
+function trustProxyEnabled(): boolean {
+  const fromProcess = process.env.TRUST_PROXY?.trim().toLowerCase();
+  if (fromProcess === "1" || fromProcess === "true") return true;
+  const fromMeta = (import.meta.env as Record<string, unknown>).TRUST_PROXY;
+  if (typeof fromMeta === "string") {
+    const value = fromMeta.trim().toLowerCase();
+    return value === "1" || value === "true";
+  }
+  return false;
+}
+
+/**
+ * Resolve client IP for rate limiting.
+ * Only trusts `x-forwarded-for` when `TRUST_PROXY=1|true` (set behind a stripping reverse proxy).
+ * Otherwise uses Astro `clientAddress`.
+ */
 export function resolveClientIp(
   request: Request,
   clientAddress: string | undefined,
 ): string {
-  const forwarded = request.headers.get("x-forwarded-for");
-  if (forwarded) {
-    const first = forwarded.split(",")[0]?.trim();
-    if (first) return first;
+  if (trustProxyEnabled()) {
+    const forwarded = request.headers.get("x-forwarded-for");
+    if (forwarded) {
+      const first = forwarded.split(",")[0]?.trim();
+      if (first) return first;
+    }
   }
   if (clientAddress?.trim()) return clientAddress.trim();
   return "unknown";
