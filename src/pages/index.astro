@@ -1,10 +1,29 @@
 ---
-export const prerender = true;
+export const prerender = false;
+import HomeDoctorShowcase from "@/components/home/HomeDoctorShowcase";
 import HomePage from "@/components/home/HomePage";
+import { fasilitasUmum } from "@/components/fasilitas/fasilitasData";
+import { layananHomePreview } from "@/components/layanan/layananData";
 import Layout from "@/layouts/Layout.astro";
-import "@/styles/global.css";
+import { itemsForSection, toFeatureItem } from "@/lib/cms/featureItems";
+import { loadPublishedFeatures } from "@/lib/cms/loadPublishedFeatures";
+
+const [layananCms, fasilitasCms] = await Promise.all([
+  loadPublishedFeatures("layanan"),
+  loadPublishedFeatures("fasilitas"),
+]);
+
+const specialistItems = layananCms
+  ? layananCms.filter((item) => item.section === "spesialis").slice(0, 6).map(toFeatureItem)
+  : [];
+const layananPreview =
+  specialistItems.length > 0 ? specialistItems : layananHomePreview;
+
+const fasilitasPreview = itemsForSection(fasilitasCms, "umum", fasilitasUmum);
 ---
 
-<Layout>
-  <HomePage client:load />
+<Layout activeLabel="Beranda" headerTone="tint">
+  <HomePage layananPreview={layananPreview} fasilitasPreview={fasilitasPreview}>
+    <HomeDoctorShowcase client:visible />
+  </HomePage>
 </Layout>

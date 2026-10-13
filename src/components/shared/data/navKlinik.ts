@@ -10,19 +10,6 @@ export const navKlinik = [
 
 export type NavKlinikLabel = (typeof navKlinik)[number]["label"];
 
-const homeAnchors: Partial<Record<NavKlinikLabel, string>> = {
-  Beranda: "#beranda",
-  Layanan: "#layanan",
-  Fasilitas: "#fasilitas",
-};
-
-export function navKlinikHref(item: (typeof navKlinik)[number], variant: "home" | "page" = "page") {
-  if (variant === "home" && item.label in homeAnchors) {
-    return homeAnchors[item.label] as string;
-  }
-  return item.href;
-}
-
 const navLinkBase =
   "rounded-md transition-colors duration-200 ease-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue";
 

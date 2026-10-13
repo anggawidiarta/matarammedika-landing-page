@@ -1,10 +1,6 @@
-import type { IconDescriptor } from "@/components/shared/ui";
+import type { FeatureItem } from "@/lib/cms/types";
 
-export type LayananItem = {
-  title: string;
-  body: string;
-  icon: IconDescriptor;
-};
+export type LayananItem = FeatureItem;
 
 export const layananUmumGigi: {
   umum: LayananItem;
@@ -12,12 +8,12 @@ export const layananUmumGigi: {
 } = {
   umum: {
     title: "Umum",
-    body: "Menangani keluhan gigi dan mulut seperti pencabutan, penambalan, pembersihan karang gigi, dan konsultasi kesehatan gigi.",
+    body: "Pelayanan pemeriksaan kesehatan dasar, konsultasi keluhan umum, dan tindakan medis ringan.",
     icon: { kind: "lucideCircle", name: "heartPulse", tone: "blue" },
   },
   gigi: {
     title: "Gigi",
-    body: "Pelayanan pemeriksaan kesehatan dasar, konsultasi keluhan umum, dan tindakan medis ringan.",
+    body: "Menangani keluhan gigi dan mulut seperti pencabutan, penambalan, pembersihan karang gigi, dan konsultasi kesehatan gigi.",
     icon: { kind: "lucide", name: "tooth" },
   },
 };

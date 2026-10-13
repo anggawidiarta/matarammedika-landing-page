@@ -1,4 +1,3 @@
-import type { IconDescriptor } from "@/components/shared/ui";
 import type { CircleTone } from "@/components/shared/ui/circleTone";
 import { klinikLucideIcons, type KlinikLucideName } from "@/components/shared/ui/lucideMap";
 import type { CmsPublicIcon, CmsPublicItem } from "@/lib/cms/types";
@@ -43,11 +42,4 @@ export function mapCmsRowToPublicItem(row: CmsRow): CmsPublicItem | null {
     body: row.body,
     icon,
   };
-}
-
-export function toIconDescriptor(icon: CmsPublicIcon): IconDescriptor {
-  if (icon.kind === "lucideCircle") {
-    return { kind: "lucideCircle", name: icon.name, tone: icon.tone };
-  }
-  return { kind: "lucide", name: icon.name };
 }

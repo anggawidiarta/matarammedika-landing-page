@@ -1,10 +1,6 @@
-import type { IconDescriptor } from "@/components/shared/ui";
+import type { FeatureItem } from "@/lib/cms/types";
 
-export type FasilitasItem = {
-  title: string;
-  body: string;
-  icon: IconDescriptor;
-};
+export type FasilitasItem = FeatureItem;
 
 export const fasilitasUmum: FasilitasItem[] = [
   {

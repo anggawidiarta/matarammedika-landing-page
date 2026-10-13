@@ -1,7 +1,11 @@
-import { useEffect, useState } from "react";
+import type { ReactNode } from "react";
+import { fasilitasUmum, type FasilitasItem } from "@/components/fasilitas/fasilitasData";
+import { layananHomePreview, type LayananItem } from "@/components/layanan/layananData";
+import { promoKlinikPreview } from "@/components/promo/promoData";
+import IconFeatureCard from "@/components/shared/cards/IconFeatureCard";
+import PromoCard from "@/components/shared/cards/PromoCard";
+import { WA_KLINIK } from "@/components/shared/data/constants";
 import {
-  bannerFamily,
-  bannerTexture,
   insurerAdmedika,
   insurerBcaLife,
   insurerBni,
@@ -13,27 +17,14 @@ import {
   insurerPln,
   insurerTelkomedika,
   insurerYkkbi,
-} from "@/components/shared/data/assets";
-import { WA_KLINIK } from "@/components/shared/data/constants";
-import { fasilitasUmum, type FasilitasItem } from "@/components/fasilitas/fasilitasData";
-import HomeDoctorShowcase from "@/components/home/HomeDoctorShowcase";
-import { layananHomePreview, type LayananItem } from "@/components/layanan/layananData";
-import { promoKlinikPreview } from "@/components/promo/promoData";
-import IconFeatureCard from "@/components/shared/cards/IconFeatureCard";
-import PromoCard from "@/components/shared/cards/PromoCard";
+} from "@/components/shared/data/insurers";
+import { bannerFamily, bannerTexture } from "@/components/shared/data/photos";
 import KlinikPageShell from "@/components/shared/layout/KlinikPageShell";
 import KlinikPageTitle from "@/components/shared/sections/KlinikPageTitle";
-import {
-  ArrowIcon,
-  GradientLink,
-  Segmented,
-  Stethoscope,
-  renderIcon,
-} from "@/components/shared/ui";
-import { fetchPublicFeatures } from "@/lib/cms/fetchPublicFeatures";
-import { toIconDescriptor } from "@/lib/cms/mapFeatureItem";
-import { MessageCircle } from "lucide-react";
-
+import { ArrowIcon, GradientLink } from "@/components/shared/ui/GradientLink";
+import { renderIcon } from "@/components/shared/ui/iconDescriptor";
+import Segmented from "@/components/shared/ui/Segmented";
+import { MessageCircle, Stethoscope } from "lucide-react";
 type InsurerLogo = { src: string; width: number; height: number };
 
 const insurersRowOne: InsurerLogo[] = [
@@ -92,51 +83,17 @@ function SectionTitleWithLink({
   );
 }
 
-export default function LandingPageKlinik() {
-  const [layananPreview, setLayananPreview] = useState<LayananItem[]>(layananHomePreview);
-  const [fasilitasPreview, setFasilitasPreview] = useState<FasilitasItem[]>(fasilitasUmum);
-
-  useEffect(() => {
-    let cancelled = false;
-
-    void (async () => {
-      try {
-        const [layanan, fasilitas] = await Promise.all([
-          fetchPublicFeatures("/api/public/layanan"),
-          fetchPublicFeatures("/api/public/fasilitas"),
-        ]);
-        if (cancelled) return;
-
-        const specialists = layanan
-          .filter((item) => item.section === "spesialis")
-          .slice(0, 6)
-          .map((item) => ({
-            title: item.title,
-            body: item.body,
-            icon: toIconDescriptor(item.icon),
-          }));
-        if (specialists.length > 0) setLayananPreview(specialists);
-
-        const umum = fasilitas
-          .filter((item) => item.section === "umum")
-          .map((item) => ({
-            title: item.title,
-            body: item.body,
-            icon: toIconDescriptor(item.icon),
-          }));
-        if (umum.length > 0) setFasilitasPreview(umum);
-      } catch {
-        // Keep hardcoded fallbacks when public CMS APIs are unavailable.
-      }
-    })();
-
-    return () => {
-      cancelled = true;
-    };
-  }, []);
-
+export default function LandingPageKlinik({
+  children,
+  layananPreview = layananHomePreview,
+  fasilitasPreview = fasilitasUmum,
+}: {
+  children: ReactNode;
+  layananPreview?: LayananItem[];
+  fasilitasPreview?: FasilitasItem[];
+}) {
   return (
-    <KlinikPageShell activeLabel="Beranda" navVariant="home" headerTone="tint">
+    <KlinikPageShell>
       <section id="beranda" className="bg-surface-tint">
         <div className="mx-auto grid max-w-[1600px] items-center gap-10 px-6 py-12 lg:grid-cols-[minmax(0,1fr)_413px] lg:justify-between lg:gap-16 lg:px-10 xl:gap-24 xl:px-14 lg:pb-24 lg:pt-10">
           <div>
@@ -150,13 +107,13 @@ export default function LandingPageKlinik() {
             </p>
             <div className="mt-8">
               <GradientLink href="#layanan">
-                <Stethoscope />
+                <Stethoscope size={24} aria-hidden strokeWidth={2} />
                 Lihat Layanan
               </GradientLink>
             </div>
           </div>
 
-          <HomeDoctorShowcase />
+          {children}
         </div>
       </section>
 

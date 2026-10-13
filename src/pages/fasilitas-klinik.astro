@@ -1,10 +1,19 @@
 ---
-export const prerender = true;
+export const prerender = false;
 import FasilitasPage from "@/components/fasilitas/FasilitasPage";
+import {
+  fasilitasLainnya,
+  fasilitasUmum,
+} from "@/components/fasilitas/fasilitasData";
 import Layout from "@/layouts/Layout.astro";
-import "@/styles/global.css";
+import { itemsForSection } from "@/lib/cms/featureItems";
+import { loadPublishedFeatures } from "@/lib/cms/loadPublishedFeatures";
+
+const cmsItems = await loadPublishedFeatures("fasilitas");
+const umum = itemsForSection(cmsItems, "umum", fasilitasUmum);
+const lainnya = itemsForSection(cmsItems, "lainnya", fasilitasLainnya);
 ---
 
-<Layout>
-  <FasilitasPage client:load />
+<Layout activeLabel="Fasilitas">
+  <FasilitasPage umum={umum} lainnya={lainnya} />
 </Layout>

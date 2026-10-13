@@ -4,7 +4,7 @@ import KlinikPageTitle from "@/components/shared/sections/KlinikPageTitle";
 
 export default function DokterKlinik() {
   return (
-    <KlinikPageShell activeLabel="Dokter" headerTone="tint">
+    <KlinikPageShell>
       <main className="bg-surface-tint pb-24">
         <div className="mx-auto flex w-full max-w-[1400px] flex-col items-center gap-10 px-5 pt-10 sm:gap-12 sm:px-6">
           <KlinikPageTitle

@@ -8,7 +8,7 @@ export default function SurveyKepuasanPage() {
   const form = useSurveyForm();
 
   return (
-    <KlinikPageShell activeLabel="Survey Kepuasan" overflow="clip">
+    <KlinikPageShell>
       <main className="mx-auto flex max-w-[760px] flex-col gap-8 px-6 pt-8 pb-24">
         <KlinikPageTitle
           title="Survey Kepuasan Pelanggan"

@@ -2,9 +2,8 @@
 export const prerender = true;
 import SurveyKepuasanPage from "@/components/survey/SurveyKepuasanPage";
 import Layout from "@/layouts/Layout.astro";
-import "@/styles/global.css";
 ---
 
-<Layout>
+<Layout activeLabel="Survey Kepuasan">
   <SurveyKepuasanPage client:load />
 </Layout>

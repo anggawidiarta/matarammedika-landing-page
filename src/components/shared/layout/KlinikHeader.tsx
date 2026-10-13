@@ -1,35 +1,35 @@
+import { useEffect, useRef } from "react";
 import {
   navKlinik,
-  navKlinikHref,
   navLinkClass,
   navLinkMobileClass,
   type NavKlinikLabel,
 } from "@/components/shared/data/navKlinik";
-import { Logo, gradientBg } from "@/components/shared/ui";
+import { gradientBg } from "@/components/shared/data/constants";
+import Logo from "@/components/shared/ui/Logo";
 import { Menu, X } from "lucide-react";
-
-type NavVariant = "home" | "page";
 
 const ctaClass = `${gradientBg} min-h-11 items-center justify-center rounded-full px-7 py-3.5 font-body text-base font-semibold text-white shadow-cta transition-transform duration-200 ease-out active:scale-[0.96] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue motion-reduce:active:scale-100 lg:text-lg`;
 
 export default function KlinikHeader({
   activeLabel,
-  navVariant = "page",
   headerTone = "surface",
 }: {
   activeLabel: NavKlinikLabel;
-  navVariant?: NavVariant;
   headerTone?: "tint" | "surface";
 }) {
+  const menuRef = useRef<HTMLDetailsElement>(null);
   const headerBg = headerTone === "tint" ? "bg-surface-tint" : "bg-surface";
-  const logoHref = navVariant === "home" ? "#beranda" : "/";
-  const infoHref = navVariant === "home" ? "#kontak" : "/#kontak";
+
+  useEffect(() => {
+    menuRef.current?.removeAttribute("open");
+  }, [activeLabel, headerTone]);
 
   return (
     <header className={`sticky top-0 z-50 ${headerBg}`}>
       <div className="relative mx-auto flex w-full max-w-[1600px] items-center justify-between gap-4 px-4 py-4 lg:px-10 xl:px-14">
         <a
-          href={logoHref}
+          href="/"
           aria-label="Beranda"
           className="relative z-10 rounded-md shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue"
         >
@@ -43,7 +43,7 @@ export default function KlinikHeader({
           {navKlinik.map((item) => (
             <a
               key={item.label}
-              href={navKlinikHref(item, navVariant)}
+              href={item.href}
               className={`whitespace-nowrap ${navLinkClass(item.label, activeLabel)}`}
             >
               {item.label}
@@ -51,11 +51,11 @@ export default function KlinikHeader({
           ))}
         </nav>
 
-        <a href={infoHref} className={`hidden relative z-10 shrink-0 lg:inline-flex ${ctaClass}`}>
+        <a href="/#kontak" className={`hidden relative z-10 shrink-0 lg:inline-flex ${ctaClass}`}>
           Informasi
         </a>
 
-        <details className="relative z-10 klinik-nav-menu lg:hidden">
+        <details ref={menuRef} className="relative z-10 klinik-nav-menu lg:hidden">
           <summary
             className="flex size-11 cursor-pointer list-none items-center justify-center rounded-full text-heading transition-colors duration-200 ease-out hover:bg-white/70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue [&::-webkit-details-marker]:hidden"
             aria-label="Buka menu"
@@ -74,14 +74,14 @@ export default function KlinikHeader({
               {navKlinik.map((item) => (
                 <a
                   key={item.label}
-                  href={navKlinikHref(item, navVariant)}
+                  href={item.href}
                   className={navLinkMobileClass(item.label, activeLabel)}
                 >
                   {item.label}
                 </a>
               ))}
             </nav>
-            <a href={infoHref} className={`inline-flex mt-3 w-full ${ctaClass}`}>
+            <a href="/#kontak" className={`inline-flex mt-3 w-full ${ctaClass}`}>
               Informasi
             </a>
           </div>

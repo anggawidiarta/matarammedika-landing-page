@@ -1,9 +1,13 @@
-import type { CircleTone } from "@/components/shared/ui/circleTone";
-import type { KlinikLucideName } from "@/components/shared/ui/lucideMap";
+import type { IconDescriptor } from "@/components/shared/ui/iconDescriptor";
 
-export type CmsPublicIcon =
-  | { kind: "lucide"; name: KlinikLucideName }
-  | { kind: "lucideCircle"; name: KlinikLucideName; tone: CircleTone };
+/** Display card shape shared by layanan / fasilitas fallbacks and CMS-mapped items. */
+export type FeatureItem = {
+  title: string;
+  body: string;
+  icon: IconDescriptor;
+};
+
+export type CmsPublicIcon = IconDescriptor;
 
 export type CmsPublicItem = {
   id: string;
