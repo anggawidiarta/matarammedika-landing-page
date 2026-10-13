@@ -1,6 +1,6 @@
 import { MessageCircle } from "lucide-react";
 import ContentCard from "@/components/profil/ContentCard";
-import { bannerTexture } from "@/components/shared/data/assets";
+import { bannerTexture } from "@/components/shared/data/photos";
 import { WA_KLINIK } from "@/components/shared/data/constants";
 import KlinikPageShell from "@/components/shared/layout/KlinikPageShell";
 import KlinikPageTitle from "@/components/shared/sections/KlinikPageTitle";
@@ -20,7 +20,7 @@ const missionItems = [
 
 export default function ProfilKlinik() {
   return (
-    <KlinikPageShell activeLabel="Profil">
+    <KlinikPageShell>
       <main className="mx-auto flex max-w-[1400px] flex-col gap-10 px-6 pt-8 pb-24">
         <KlinikPageTitle
           title="Profile"

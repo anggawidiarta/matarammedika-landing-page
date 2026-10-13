@@ -1,19 +1,7 @@
-import { gradientBg } from "@/components/shared/ui";
+import { gradientBg, type PromoItem } from "@/components/shared/data/constants";
 
-export const PROMO_DESCRIPTION =
-  'Klinik Mataram Medika berkomitmen untuk memberikan kontribusi melalui layanan komprehensif. Dengan konsep "one stop service", kami memudahkan akses ke berbagai layanan kesehatan.';
-
-export const PROMO_PERIOD = "10 Nov 2025 - 10 Des 2025";
-
-export type PromoItem = {
-  id: string;
-  title: string;
-  price: string;
-  compare: string;
-  badge: string;
-  badgeClass: string;
-  claimClass: string;
-};
+export type { PromoItem };
+export { PROMO_DESCRIPTION, PROMO_PERIOD } from "@/components/shared/data/constants";
 
 export const promoKlinikItems: PromoItem[] = [
   {

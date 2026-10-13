@@ -1,10 +1,7 @@
 import { MessageCircle } from "lucide-react";
-import {
-  iconFacebook,
-  iconInstagram,
-} from "@/components/shared/data/assets";
 import { WA_KLINIK } from "@/components/shared/data/constants";
-import { Logo } from "@/components/shared/ui";
+import { iconFacebook, iconInstagram } from "@/components/shared/data/icons";
+import Logo from "@/components/shared/ui/Logo";
 
 export default function SiteFooter() {
   return (

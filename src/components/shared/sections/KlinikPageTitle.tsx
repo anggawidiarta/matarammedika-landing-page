@@ -1,4 +1,4 @@
-import { Segmented } from "@/components/shared/ui";
+import Segmented from "@/components/shared/ui/Segmented";
 
 type HeadingTag = "h1" | "h2";
 

@@ -1,11 +1,11 @@
 import { Calendar, MessageCircle, Timer } from "lucide-react";
-import { promoClinic } from "@/components/shared/data/assets";
-import { WA_KLINIK } from "@/components/shared/data/constants";
 import {
   PROMO_DESCRIPTION,
   PROMO_PERIOD,
+  WA_KLINIK,
   type PromoItem,
-} from "@/components/promo/promoData";
+} from "@/components/shared/data/constants";
+import { promoClinic } from "@/components/shared/data/photos";
 
 export default function PromoCard({ promo }: { promo: PromoItem }) {
   return (

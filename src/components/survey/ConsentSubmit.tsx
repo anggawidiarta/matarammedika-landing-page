@@ -1,4 +1,4 @@
-import { gradientBg } from "@/components/shared/ui";
+import { gradientBg } from "@/components/shared/data/constants";
 import type { FormStatus } from "./constants";
 import SurveyCard from "./SurveyCard";
 

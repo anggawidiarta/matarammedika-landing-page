@@ -1,4 +1,4 @@
-import { gradientBg } from "@/components/shared/ui";
+import { gradientBg } from "@/components/shared/data/constants";
 
 export default function SurveySuccess({ onReset }: { onReset: () => void }) {
   return (
