@@ -11,7 +11,7 @@ import { renderIcon } from "@/components/shared/ui";
 function FeatureSection({ title, items }: { title: string; items: FasilitasItem[] }) {
   return (
     <section className="flex flex-col gap-6">
-      <h2 className="font-body text-2xl font-medium leading-[21px] text-black">
+      <h2 className="font-body text-xl font-medium leading-snug text-balance text-black sm:text-2xl">
         {title}
       </h2>
       <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
@@ -31,7 +31,7 @@ function FeatureSection({ title, items }: { title: string; items: FasilitasItem[
 export default function FasilitasKlinik() {
   return (
     <KlinikPageShell activeLabel="Fasilitas">
-      <main className="mx-auto flex max-w-[1228px] flex-col gap-10 px-6 pt-8 pb-24">
+      <main className="mx-auto flex max-w-[1400px] flex-col gap-10 px-6 pt-8 pb-24">
         <KlinikPageTitle
           title="Daftar Fasilitas"
           caption="Klinik kami menyediakan berbagai fasilitas kesehatan lengkap"

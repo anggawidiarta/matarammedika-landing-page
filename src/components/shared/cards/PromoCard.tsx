@@ -24,10 +24,10 @@ export default function PromoCard({ promo }: { promo: PromoItem }) {
         {promo.badge}
       </span>
       <div className="flex w-full flex-col gap-2.5 px-6">
-        <h3 className="font-body text-2xl font-medium text-heading">
+        <h3 className="font-body text-xl font-medium leading-snug text-balance text-heading sm:text-2xl">
           {promo.title}
         </h3>
-        <p className="font-body text-2xl font-medium text-blue">
+        <p className="font-body text-xl font-medium leading-snug text-blue sm:text-2xl">
           {promo.price}
           {promo.compare ? (
             <span className="ml-2 text-sm font-normal text-muted line-through">
@@ -35,11 +35,11 @@ export default function PromoCard({ promo }: { promo: PromoItem }) {
             </span>
           ) : null}
         </p>
-        <p className="flex items-center gap-1 font-body text-base leading-6 text-muted">
+        <p className="flex items-center gap-1 font-body text-base leading-6 text-pretty text-muted">
           <Calendar size={20} aria-hidden strokeWidth={2} />
           Periode : {PROMO_PERIOD}
         </p>
-        <p className="font-body text-base leading-6 text-muted">
+        <p className="font-body text-base leading-6 text-pretty text-muted">
           {PROMO_DESCRIPTION}
         </p>
       </div>

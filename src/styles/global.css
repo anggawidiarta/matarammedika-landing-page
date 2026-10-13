@@ -37,3 +37,15 @@ body {
     animation: none;
   }
 }
+
+.klinik-nav-menu[open] .klinik-nav-menu-icon-open {
+  display: none;
+}
+
+.klinik-nav-menu[open] .klinik-nav-menu-icon-close {
+  display: block;
+}
+
+.klinik-nav-menu[open] > summary {
+  background-color: var(--color-surface-tint);
+}

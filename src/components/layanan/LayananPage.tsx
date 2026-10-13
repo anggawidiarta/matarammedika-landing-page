@@ -7,14 +7,14 @@ import { renderIcon } from "@/components/shared/ui";
 export default function LayananKlinik() {
   return (
     <KlinikPageShell activeLabel="Layanan">
-      <main className="mx-auto flex max-w-[1228px] flex-col gap-10 px-6 pt-8 pb-24">
+      <main className="mx-auto flex max-w-[1400px] flex-col gap-10 px-6 pt-8 pb-24">
         <KlinikPageTitle
           title="Daftar Layanan"
           caption="Klinik kami menyediakan berbagai layanan kesehatan lengkap yang ditangani oleh tenaga medis profesional, memberikan perawatan terbaik bagi setiap pasien."
         />
 
         <section className="flex flex-col gap-6">
-          <h2 className="font-body text-2xl font-medium leading-[21px] text-black">
+          <h2 className="font-body text-xl font-medium leading-snug text-balance text-black sm:text-2xl">
             Konsultasi Dokter
           </h2>
           <div className="grid gap-5 lg:grid-cols-2">
@@ -31,7 +31,7 @@ export default function LayananKlinik() {
         </section>
 
         <section className="flex flex-col gap-6">
-          <h2 className="font-body text-2xl font-medium leading-[21px] text-black">
+          <h2 className="font-body text-xl font-medium leading-snug text-balance text-black sm:text-2xl">
             Konsultasi Dokter Spesialis
           </h2>
           <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">

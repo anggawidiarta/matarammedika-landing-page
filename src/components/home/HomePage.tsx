@@ -93,13 +93,13 @@ export default function LandingPageKlinik() {
   return (
     <KlinikPageShell activeLabel="Beranda" navVariant="home" headerTone="tint">
       <section id="beranda" className="bg-surface-tint">
-        <div className="mx-auto grid max-w-[1440px] items-center gap-10 px-6 py-12 lg:grid-cols-[minmax(0,688px)_413px] lg:justify-center lg:gap-24 lg:px-[106px] lg:pb-24 lg:pt-10">
+        <div className="mx-auto grid max-w-[1600px] items-center gap-10 px-6 py-12 lg:grid-cols-[minmax(0,1fr)_413px] lg:justify-between lg:gap-16 lg:px-10 xl:gap-24 xl:px-14 lg:pb-24 lg:pt-10">
           <div>
             <Segmented active="klinik" />
-            <h1 className="mt-[72px] max-w-[688px] bg-gradient-blue-green-text bg-clip-text font-body text-[40px] font-bold leading-normal text-transparent">
+            <h1 className="mt-[72px] max-w-[688px] bg-gradient-blue-green-text bg-clip-text font-body text-[32px] font-bold leading-snug text-balance text-transparent sm:text-[36px] lg:text-[40px] lg:leading-normal">
               Klinik Mataram Medika
             </h1>
-            <p className="mt-4 max-w-[655px] font-body text-base leading-6 text-muted">
+            <p className="mt-4 max-w-[655px] font-body text-base leading-6 text-pretty text-muted">
               Layanan kesehatan terpadu untuk keluarga Anda — dari rawat jalan dan konsultasi
               spesialis hingga fasilitas nyaman, dengan tenaga medis profesional di Mataram.
             </p>
@@ -116,7 +116,7 @@ export default function LandingPageKlinik() {
       </section>
 
       <section className="py-16 bg-surface">
-        <div className="mx-auto flex max-w-[1228px] flex-col items-center gap-10 px-6">
+        <div className="mx-auto flex max-w-[1400px] flex-col items-center gap-10 px-6">
           <KlinikPageTitle
             as="h2"
             title="Kerjasama Asuransi"
@@ -130,17 +130,17 @@ export default function LandingPageKlinik() {
       </section>
 
       <section id="layanan" className="py-20 bg-surface-tint">
-        <div className="mx-auto flex max-w-[1228px] flex-col gap-10 px-6">
+        <div className="mx-auto flex max-w-[1400px] flex-col gap-10 px-6">
           <KlinikPageTitle
             as="h2"
             title="Daftar Layanan"
             caption="Klinik kami menyediakan berbagai layanan kesehatan lengkap yang ditangani oleh tenaga medis profesional, memberikan perawatan terbaik bagi setiap pasien."
           />
           <div>
-            <h3 className="text-2xl font-medium leading-10 font-body text-heading">
+            <h3 className="font-body text-xl font-medium leading-snug text-balance text-heading sm:text-2xl">
               Layanan Klinik
             </h3>
-            <p className="text-sm leading-5 font-body text-muted">
+            <p className="font-body text-sm leading-6 text-pretty text-muted">
               Solusi kesehatan terpadu untuk keluarga Anda.
             </p>
           </div>
@@ -162,10 +162,10 @@ export default function LandingPageKlinik() {
                 tone: "blue",
               })}
               <div>
-                <p className="font-body text-2xl font-medium leading-[21px] text-black">
+                <p className="font-body text-xl font-medium leading-snug text-balance text-black sm:text-2xl">
                   Belum menemukan layanan yang dicari?
                 </p>
-                <p className="mt-3 text-sm leading-5 font-accent text-muted">
+                <p className="mt-3 font-accent text-sm leading-6 text-pretty text-muted">
                   Telusuri fasilitas layanan klinik kami selengkapnya.
                 </p>
               </div>
@@ -179,19 +179,20 @@ export default function LandingPageKlinik() {
       </section>
 
       <section id="fasilitas" className="py-20 bg-surface">
-        <div className="mx-auto flex max-w-[1228px] flex-col gap-10 px-6">
+        <div className="mx-auto flex max-w-[1400px] flex-col gap-10 px-6">
           <SectionTitleWithLink
             title="Daftar Fasilitas"
             caption="Klinik kami menyediakan berbagai fasilitas kesehatan lengkap"
             href="/fasilitas-klinik"
           />
-          <h3 className="font-body text-2xl font-medium leading-[21px]">Fasilitas Klinik</h3>
+          <h3 className="font-body text-xl font-medium leading-snug text-balance sm:text-2xl">
+            Fasilitas Klinik
+          </h3>
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
             {fasilitasUmum.map((item) => (
               <IconFeatureCard
                 key={item.title}
                 titleSize="xl"
-                bodyClassName="font-body text-xs leading-5 text-muted"
                 icon={renderIcon(item.icon)}
                 title={item.title}
                 body={item.body}
@@ -202,7 +203,7 @@ export default function LandingPageKlinik() {
       </section>
 
       <section id="promo" className="py-20 bg-surface-tint">
-        <div className="mx-auto flex max-w-[1228px] flex-col gap-10 px-6">
+        <div className="mx-auto flex max-w-[1400px] flex-col gap-10 px-6">
           <SectionTitleWithLink
             title="Informasi Promo"
             caption="Kami menyediakan berbagai promo , Seperti"
@@ -222,10 +223,10 @@ export default function LandingPageKlinik() {
             />
             <div className="relative z-10 flex max-w-[640px] flex-col gap-10 px-8 py-12 lg:px-[68px] lg:py-[54px]">
               <div>
-                <h2 className="font-body text-[32px] font-semibold leading-normal">
+                <h2 className="font-body text-[28px] font-semibold leading-snug text-balance sm:text-[32px] sm:leading-normal">
                   PROMO VAKSI DPT POLIO
                 </h2>
-                <p className="mt-2 font-body text-2xl leading-[34px]">
+                <p className="mt-2 font-body text-xl leading-snug text-pretty sm:text-2xl sm:leading-snug">
                   Lindungi si kecil Sekarang!
                   <br />
                   Imunisasi Lengkap untuk Buah Hati

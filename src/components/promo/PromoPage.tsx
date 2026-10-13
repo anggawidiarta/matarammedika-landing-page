@@ -6,7 +6,7 @@ import KlinikPageTitle from "@/components/shared/sections/KlinikPageTitle";
 export default function PromoKlinik() {
   return (
     <KlinikPageShell activeLabel="Promo">
-      <main className="mx-auto flex max-w-[1228px] flex-col gap-10 px-6 pt-8 pb-24">
+      <main className="mx-auto flex max-w-[1400px] flex-col gap-10 px-6 pt-8 pb-24">
         <KlinikPageTitle
           align="start"
           title="Informasi Promo"

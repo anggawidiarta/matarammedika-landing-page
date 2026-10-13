@@ -21,14 +21,14 @@ const missionItems = [
 export default function ProfilKlinik() {
   return (
     <KlinikPageShell activeLabel="Profil">
-      <main className="mx-auto flex max-w-[1228px] flex-col gap-10 px-6 pt-8 pb-24">
+      <main className="mx-auto flex max-w-[1400px] flex-col gap-10 px-6 pt-8 pb-24">
         <KlinikPageTitle
           title="Profile"
           caption="Ringkasan informasi tentang Klinik Mataram Medika"
         />
 
         <section className="flex flex-col gap-3">
-          <h2 className="font-body text-2xl font-medium leading-[21px] text-black">
+          <h2 className="text-xl font-medium leading-snug text-black font-body text-balance sm:text-2xl">
             TENTANG KAMI
           </h2>
           <ContentCard>
@@ -38,7 +38,7 @@ export default function ProfilKlinik() {
 
         <section className="grid gap-6 lg:grid-cols-2">
           <div className="flex flex-col gap-3">
-            <h2 className="font-body text-2xl font-medium leading-[21px] text-black">
+            <h2 className="text-xl font-medium leading-snug text-black font-body text-balance sm:text-2xl">
               VISI
             </h2>
             <ContentCard>
@@ -46,11 +46,11 @@ export default function ProfilKlinik() {
             </ContentCard>
           </div>
           <div className="flex flex-col gap-3">
-            <h2 className="font-body text-2xl font-medium leading-[21px] text-black">
+            <h2 className="text-xl font-medium leading-snug text-black font-body text-balance sm:text-2xl">
               MISI
             </h2>
             <ContentCard>
-              <ol className="list-decimal space-y-0 pl-5">
+              <ol className="pl-5 space-y-0 list-decimal">
                 {missionItems.map((item) => (
                   <li key={item} className="text-justify">
                     {item}
@@ -69,19 +69,18 @@ export default function ProfilKlinik() {
           />
           <div className="relative z-10 flex max-w-[747px] flex-col items-center gap-10">
             <div className="flex flex-col gap-2">
-              <h2 className="font-body text-[32px] font-semibold leading-normal">
+              <h2 className="font-body text-[28px] font-semibold leading-snug text-balance sm:text-[32px] sm:leading-normal">
                 Kontak Kami Untuk Reservasi Pelayanan kami sekarang
               </h2>
-              <p className="font-body text-base leading-6 opacity-80">
-                Kesehatan Anda adalah prioritas kami. Reservasi pelayanan kami
-                sekarang
+              <p className="text-base leading-6 opacity-80 font-body text-pretty">
+                Kesehatan Anda adalah prioritas kami. Reservasi pelayanan kami sekarang
                 <br />
                 dan dapatkan perawatan terbaik dari tenaga medis profesional.
               </p>
             </div>
             <a
               href={WA_KLINIK}
-              className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-4 font-accent text-lg font-semibold text-blue shadow-cta"
+              className="inline-flex gap-2 items-center px-7 py-4 text-lg font-semibold bg-white rounded-full font-accent text-blue shadow-cta"
             >
               <MessageCircle
                 size={24}

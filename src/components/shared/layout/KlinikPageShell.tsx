@@ -7,7 +7,7 @@ export default function KlinikPageShell({
   activeLabel,
   navVariant = "page",
   headerTone = "surface",
-  overflow = "hidden",
+  overflow = "clip",
   children,
 }: {
   activeLabel: NavKlinikLabel;
@@ -16,8 +16,9 @@ export default function KlinikPageShell({
   overflow?: "hidden" | "clip";
   children: ReactNode;
 }) {
+  // Prefer clip so sticky header is not trapped by an overflow scroll container.
   const overflowClass =
-    overflow === "clip" ? "overflow-x-clip" : "overflow-x-hidden";
+    overflow === "hidden" ? "overflow-x-hidden" : "overflow-x-clip";
 
   return (
     <div

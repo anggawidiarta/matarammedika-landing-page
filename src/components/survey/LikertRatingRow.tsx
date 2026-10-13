@@ -67,7 +67,7 @@ export default function LikertRatingRow({
           </div>
         </div>
 
-        <div className="mt-2.5 grid min-w-0 grid-cols-5 gap-1.5 px-0.5 font-body text-[11px] leading-tight text-muted sm:gap-2 sm:text-xs">
+        <div className="mt-2.5 grid min-w-0 grid-cols-5 gap-1.5 px-0.5 font-body text-xs leading-tight text-muted sm:gap-2">
           <span className="col-span-2 text-left">Sangat tidak puas</span>
           <span className="col-span-1" aria-hidden="true" />
           <span className="col-span-2 text-right">Sangat puas</span>

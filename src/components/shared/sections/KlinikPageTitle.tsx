@@ -20,8 +20,7 @@ export default function KlinikPageTitle({
   titleClassName?: string;
 }) {
   const Heading = as;
-  const alignClass =
-    align === "center" ? "items-center text-center" : "items-start text-left";
+  const alignClass = align === "center" ? "items-center text-center" : "items-start text-left";
 
   return (
     <div className={`flex flex-col gap-3 ${alignClass}`}>
@@ -29,14 +28,14 @@ export default function KlinikPageTitle({
         className={`flex flex-wrap gap-3 ${align === "center" ? "justify-center items-center" : "items-center"}`}
       >
         <Heading
-          className={`min-w-0 [overflow-wrap:anywhere] font-body text-[32px] font-semibold text-heading ${titleClassName}`}
+          className={`min-w-0 font-semibold leading-snug [overflow-wrap:anywhere] font-body text-[28px] text-heading text-balance sm:text-[32px] ${titleClassName}`}
         >
           {title}
         </Heading>
         {showSegmented ? <Segmented active={segmentedActive} /> : null}
       </div>
       {caption ? (
-        <p className="max-w-[721px] font-body text-base leading-6 text-muted opacity-80">
+        <p className="max-w-[721px] font-body text-base leading-6 text-pretty text-muted opacity-80">
           {caption}
         </p>
       ) : null}

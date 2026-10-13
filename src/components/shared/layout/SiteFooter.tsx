@@ -9,7 +9,7 @@ import { Logo } from "@/components/shared/ui";
 export default function SiteFooter() {
   return (
     <footer id="kontak" className="text-white bg-footer">
-      <div className="flex flex-col gap-10 px-6 py-16 mx-auto max-w-307">
+      <div className="mx-auto flex max-w-[1400px] flex-col gap-10 px-6 py-16 lg:px-10">
         <div className="grid gap-10 lg:grid-cols-[1.4fr_0.6fr_1fr]">
           <div className="flex flex-col gap-6">
             <div className="flex flex-col gap-4">
