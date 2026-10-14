@@ -1,5 +1,6 @@
 ---
 export const prerender = false;
+import HomeBerandaHero from "@/components/home/HomeBerandaHero";
 import HomeDoctorShowcase from "@/components/home/HomeDoctorShowcase";
 import HomePage from "@/components/home/HomePage";
 import { fasilitasUmum } from "@/components/fasilitas/fasilitasData";
@@ -14,16 +15,19 @@ const [layananCms, fasilitasCms] = await Promise.all([
 ]);
 
 const specialistItems = layananCms
-  ? layananCms.filter((item) => item.section === "spesialis").slice(0, 6).map(toFeatureItem)
+  ? layananCms
+      .filter((item) => item.section === "spesialis")
+      .slice(0, 6)
+      .map(toFeatureItem)
   : [];
-const layananPreview =
-  specialistItems.length > 0 ? specialistItems : layananHomePreview;
+const layananPreview = specialistItems.length > 0 ? specialistItems : layananHomePreview;
 
 const fasilitasPreview = itemsForSection(fasilitasCms, "umum", fasilitasUmum);
 ---
 
 <Layout activeLabel="Beranda" headerTone="tint">
   <HomePage layananPreview={layananPreview} fasilitasPreview={fasilitasPreview}>
+    <HomeBerandaHero client:load />
     <HomeDoctorShowcase client:visible />
   </HomePage>
 </Layout>

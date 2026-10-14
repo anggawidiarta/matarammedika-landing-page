@@ -4,47 +4,46 @@ import { layananHomePreview, type LayananItem } from "@/components/layanan/layan
 import { promoKlinikPreview } from "@/components/promo/promoData";
 import IconFeatureCard from "@/components/shared/cards/IconFeatureCard";
 import PromoCard from "@/components/shared/cards/PromoCard";
+import admedika from "@/assets/asuransi/admedika.png";
+import bcaLife from "@/assets/asuransi/bca-life.png";
+import bni from "@/assets/asuransi/bni.png";
+import bniLife from "@/assets/asuransi/bni-life.png";
+import bri from "@/assets/asuransi/bri.png";
+import briLife from "@/assets/asuransi/bri-life.png";
+import mandiriInhealth from "@/assets/asuransi/mandiri-inhealth.png";
+import owlexa from "@/assets/asuransi/owlexa.png";
+import pln from "@/assets/asuransi/pln.png";
+import telkomedika from "@/assets/asuransi/telkomedika.png";
+import ykkbi from "@/assets/asuransi/ykkbi.png";
+import { assetUrl } from "@/components/shared/data/assetUrl";
 import { WA_KLINIK } from "@/components/shared/data/constants";
-import {
-  insurerAdmedika,
-  insurerBcaLife,
-  insurerBni,
-  insurerBniLife,
-  insurerBri,
-  insurerBriLife,
-  insurerMandiriInhealth,
-  insurerOwlexa,
-  insurerPln,
-  insurerTelkomedika,
-  insurerYkkbi,
-} from "@/components/shared/data/insurers";
 import { bannerFamily, bannerTexture } from "@/components/shared/data/photos";
 import KlinikPageShell from "@/components/shared/layout/KlinikPageShell";
 import KlinikPageTitle from "@/components/shared/sections/KlinikPageTitle";
 import { ArrowIcon, GradientLink } from "@/components/shared/ui/GradientLink";
 import { renderIcon } from "@/components/shared/ui/iconDescriptor";
-import Segmented from "@/components/shared/ui/Segmented";
-import { MessageCircle, Stethoscope } from "lucide-react";
-type InsurerLogo = { src: string; width: number; height: number };
+import { MessageCircle } from "lucide-react";
 
-const insurersRowOne: InsurerLogo[] = [
-  { src: insurerOwlexa, width: 146, height: 45 },
-  { src: insurerBcaLife, width: 142, height: 80 },
-  { src: insurerMandiriInhealth, width: 158, height: 58 },
-  { src: insurerPln, width: 114, height: 80 },
-  { src: insurerBniLife, width: 152, height: 78 },
+type AsuransiLogo = { src: string; width: number; height: number };
+
+const asuransiRowOne: AsuransiLogo[] = [
+  { src: assetUrl(owlexa), width: 146, height: 45 },
+  { src: assetUrl(bcaLife), width: 142, height: 80 },
+  { src: assetUrl(mandiriInhealth), width: 158, height: 58 },
+  { src: assetUrl(pln), width: 114, height: 80 },
+  { src: assetUrl(bniLife), width: 152, height: 78 },
 ];
 
-const insurersRowTwo: InsurerLogo[] = [
-  { src: insurerBni, width: 114, height: 46 },
-  { src: insurerAdmedika, width: 167, height: 33 },
-  { src: insurerTelkomedika, width: 129, height: 64 },
-  { src: insurerBriLife, width: 172, height: 66 },
-  { src: insurerBri, width: 152, height: 42 },
-  { src: insurerYkkbi, width: 122, height: 66 },
+const asuransiRowTwo: AsuransiLogo[] = [
+  { src: assetUrl(bni), width: 114, height: 46 },
+  { src: assetUrl(admedika), width: 167, height: 33 },
+  { src: assetUrl(telkomedika), width: 129, height: 64 },
+  { src: assetUrl(briLife), width: 172, height: 66 },
+  { src: assetUrl(bri), width: 152, height: 42 },
+  { src: assetUrl(ykkbi), width: 122, height: 66 },
 ];
 
-function InsurerRow({ logos }: { logos: InsurerLogo[] }) {
+function AsuransiRow({ logos }: { logos: AsuransiLogo[] }) {
   return (
     <div className="flex flex-wrap items-center justify-center gap-8 lg:gap-[68px]">
       {logos.map((logo) => (
@@ -96,23 +95,6 @@ export default function LandingPageKlinik({
     <KlinikPageShell>
       <section id="beranda" className="bg-surface-tint">
         <div className="mx-auto grid max-w-[1600px] items-center gap-10 px-6 py-12 lg:grid-cols-[minmax(0,1fr)_413px] lg:justify-between lg:gap-16 lg:px-10 xl:gap-24 xl:px-14 lg:pb-24 lg:pt-10">
-          <div>
-            <Segmented active="klinik" />
-            <h1 className="mt-[72px] max-w-[688px] bg-gradient-blue-green-text bg-clip-text font-body text-[32px] font-bold leading-snug text-balance text-transparent sm:text-[36px] lg:text-[40px] lg:leading-normal">
-              Klinik Mataram Medika
-            </h1>
-            <p className="mt-4 max-w-[655px] font-body text-base leading-6 text-pretty text-muted">
-              Layanan kesehatan terpadu untuk keluarga Anda — dari rawat jalan dan konsultasi
-              spesialis hingga fasilitas nyaman, dengan tenaga medis profesional di Mataram.
-            </p>
-            <div className="mt-8">
-              <GradientLink href="#layanan">
-                <Stethoscope size={24} aria-hidden strokeWidth={2} />
-                Lihat Layanan
-              </GradientLink>
-            </div>
-          </div>
-
           {children}
         </div>
       </section>
@@ -125,8 +107,8 @@ export default function LandingPageKlinik({
             caption="Kami telah bekerjasama dengan beberapa pihak asuransi, seperti"
           />
           <div className="flex flex-col gap-10 items-center">
-            <InsurerRow logos={insurersRowOne} />
-            <InsurerRow logos={insurersRowTwo} />
+            <AsuransiRow logos={asuransiRowOne} />
+            <AsuransiRow logos={asuransiRowTwo} />
           </div>
         </div>
       </section>
@@ -139,10 +121,10 @@ export default function LandingPageKlinik({
             caption="Klinik kami menyediakan berbagai layanan kesehatan lengkap yang ditangani oleh tenaga medis profesional, memberikan perawatan terbaik bagi setiap pasien."
           />
           <div>
-            <h3 className="font-body text-xl font-medium leading-snug text-balance text-heading sm:text-2xl">
+            <h3 className="text-xl font-medium leading-snug font-body text-balance text-heading sm:text-2xl">
               Layanan Klinik
             </h3>
-            <p className="font-body text-sm leading-6 text-pretty text-muted">
+            <p className="text-sm leading-6 font-body text-pretty text-muted">
               Solusi kesehatan terpadu untuk keluarga Anda.
             </p>
           </div>
@@ -164,10 +146,10 @@ export default function LandingPageKlinik({
                 tone: "blue",
               })}
               <div>
-                <p className="font-body text-xl font-medium leading-snug text-balance text-black sm:text-2xl">
+                <p className="text-xl font-medium leading-snug text-black font-body text-balance sm:text-2xl">
                   Belum menemukan layanan yang dicari?
                 </p>
-                <p className="mt-3 font-accent text-sm leading-6 text-pretty text-muted">
+                <p className="mt-3 text-sm leading-6 font-accent text-pretty text-muted">
                   Telusuri fasilitas layanan klinik kami selengkapnya.
                 </p>
               </div>
@@ -187,7 +169,7 @@ export default function LandingPageKlinik({
             caption="Klinik kami menyediakan berbagai fasilitas kesehatan lengkap"
             href="/fasilitas-klinik"
           />
-          <h3 className="font-body text-xl font-medium leading-snug text-balance sm:text-2xl">
+          <h3 className="text-xl font-medium leading-snug font-body text-balance sm:text-2xl">
             Fasilitas Klinik
           </h3>
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
@@ -228,7 +210,7 @@ export default function LandingPageKlinik({
                 <h2 className="font-body text-[28px] font-semibold leading-snug text-balance sm:text-[32px] sm:leading-normal">
                   PROMO VAKSI DPT POLIO
                 </h2>
-                <p className="mt-2 font-body text-xl leading-snug text-pretty sm:text-2xl sm:leading-snug">
+                <p className="mt-2 text-xl leading-snug font-body text-pretty sm:text-2xl sm:leading-snug">
                   Lindungi si kecil Sekarang!
                   <br />
                   Imunisasi Lengkap untuk Buah Hati

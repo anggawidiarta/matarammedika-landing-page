@@ -1,4 +1,4 @@
-import Segmented from "@/components/shared/ui/Segmented";
+import Segmented, { type SegmentedUnit } from "@/components/shared/ui/Segmented";
 
 type HeadingTag = "h1" | "h2";
 
@@ -16,7 +16,7 @@ export default function KlinikPageTitle({
   as?: HeadingTag;
   align?: "center" | "start";
   showSegmented?: boolean;
-  segmentedActive?: "klinik" | "apotek";
+  segmentedActive?: SegmentedUnit;
   titleClassName?: string;
 }) {
   const Heading = as;
