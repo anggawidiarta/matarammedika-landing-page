@@ -10,6 +10,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "start": "node --env-file=.env ./dist/server/entry.mjs",
+    "check": "astro check",
     "astro": "astro"
   },
   "dependencies": {
@@ -30,6 +31,8 @@
     "esbuild": true
   },
   "devDependencies": {
-    "@types/node": "^26.6.5"
+    "@astrojs/check": "^0.9.10",
+    "@types/node": "^26.6.5",
+    "typescript": "^6.0.3"
   }
 }
