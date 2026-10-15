@@ -1,4 +1,5 @@
 import type { LucideIcon } from "lucide-react";
+import type { KlinikLucideName } from "@/types/feature";
 import {
   Activity,
   Baby,
@@ -39,6 +40,4 @@ export const klinikLucideIcons = {
   toilet: Toilet,
   tooth: Smile,
   userSearch: UserSearch,
-} as const satisfies Record<string, LucideIcon>;
-
-export type KlinikLucideName = keyof typeof klinikLucideIcons;
+} as const satisfies Record<KlinikLucideName, LucideIcon>;

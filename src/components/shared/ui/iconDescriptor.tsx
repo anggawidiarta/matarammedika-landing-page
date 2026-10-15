@@ -1,14 +1,7 @@
 import type { ReactNode } from "react";
 import CircleIcon from "@/components/shared/ui/CircleIcon";
-import {
-  klinikLucideIcons,
-  type KlinikLucideName,
-} from "@/components/shared/ui/lucideMap";
-import type { CircleTone } from "@/components/shared/ui/circleTone";
-
-export type IconDescriptor =
-  | { kind: "lucide"; name: KlinikLucideName }
-  | { kind: "lucideCircle"; name: KlinikLucideName; tone: CircleTone };
+import { klinikLucideIcons } from "@/components/shared/ui/lucideMap";
+import type { IconDescriptor } from "@/types/feature";
 
 export function renderIcon(descriptor: IconDescriptor): ReactNode {
   if (descriptor.kind === "lucideCircle") {

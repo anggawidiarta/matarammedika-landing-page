@@ -1,4 +1,4 @@
-export type CircleTone = "blue" | "green" | "pink" | "lilac" | "mint" | "red";
+import type { CircleTone } from "@/types/feature";
 
 /** Background + glyph colors aligned with former circle-*.svg fills */
 export const circleToneClass: Record<CircleTone, { bg: string; fg: string }> = {

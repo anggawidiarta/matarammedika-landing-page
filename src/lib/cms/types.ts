@@ -1,11 +1,4 @@
-import type { IconDescriptor } from "@/components/shared/ui/iconDescriptor";
-
-/** Display card shape shared by layanan / fasilitas fallbacks and CMS-mapped items. */
-export type FeatureItem = {
-  title: string;
-  body: string;
-  icon: IconDescriptor;
-};
+import type { IconDescriptor } from "@/types/feature";
 
 export type CmsPublicIcon = IconDescriptor;
 

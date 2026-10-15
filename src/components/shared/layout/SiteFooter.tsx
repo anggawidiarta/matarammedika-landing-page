@@ -1,5 +1,5 @@
 import { MessageCircle } from "lucide-react";
-import { WA_KLINIK } from "@/components/shared/data/constants";
+import { WA_KLINIK } from "@/data/site";
 import iconFacebook from "@/assets/icons/facebook.svg";
 import iconInstagram from "@/assets/icons/instagram.svg";
 import Logo from "@/components/shared/ui/Logo";

@@ -1,6 +1,6 @@
 import IconFeatureCard from "@/components/shared/cards/IconFeatureCard";
 import { renderIcon } from "@/components/shared/ui/iconDescriptor";
-import type { FeatureItem } from "@/lib/cms/types";
+import type { FeatureItem } from "@/types/feature";
 
 export default function FeatureSection({
   title,

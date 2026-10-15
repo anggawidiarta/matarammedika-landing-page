@@ -1,5 +1,5 @@
 import PromoCard from "@/components/shared/cards/PromoCard";
-import { promoKlinikItems } from "@/components/promo/promoData";
+import { promoKlinikItems } from "@/data/promo";
 import KlinikPageTitle from "@/components/shared/sections/KlinikPageTitle";
 
 export default function PromoKlinik() {

@@ -1,7 +1,12 @@
-import { gradientBg, type PromoItem } from "@/components/shared/data/constants";
-
-export type { PromoItem };
-export { PROMO_DESCRIPTION, PROMO_PERIOD } from "@/components/shared/data/constants";
+export type PromoItem = {
+  id: string;
+  title: string;
+  price: string;
+  compare: string;
+  badge: string;
+  badgeClass: string;
+  claimClass: string;
+};
 
 export const promoKlinikItems: PromoItem[] = [
   {
@@ -11,7 +16,7 @@ export const promoKlinikItems: PromoItem[] = [
     compare: "Rp.350.000",
     badge: "Promo Bulan ini",
     badgeClass: "bg-blue",
-    claimClass: gradientBg,
+    claimClass: "bg-gradient-blue-green",
   },
   {
     id: "2",
@@ -20,7 +25,7 @@ export const promoKlinikItems: PromoItem[] = [
     compare: "Rp.350.000",
     badge: "Sisa 2 hari",
     badgeClass: "bg-promo",
-    claimClass: gradientBg,
+    claimClass: "bg-gradient-blue-green",
   },
   {
     id: "3",
@@ -38,7 +43,7 @@ export const promoKlinikItems: PromoItem[] = [
     compare: "Rp.350.000",
     badge: "Promo Bulan ini",
     badgeClass: "bg-blue",
-    claimClass: gradientBg,
+    claimClass: "bg-gradient-blue-green",
   },
   {
     id: "5",
@@ -47,7 +52,7 @@ export const promoKlinikItems: PromoItem[] = [
     compare: "Rp.350.000",
     badge: "Sisa 2 hari",
     badgeClass: "bg-promo",
-    claimClass: gradientBg,
+    claimClass: "bg-gradient-blue-green",
   },
   {
     id: "6",

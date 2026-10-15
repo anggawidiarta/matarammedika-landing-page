@@ -1,4 +1,5 @@
-import type { CmsPublicItem, FeatureItem } from "@/lib/cms/types";
+import type { CmsPublicItem } from "@/lib/cms/types";
+import type { FeatureItem } from "@/types/feature";
 
 export function toFeatureItem(item: CmsPublicItem): FeatureItem {
   return {

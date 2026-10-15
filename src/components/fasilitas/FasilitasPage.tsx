@@ -2,7 +2,7 @@ import {
   fasilitasLainnya,
   fasilitasUmum,
   type FasilitasItem,
-} from "@/components/fasilitas/fasilitasData";
+} from "@/data/fasilitas";
 import FeatureSection from "@/components/shared/cards/FeatureSection";
 import KlinikPageTitle from "@/components/shared/sections/KlinikPageTitle";
 

@@ -1,4 +1,4 @@
-import type { FeatureItem } from "@/lib/cms/types";
+import type { FeatureItem } from "@/types/feature";
 
 export type LayananItem = FeatureItem;
 

@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { ArrowRight } from "lucide-react";
-import { gradientBg } from "@/components/shared/data/constants";
+import { gradientBg } from "@/components/shared/ui/gradient";
 
 export function GradientLink({ href, children }: { href: string; children: ReactNode }) {
   return (

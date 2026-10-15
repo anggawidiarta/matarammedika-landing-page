@@ -1,10 +1,6 @@
 import { Calendar, MessageCircle, Timer } from "lucide-react";
-import {
-  PROMO_DESCRIPTION,
-  PROMO_PERIOD,
-  WA_KLINIK,
-  type PromoItem,
-} from "@/components/shared/data/constants";
+import { PROMO_DESCRIPTION, PROMO_PERIOD, WA_KLINIK } from "@/data/site";
+import type { PromoItem } from "@/data/promo";
 import promoClinicImg from "@/assets/photos/promo-clinic.webp";
 
 export default function PromoCard({ promo }: { promo: PromoItem }) {

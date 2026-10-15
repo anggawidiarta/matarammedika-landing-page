@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { clinicDoctors, doctorOutline } from "@/components/dokter/doctorData";
+import { clinicDoctors, doctorOutline } from "@/data/dokter";
 
 const ROTATE_MS = 3000;
 const FADE_MS = 600;

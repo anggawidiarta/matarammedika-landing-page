@@ -1,4 +1,4 @@
-import { clinicDoctors } from "@/components/dokter/doctorData";
+import { clinicDoctors } from "@/data/dokter";
 import KlinikPageTitle from "@/components/shared/sections/KlinikPageTitle";
 
 export default function DokterKlinik() {

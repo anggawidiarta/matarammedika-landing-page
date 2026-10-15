@@ -1,4 +1,4 @@
-import { gradientBg } from "@/components/shared/data/constants";
+import { gradientBg } from "@/components/shared/ui/gradient";
 
 export type SegmentedUnit = "klinik" | "apotek";
 

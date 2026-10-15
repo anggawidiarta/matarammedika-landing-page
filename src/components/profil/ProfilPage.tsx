@@ -1,7 +1,7 @@
 import { MessageCircle } from "lucide-react";
 import ContentCard from "@/components/profil/ContentCard";
 import bannerTextureImg from "@/assets/photos/banner-texture.webp";
-import { WA_KLINIK } from "@/components/shared/data/constants";
+import { WA_KLINIK } from "@/data/site";
 import KlinikPageTitle from "@/components/shared/sections/KlinikPageTitle";
 
 const aboutText =

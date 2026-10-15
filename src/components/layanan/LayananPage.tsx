@@ -2,7 +2,7 @@ import {
   layananSpecialists,
   layananUmumGigi,
   type LayananItem,
-} from "@/components/layanan/layananData";
+} from "@/data/layanan";
 import FeatureSection from "@/components/shared/cards/FeatureSection";
 import KlinikPageTitle from "@/components/shared/sections/KlinikPageTitle";
 

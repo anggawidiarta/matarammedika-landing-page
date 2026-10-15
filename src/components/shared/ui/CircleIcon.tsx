@@ -1,5 +1,6 @@
-import { klinikLucideIcons, type KlinikLucideName } from "@/components/shared/ui/lucideMap";
-import { circleToneClass, type CircleTone } from "@/components/shared/ui/circleTone";
+import { klinikLucideIcons } from "@/components/shared/ui/lucideMap";
+import { circleToneClass } from "@/components/shared/ui/circleTone";
+import type { CircleTone, KlinikLucideName } from "@/types/feature";
 
 export default function CircleIcon({
   name,

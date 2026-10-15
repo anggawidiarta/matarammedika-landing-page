@@ -1,8 +1,10 @@
-import type { CircleTone } from "@/components/shared/ui/circleTone";
-import { klinikLucideIcons, type KlinikLucideName } from "@/components/shared/ui/lucideMap";
 import type { CmsPublicIcon, CmsPublicItem } from "@/lib/cms/types";
-
-const CIRCLE_TONES = new Set<CircleTone>(["blue", "green", "pink", "lilac", "mint", "red"]);
+import {
+  CIRCLE_TONES,
+  KLINIK_ICON_NAMES,
+  type CircleTone,
+  type KlinikLucideName,
+} from "@/types/feature";
 
 type CmsRow = {
   id: string;
@@ -15,11 +17,11 @@ type CmsRow = {
 };
 
 function isLucideName(name: string): name is KlinikLucideName {
-  return name in klinikLucideIcons;
+  return (KLINIK_ICON_NAMES as readonly string[]).includes(name);
 }
 
 function isCircleTone(tone: string): tone is CircleTone {
-  return CIRCLE_TONES.has(tone as CircleTone);
+  return (CIRCLE_TONES as readonly string[]).includes(tone);
 }
 
 export function mapCmsRowToPublicItem(row: CmsRow): CmsPublicItem | null {
