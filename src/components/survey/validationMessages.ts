@@ -1,4 +1,4 @@
-import { LIKERT } from "@/lib/survey/constants";
+import { LIKERT, NAMA_MAX, SARAN_MAX } from "@/lib/survey/constants";
 import type { SurveyFieldError } from "./validateClient";
 
 export function surveyFieldFocus(
@@ -41,7 +41,7 @@ export function surveyFieldFocus(
 
   if (field === "nama") {
     return {
-      message: "Nama terlalu panjang. Maksimal 120 karakter.",
+      message: `Nama terlalu panjang. Maksimal ${NAMA_MAX} karakter.`,
       focusId: `${formId}-nama`,
     };
   }
@@ -55,7 +55,7 @@ export function surveyFieldFocus(
 
   if (field === "saran") {
     return {
-      message: "Saran terlalu panjang. Maksimal 500 karakter.",
+      message: `Saran terlalu panjang. Maksimal ${SARAN_MAX} karakter.`,
       focusId: `${formId}-saran`,
     };
   }

@@ -1,4 +1,4 @@
-import { REQUIRED_COUNT } from "./constants";
+import { REQUIRED_COUNT } from "./formUi";
 
 export default function SurveyProgress({
   answered,

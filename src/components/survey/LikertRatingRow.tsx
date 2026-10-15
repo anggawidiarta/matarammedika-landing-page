@@ -1,4 +1,4 @@
-import { likertOptionFace } from "./constants";
+import { likertOptionFace } from "./formUi";
 
 export default function LikertRatingRow({
   index,

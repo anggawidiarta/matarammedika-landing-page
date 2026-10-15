@@ -16,12 +16,3 @@ export type LikertKey = (typeof LIKERT)[number]["key"];
 export type LayananValue = (typeof LAYANAN_VALUES)[number];
 export type SurveyApiError = "validation" | "rate_limited" | "server";
 
-export type SurveyPayload = {
-  nama: string | null;
-  tanggal: string | null;
-  layanan: LayananValue;
-  ratings: Record<LikertKey, number>;
-  nps: number;
-  saran: string | null;
-  consent: true;
-};

@@ -1,5 +1,5 @@
 import type { InputHTMLAttributes, ReactNode, TextareaHTMLAttributes } from "react";
-import { fieldClass } from "./constants";
+import { fieldClass } from "./formUi";
 
 export function SurveyField({
   label,

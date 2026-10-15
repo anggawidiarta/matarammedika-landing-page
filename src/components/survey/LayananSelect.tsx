@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 import { Check, ChevronDown, X } from "lucide-react";
 import { LAYANAN_VALUES } from "@/lib/survey/constants";
-import { triggerClass } from "./constants";
+import { triggerClass } from "./formUi";
 import { useDismiss } from "./useDismiss";
 
 const PLACEHOLDER = "Pilih layanan";

@@ -1,40 +1,14 @@
-import {
-  LAYANAN_VALUES,
-  LIKERT,
-  NAMA_MAX,
-  SARAN_MAX,
-  type LayananValue,
-  type SurveyPayload,
-} from "@/lib/survey/constants";
-import { isValidCalendarDate } from "@/lib/survey/date";
-import type { Ratings } from "./constants";
+import { parseSurveyPayload, type SurveyPayload } from "@/lib/survey/schema";
+import type { Ratings } from "./formUi";
 
-export type SurveyFieldError =
-  | "layanan"
-  | "ratings"
-  | "nps"
-  | "consent"
-  | "nama"
-  | "tanggal"
-  | "saran";
+/** Payload keys double as the form fields a validation error can point at. */
+export type SurveyFieldError = keyof SurveyPayload;
 
 export type ClientValidationResult =
   | { ok: true; data: SurveyPayload }
   | { ok: false; field: SurveyFieldError; ratingKey?: string };
 
-function isLayananValue(value: string): value is LayananValue {
-  return (LAYANAN_VALUES as readonly string[]).includes(value);
-}
-
-export function validateSurveyClient({
-  nama,
-  tanggal,
-  layanan,
-  ratings,
-  nps,
-  saran,
-  consent,
-}: {
+export type SurveyFormValues = {
   nama: string;
   tanggal: string;
   layanan: string;
@@ -42,52 +16,17 @@ export function validateSurveyClient({
   nps: number | null;
   saran: string;
   consent: boolean;
-}): ClientValidationResult {
-  const namaTrimmed = nama.trim();
-  if (namaTrimmed.length > NAMA_MAX) {
-    return { ok: false, field: "nama" };
-  }
+};
 
-  if (tanggal && !isValidCalendarDate(tanggal)) {
-    return { ok: false, field: "tanggal" };
-  }
+/** Validates raw form state with the same zod schema the API uses; reports the first failing field. */
+export function validateSurveyClient(values: SurveyFormValues): ClientValidationResult {
+  const parsed = parseSurveyPayload(values);
+  if (parsed.ok) return { ok: true, data: parsed.data };
 
-  if (!isLayananValue(layanan)) {
-    return { ok: false, field: "layanan" };
-  }
-
-  const resolvedRatings = {} as SurveyPayload["ratings"];
-  for (const item of LIKERT) {
-    const value = ratings[item.key];
-    if (value == null || value < 1 || value > 5 || !Number.isInteger(value)) {
-      return { ok: false, field: "ratings", ratingKey: item.key };
-    }
-    resolvedRatings[item.key] = value;
-  }
-
-  if (nps == null || nps < 0 || nps > 10 || !Number.isInteger(nps)) {
-    return { ok: false, field: "nps" };
-  }
-
-  const saranTrimmed = saran.trim();
-  if (saranTrimmed.length > SARAN_MAX) {
-    return { ok: false, field: "saran" };
-  }
-
-  if (!consent) {
-    return { ok: false, field: "consent" };
-  }
-
+  const [field, ratingKey] = parsed.error.issues[0].path;
   return {
-    ok: true,
-    data: {
-      nama: namaTrimmed || null,
-      tanggal: tanggal || null,
-      layanan,
-      ratings: resolvedRatings,
-      nps,
-      saran: saranTrimmed || null,
-      consent: true,
-    },
+    ok: false,
+    field: field as SurveyFieldError,
+    ratingKey: field === "ratings" ? String(ratingKey) : undefined,
   };
 }

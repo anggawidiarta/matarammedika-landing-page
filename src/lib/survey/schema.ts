@@ -1,14 +1,8 @@
 import { z } from "zod";
-import {
-  LAYANAN_VALUES,
-  LIKERT,
-  NAMA_MAX,
-  SARAN_MAX,
-  type SurveyPayload,
-} from "./constants";
+import { LAYANAN_VALUES, LIKERT, NAMA_MAX, SARAN_MAX } from "./constants";
 import { isValidCalendarDate } from "./date";
 
-export type { SurveyApiError, SurveyPayload } from "./constants";
+export type { SurveyApiError } from "./constants";
 
 const rating = z.number().int().min(1).max(5);
 
@@ -46,12 +40,15 @@ export const surveyPayloadSchema = z.object({
   consent: z.literal(true),
 });
 
+/** Single source of truth for the payload shape: server and client both validate with this schema. */
+export type SurveyPayload = z.output<typeof surveyPayloadSchema>;
+
 export function parseSurveyPayload(
   input: unknown,
 ): { ok: true; data: SurveyPayload } | { ok: false; error: z.ZodError } {
   const result = surveyPayloadSchema.safeParse(input);
   if (result.success) {
-    return { ok: true, data: result.data as SurveyPayload };
+    return { ok: true, data: result.data };
   }
   return { ok: false, error: result.error };
 }

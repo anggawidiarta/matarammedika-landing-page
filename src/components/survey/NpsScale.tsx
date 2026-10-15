@@ -1,4 +1,4 @@
-import { radioFace } from "./constants";
+import { radioFace } from "./formUi";
 import SurveyCard from "./SurveyCard";
 
 export default function NpsScale({

@@ -1,5 +1,5 @@
 import { LIKERT, type LikertKey } from "@/lib/survey/constants";
-import type { Ratings } from "./constants";
+import type { Ratings } from "./formUi";
 import LikertRatingRow from "./LikertRatingRow";
 import SurveyCard from "./SurveyCard";
 
