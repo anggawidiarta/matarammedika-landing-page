@@ -1,9 +1,10 @@
-import { logoMarkLight, logoWordmarkLight } from "@/components/shared/data/logos";
+import logoMarkLight from "@/assets/logos/mark-light.svg";
+import logoWordmarkLight from "@/assets/logos/wordmark-light.svg";
 
 export default function Logo({ variant = "dark" }: { variant?: "dark" | "light" }) {
   // Header uses stable public URLs so the browser cache survives page swaps.
-  const mark = variant === "light" ? logoMarkLight : "/logo.svg";
-  const word = variant === "light" ? logoWordmarkLight : "/wordmark.svg";
+  const mark = variant === "light" ? logoMarkLight.src : "/logo.svg";
+  const word = variant === "light" ? logoWordmarkLight.src : "/wordmark.svg";
   const markSize = variant === "light" ? 49 : 56;
   const wordWidth = variant === "light" ? 144 : 164;
   const wordHeight = variant === "light" ? 31 : 35;

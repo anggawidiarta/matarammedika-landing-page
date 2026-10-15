@@ -1,6 +1,7 @@
 import { MessageCircle } from "lucide-react";
 import { WA_KLINIK } from "@/components/shared/data/constants";
-import { iconFacebook, iconInstagram } from "@/components/shared/data/icons";
+import iconFacebook from "@/assets/icons/facebook.svg";
+import iconInstagram from "@/assets/icons/instagram.svg";
 import Logo from "@/components/shared/ui/Logo";
 
 export default function SiteFooter() {
@@ -19,10 +20,10 @@ export default function SiteFooter() {
             </div>
             <div className="flex gap-8">
               <a href="https://instagram.com" aria-label="Instagram">
-                <img src={iconInstagram} alt="" width={27.5} height={27.5} />
+                <img src={iconInstagram.src} alt="" width={27.5} height={27.5} />
               </a>
               <a href="https://facebook.com" aria-label="Facebook">
-                <img src={iconFacebook} alt="" width={32} height={32} />
+                <img src={iconFacebook.src} alt="" width={32} height={32} />
               </a>
               <a href={WA_KLINIK} aria-label="WhatsApp">
                 <MessageCircle

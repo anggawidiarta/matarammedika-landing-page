@@ -4,7 +4,6 @@ import {
   type FasilitasItem,
 } from "@/components/fasilitas/fasilitasData";
 import FeatureSection from "@/components/shared/cards/FeatureSection";
-import KlinikPageShell from "@/components/shared/layout/KlinikPageShell";
 import KlinikPageTitle from "@/components/shared/sections/KlinikPageTitle";
 
 export default function FasilitasKlinik({
@@ -15,7 +14,7 @@ export default function FasilitasKlinik({
   lainnya?: FasilitasItem[];
 }) {
   return (
-    <KlinikPageShell>
+    <>
       <main className="mx-auto flex max-w-[1400px] flex-col gap-10 px-6 pt-8 pb-24">
         <KlinikPageTitle
           title="Daftar Fasilitas"
@@ -25,6 +24,6 @@ export default function FasilitasKlinik({
         <FeatureSection title="Fasilitas Umum" items={umum} />
         <FeatureSection title="Fasilitas Lainnya" items={lainnya} />
       </main>
-    </KlinikPageShell>
+    </>
   );
 }

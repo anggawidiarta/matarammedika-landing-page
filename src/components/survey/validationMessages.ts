@@ -1,4 +1,4 @@
-import { LIKERT } from "./constants";
+import { LIKERT } from "@/lib/survey/constants";
 import type { SurveyFieldError } from "./validateClient";
 
 export function surveyFieldFocus(

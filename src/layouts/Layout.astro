@@ -1,17 +1,21 @@
 ---
+import { Font } from "astro:assets";
 import { ClientRouter } from "astro:transitions";
-import KlinikHeader from "@/components/shared/layout/KlinikHeader";
+import KlinikHeader from "@/components/shared/layout/KlinikHeader.astro";
+import SiteFooter from "@/components/shared/layout/SiteFooter";
 import type { NavKlinikLabel } from "@/components/shared/data/navKlinik";
 import "@/styles/global.css";
 
 interface Props {
   title?: string;
+  description?: string;
   activeLabel?: NavKlinikLabel;
   headerTone?: "tint" | "surface";
 }
 
 const {
   title = "Apotek & Klinik Mataram Medika",
+  description = "Apotek & Klinik Mataram Medika di Mataram: layanan kesehatan terpadu, dokter spesialis, fasilitas nyaman, dan apotek lengkap.",
   activeLabel = "Beranda",
   headerTone = "surface",
 } = Astro.props;
@@ -21,29 +25,29 @@ const {
 <html lang="id" class="antialiased">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/logo.svg" />
-		<link rel="icon" href="/favicon.ico" sizes="any" />
-		<link rel="preload" href="/logo.svg" as="image" type="image/svg+xml" />
-    <link rel="preload" href="/wordmark.svg" as="image" type="image/svg+xml" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Sora:wght@400;600&display=swap"
-      rel="stylesheet"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <Font cssVariable="--font-poppins" preload={[{ weight: 400, style: "normal" }, { weight: 600, style: "normal" }]} />
+    <Font cssVariable="--font-sora" />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site ?? Astro.url).href} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="id_ID" />
+    <meta property="og:site_name" content="Apotek & Klinik Mataram Medika" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL("/logo.svg", Astro.url).href} />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <ClientRouter />
   </head>
   <body class="min-h-screen antialiased bg-surface font-body text-heading">
-    <KlinikHeader
-      client:load
-      transition:persist="klinik-header"
-      activeLabel={activeLabel}
-      headerTone={headerTone}
-    />
-    <slot />
+    <KlinikHeader activeLabel={activeLabel} headerTone={headerTone} />
+    <div class="overflow-x-clip">
+      <slot />
+      <SiteFooter />
+    </div>
   </body>
 </html>
 

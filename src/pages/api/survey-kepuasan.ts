@@ -1,4 +1,5 @@
 import type { APIRoute } from "astro";
+import { jsonResponse } from "@/lib/http";
 import { getServiceSupabase } from "@/lib/supabase/server";
 import { hashClientIp, isRateLimited, resolveClientIp } from "@/lib/survey/rateLimit";
 import type { SurveyApiError } from "@/lib/survey/constants";
@@ -6,15 +7,9 @@ import { parseSurveyPayload } from "@/lib/survey/schema";
 
 export const prerender = false;
 
-function json(
-  status: number,
-  body: { ok: true; id: string } | { ok: false; error: SurveyApiError },
-) {
-  return new Response(JSON.stringify(body), {
-    status,
-    headers: { "Content-Type": "application/json" },
-  });
-}
+type SurveyResponseBody = { ok: true; id: string } | { ok: false; error: SurveyApiError };
+
+const json = (status: number, body: SurveyResponseBody) => jsonResponse(status, body);
 
 export const POST: APIRoute = async ({ request, clientAddress }) => {
   let raw: unknown;

@@ -1,8 +1,7 @@
 import { MessageCircle } from "lucide-react";
 import ContentCard from "@/components/profil/ContentCard";
-import { bannerTexture } from "@/components/shared/data/photos";
+import bannerTextureImg from "@/assets/photos/banner-texture.webp";
 import { WA_KLINIK } from "@/components/shared/data/constants";
-import KlinikPageShell from "@/components/shared/layout/KlinikPageShell";
 import KlinikPageTitle from "@/components/shared/sections/KlinikPageTitle";
 
 const aboutText =
@@ -20,7 +19,7 @@ const missionItems = [
 
 export default function ProfilKlinik() {
   return (
-    <KlinikPageShell>
+    <>
       <main className="mx-auto flex max-w-[1400px] flex-col gap-10 px-6 pt-8 pb-24">
         <KlinikPageTitle
           title="Profile"
@@ -63,7 +62,7 @@ export default function ProfilKlinik() {
 
         <section className="relative flex min-h-[329px] flex-col items-center justify-center overflow-hidden rounded-[32px] bg-gradient-blue-green px-8 py-12 text-center text-white lg:px-16">
           <img
-            src={bannerTexture}
+            src={bannerTextureImg.src}
             alt=""
             className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.06]"
           />
@@ -93,6 +92,6 @@ export default function ProfilKlinik() {
           </div>
         </section>
       </main>
-    </KlinikPageShell>
+    </>
   );
 }

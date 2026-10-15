@@ -48,6 +48,6 @@
   --shadow-cta: 0 8px 11.5px rgb(65 132 247 / 0.24);
 
   /* Fonts */
-  --font-body: "Poppins", ui-sans-serif, system-ui, sans-serif;
-  --font-accent: "Sora", ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-poppins);
+  --font-accent: var(--font-sora);
 }

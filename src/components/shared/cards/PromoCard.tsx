@@ -5,13 +5,15 @@ import {
   WA_KLINIK,
   type PromoItem,
 } from "@/components/shared/data/constants";
-import { promoClinic } from "@/components/shared/data/photos";
+import promoClinicImg from "@/assets/photos/promo-clinic.webp";
 
 export default function PromoCard({ promo }: { promo: PromoItem }) {
   return (
     <article className="relative flex flex-col items-center gap-5 rounded-[20px] bg-white pb-6 shadow-float">
       <img
-        src={promoClinic}
+        src={promoClinicImg.src}
+        loading="lazy"
+        decoding="async"
         alt=""
         width={383}
         height={400}

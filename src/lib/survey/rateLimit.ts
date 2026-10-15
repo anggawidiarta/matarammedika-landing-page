@@ -1,20 +1,11 @@
 import { createHash } from "node:crypto";
 import type { SupabaseClient } from "@supabase/supabase-js";
-import { requireServerEnv } from "@/lib/env";
+import { SURVEY_IP_HASH_PEPPER, TRUST_PROXY } from "astro:env/server";
 
 export const RATE_LIMIT_MAX = 5;
 export const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000;
 
-function trustProxyEnabled(): boolean {
-  const fromProcess = process.env.TRUST_PROXY?.trim().toLowerCase();
-  if (fromProcess === "1" || fromProcess === "true") return true;
-  const fromMeta = (import.meta.env as Record<string, unknown>).TRUST_PROXY;
-  if (typeof fromMeta === "string") {
-    const value = fromMeta.trim().toLowerCase();
-    return value === "1" || value === "true";
-  }
-  return false;
-}
+const trustProxyEnabled = ["1", "true"].includes(TRUST_PROXY?.trim().toLowerCase() ?? "");
 
 /**
  * Resolve client IP for rate limiting.
@@ -25,7 +16,7 @@ export function resolveClientIp(
   request: Request,
   clientAddress: string | undefined,
 ): string {
-  if (trustProxyEnabled()) {
+  if (trustProxyEnabled) {
     const forwarded = request.headers.get("x-forwarded-for");
     if (forwarded) {
       const first = forwarded.split(",")[0]?.trim();
@@ -37,8 +28,7 @@ export function resolveClientIp(
 }
 
 export function hashClientIp(ip: string): string {
-  const pepper = requireServerEnv("SURVEY_IP_HASH_PEPPER");
-  return createHash("sha256").update(`${pepper}|${ip}`).digest("hex");
+  return createHash("sha256").update(`${SURVEY_IP_HASH_PEPPER}|${ip}`).digest("hex");
 }
 
 export async function isRateLimited(

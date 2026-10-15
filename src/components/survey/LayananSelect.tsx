@@ -1,12 +1,11 @@
 import { useEffect, useRef, useState, type KeyboardEvent } from "react";
-import { Check, ChevronDown } from "lucide-react";
-import { LAYANAN_OPTIONS } from "./constants";
+import { Check, ChevronDown, X } from "lucide-react";
+import { LAYANAN_VALUES } from "@/lib/survey/constants";
+import { triggerClass } from "./constants";
+import { useDismiss } from "./useDismiss";
 
 const PLACEHOLDER = "Pilih layanan";
-const OPTIONS = [
-  { value: "", label: PLACEHOLDER },
-  ...LAYANAN_OPTIONS.map((option) => ({ value: option, label: option })),
-];
+const OPTIONS = LAYANAN_VALUES.map((option) => ({ value: option, label: option }));
 
 export default function LayananSelect({
   id,
@@ -28,33 +27,11 @@ export default function LayananSelect({
   const [open, setOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(-1);
 
-  const selectedLabel = OPTIONS.find((option) => option.value === value)?.label ?? PLACEHOLDER;
+  const selectedLabel = value
+    ? (OPTIONS.find((option) => option.value === value)?.label ?? PLACEHOLDER)
+    : PLACEHOLDER;
 
-  useEffect(() => {
-    if (!open) return;
-
-    function handlePointerDown(event: MouseEvent) {
-      if (!containerRef.current?.contains(event.target as Node)) {
-        setOpen(false);
-      }
-    }
-
-    function handleEscape(event: globalThis.KeyboardEvent) {
-      if (event.key !== "Escape") return;
-      event.preventDefault();
-      setOpen(false);
-      requestAnimationFrame(() => {
-        document.getElementById(id)?.focus();
-      });
-    }
-
-    document.addEventListener("mousedown", handlePointerDown);
-    document.addEventListener("keydown", handleEscape);
-    return () => {
-      document.removeEventListener("mousedown", handlePointerDown);
-      document.removeEventListener("keydown", handleEscape);
-    };
-  }, [open, id]);
+  useDismiss(containerRef, open, () => setOpen(false), closeMenu);
 
   useEffect(() => {
     if (!open) return;
@@ -125,13 +102,7 @@ export default function LayananSelect({
       <button
         id={id}
         type="button"
-        className={`flex min-h-12 w-full min-w-0 items-center justify-between gap-3 rounded-2xl border bg-surface-tint px-4 py-3 text-left font-body text-sm text-heading shadow-[0_0_0_1px_oklch(0_0_0/0.04),0_1px_2px_-1px_oklch(0_0_0/0.05)] outline-none transition-[border-color,box-shadow,background-color,transform] duration-200 ease-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue active:scale-[0.96] motion-reduce:active:scale-100 ${
-          invalid
-            ? "border-promo focus-visible:outline-promo"
-            : open
-              ? "border-blue/50 hover:border-muted/50"
-              : "border-muted/30 hover:border-muted/50"
-        }`}
+        className={triggerClass(invalid, open)}
         aria-haspopup="listbox"
         aria-expanded={open}
         aria-controls={listboxId}
@@ -140,7 +111,9 @@ export default function LayananSelect({
         onClick={() => setOpen((current) => !current)}
         onKeyDown={onTriggerKeyDown}
       >
-        <span className={value ? "text-heading" : "text-muted/70"}>{selectedLabel}</span>
+        <span className={`truncate ${value ? "text-heading pr-8" : "text-muted/70"}`}>
+          {selectedLabel}
+        </span>
         <ChevronDown
           aria-hidden
           size={18}
@@ -151,6 +124,21 @@ export default function LayananSelect({
         />
       </button>
 
+      {value ? (
+        <button
+          type="button"
+          aria-label="Hapus pilihan layanan"
+          className="absolute right-11 top-1/2 flex size-7 -translate-y-1/2 items-center justify-center rounded-full text-muted outline-none transition-colors duration-150 hover:bg-surface-highlight hover:text-heading focus-visible:outline-2 focus-visible:outline-blue"
+          onClick={() => {
+            onChange("");
+            setOpen(false);
+            document.getElementById(id)?.focus();
+          }}
+        >
+          <X aria-hidden size={14} strokeWidth={2} />
+        </button>
+      ) : null}
+
       {open ? (
         <ul
           id={listboxId}
@@ -159,7 +147,7 @@ export default function LayananSelect({
           aria-labelledby={id}
           aria-activedescendant={activeIndex >= 0 ? `${id}-option-${activeIndex}` : undefined}
           onKeyDown={onListKeyDown}
-          className="absolute inset-x-0 top-[calc(100%+0.5rem)] z-20 flex flex-col gap-1 rounded-2xl bg-white p-1.5 shadow-[0_0_0_1px_oklch(0_0_0/0.06),0_8px_24px_-6px_oklch(0_0_0/0.12),0_2px_6px_oklch(0_0_0/0.04)] outline-none"
+          className="select-menu-in absolute inset-x-0 top-[calc(100%+0.5rem)] z-20 flex flex-col gap-1 rounded-2xl bg-white p-1.5 shadow-[0_0_0_1px_oklch(0_0_0/0.06),0_8px_24px_-6px_oklch(0_0_0/0.12),0_2px_6px_oklch(0_0_0/0.04)] outline-none"
         >
           {OPTIONS.map((option, index) => {
             const selected = option.value === value;
@@ -171,7 +159,7 @@ export default function LayananSelect({
                   type="button"
                   role="option"
                   aria-selected={selected}
-                  className={`flex min-h-11 w-full items-center justify-between gap-3 rounded-xl px-3.5 py-2.5 text-left font-body text-sm transition-[background-color,color,transform] duration-150 ease-out active:scale-[0.96] motion-reduce:active:scale-100 ${
+                  className={`flex min-h-11 w-full items-center justify-between gap-3 rounded-xl px-3.5 py-2.5 text-left font-body text-sm transition-[background-color,color] duration-150 ease-out ${
                     selected
                       ? "bg-surface-highlight font-medium text-blue"
                       : active

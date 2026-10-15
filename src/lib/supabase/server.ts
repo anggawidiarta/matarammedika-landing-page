@@ -1,15 +1,12 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
-import { requireServerEnv } from "@/lib/env";
+import { SUPABASE_SERVICE_ROLE_KEY, SUPABASE_URL } from "astro:env/server";
 
 let client: SupabaseClient | null = null;
 
 export function getServiceSupabase(): SupabaseClient {
   if (client) return client;
 
-  const url = requireServerEnv("SUPABASE_URL");
-  const key = requireServerEnv("SUPABASE_SERVICE_ROLE_KEY");
-
-  client = createClient(url, key, {
+  client = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, {
     auth: {
       persistSession: false,
       autoRefreshToken: false,

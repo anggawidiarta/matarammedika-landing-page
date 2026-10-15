@@ -1,4 +1,5 @@
-import { NAMA_MAX } from "./constants";
+import { NAMA_MAX } from "@/lib/survey/constants";
+import DatePicker from "./DatePicker";
 import LayananSelect from "./LayananSelect";
 import SurveyCard from "./SurveyCard";
 import { SurveyField, SurveyTextInput } from "./SurveyField";
@@ -48,16 +49,15 @@ export default function KunjunganFields({
           />
         </SurveyField>
         <SurveyField label="Tanggal kunjungan" htmlFor={tanggalId}>
-          <SurveyTextInput
+          <DatePicker
             id={tanggalId}
-            type="date"
             name="tanggal"
             value={tanggal}
-            onChange={(event) => onTanggalChange(event.target.value)}
+            onChange={onTanggalChange}
           />
         </SurveyField>
         <SurveyField
-          label="Layanan *"
+          label="Layanan"
           htmlFor={`${formId}-layanan`}
           className="sm:col-span-2"
           error={layananError}

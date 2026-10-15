@@ -1,4 +1,4 @@
-import { SARAN_MAX } from "./constants";
+import { SARAN_MAX } from "@/lib/survey/constants";
 import SurveyCard from "./SurveyCard";
 import { SurveyField, SurveyTextarea } from "./SurveyField";
 

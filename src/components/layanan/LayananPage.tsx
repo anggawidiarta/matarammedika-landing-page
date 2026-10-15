@@ -4,7 +4,6 @@ import {
   type LayananItem,
 } from "@/components/layanan/layananData";
 import FeatureSection from "@/components/shared/cards/FeatureSection";
-import KlinikPageShell from "@/components/shared/layout/KlinikPageShell";
 import KlinikPageTitle from "@/components/shared/sections/KlinikPageTitle";
 
 const FALLBACK_UMUM_GIGI = [layananUmumGigi.umum, layananUmumGigi.gigi];
@@ -17,7 +16,7 @@ export default function LayananKlinik({
   specialists?: LayananItem[];
 }) {
   return (
-    <KlinikPageShell>
+    <>
       <main className="mx-auto flex max-w-[1400px] flex-col gap-10 px-6 pt-8 pb-24">
         <KlinikPageTitle
           title="Daftar Layanan"
@@ -33,6 +32,6 @@ export default function LayananKlinik({
 
         <FeatureSection title="Konsultasi Dokter Spesialis" items={specialists} />
       </main>
-    </KlinikPageShell>
+    </>
   );
 }

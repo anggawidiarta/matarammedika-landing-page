@@ -1,10 +1,9 @@
 import { useId, useRef, useState, type SubmitEvent } from "react";
+import { LIKERT, type LikertKey } from "@/lib/survey/constants";
 import {
-  LIKERT,
   REQUIRED_COUNT,
   emptyRatings,
   type FormStatus,
-  type LikertKey,
   type Ratings,
 } from "./constants";
 import { validateSurveyClient } from "./validateClient";

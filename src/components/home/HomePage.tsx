@@ -4,21 +4,20 @@ import { layananHomePreview, type LayananItem } from "@/components/layanan/layan
 import { promoKlinikPreview } from "@/components/promo/promoData";
 import IconFeatureCard from "@/components/shared/cards/IconFeatureCard";
 import PromoCard from "@/components/shared/cards/PromoCard";
-import admedika from "@/assets/asuransi/admedika.png";
-import bcaLife from "@/assets/asuransi/bca-life.png";
-import bni from "@/assets/asuransi/bni.png";
-import bniLife from "@/assets/asuransi/bni-life.png";
-import bri from "@/assets/asuransi/bri.png";
-import briLife from "@/assets/asuransi/bri-life.png";
-import mandiriInhealth from "@/assets/asuransi/mandiri-inhealth.png";
-import owlexa from "@/assets/asuransi/owlexa.png";
-import pln from "@/assets/asuransi/pln.png";
-import telkomedika from "@/assets/asuransi/telkomedika.png";
-import ykkbi from "@/assets/asuransi/ykkbi.png";
-import { assetUrl } from "@/components/shared/data/assetUrl";
+import admedika from "@/assets/asuransi/admedika.webp";
+import bcaLife from "@/assets/asuransi/bca-life.webp";
+import bni from "@/assets/asuransi/bni.webp";
+import bniLife from "@/assets/asuransi/bni-life.webp";
+import bri from "@/assets/asuransi/bri.webp";
+import briLife from "@/assets/asuransi/bri-life.webp";
+import mandiriInhealth from "@/assets/asuransi/mandiri-inhealth.webp";
+import owlexa from "@/assets/asuransi/owlexa.webp";
+import pln from "@/assets/asuransi/pln.webp";
+import telkomedika from "@/assets/asuransi/telkomedika.webp";
+import ykkbi from "@/assets/asuransi/ykkbi.webp";
 import { WA_KLINIK } from "@/components/shared/data/constants";
-import { bannerFamily, bannerTexture } from "@/components/shared/data/photos";
-import KlinikPageShell from "@/components/shared/layout/KlinikPageShell";
+import bannerFamilyImg from "@/assets/photos/banner-family.webp";
+import bannerTextureImg from "@/assets/photos/banner-texture.webp";
 import KlinikPageTitle from "@/components/shared/sections/KlinikPageTitle";
 import { ArrowIcon, GradientLink } from "@/components/shared/ui/GradientLink";
 import { renderIcon } from "@/components/shared/ui/iconDescriptor";
@@ -27,20 +26,20 @@ import { MessageCircle } from "lucide-react";
 type AsuransiLogo = { src: string; width: number; height: number };
 
 const asuransiRowOne: AsuransiLogo[] = [
-  { src: assetUrl(owlexa), width: 146, height: 45 },
-  { src: assetUrl(bcaLife), width: 142, height: 80 },
-  { src: assetUrl(mandiriInhealth), width: 158, height: 58 },
-  { src: assetUrl(pln), width: 114, height: 80 },
-  { src: assetUrl(bniLife), width: 152, height: 78 },
+  { src: owlexa.src, width: 146, height: 45 },
+  { src: bcaLife.src, width: 142, height: 80 },
+  { src: mandiriInhealth.src, width: 158, height: 58 },
+  { src: pln.src, width: 114, height: 80 },
+  { src: bniLife.src, width: 152, height: 78 },
 ];
 
 const asuransiRowTwo: AsuransiLogo[] = [
-  { src: assetUrl(bni), width: 114, height: 46 },
-  { src: assetUrl(admedika), width: 167, height: 33 },
-  { src: assetUrl(telkomedika), width: 129, height: 64 },
-  { src: assetUrl(briLife), width: 172, height: 66 },
-  { src: assetUrl(bri), width: 152, height: 42 },
-  { src: assetUrl(ykkbi), width: 122, height: 66 },
+  { src: bni.src, width: 114, height: 46 },
+  { src: admedika.src, width: 167, height: 33 },
+  { src: telkomedika.src, width: 129, height: 64 },
+  { src: briLife.src, width: 172, height: 66 },
+  { src: bri.src, width: 152, height: 42 },
+  { src: ykkbi.src, width: 122, height: 66 },
 ];
 
 function AsuransiRow({ logos }: { logos: AsuransiLogo[] }) {
@@ -92,7 +91,7 @@ export default function LandingPageKlinik({
   fasilitasPreview?: FasilitasItem[];
 }) {
   return (
-    <KlinikPageShell>
+    <>
       <section id="beranda" className="bg-surface-tint">
         <div className="mx-auto grid max-w-[1600px] items-center gap-10 px-6 py-12 lg:grid-cols-[minmax(0,1fr)_413px] lg:justify-between lg:gap-16 lg:px-10 xl:gap-24 xl:px-14 lg:pb-24 lg:pt-10">
           {children}
@@ -201,7 +200,11 @@ export default function LandingPageKlinik({
 
           <div className="relative mt-6 flex min-h-[329px] flex-col overflow-hidden rounded-[32px] bg-gradient-promo text-white lg:flex-row lg:items-center">
             <img
-              src={bannerTexture}
+              src={bannerTextureImg.src}
+              width={bannerTextureImg.width}
+              height={bannerTextureImg.height}
+              loading="lazy"
+              decoding="async"
               alt=""
               className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.06]"
             />
@@ -230,7 +233,7 @@ export default function LandingPageKlinik({
               </a>
             </div>
             <img
-              src={bannerFamily}
+              src={bannerFamilyImg.src}
               alt="Imunisasi anak di klinik"
               width={576}
               height={329}
@@ -241,6 +244,6 @@ export default function LandingPageKlinik({
           </div>
         </div>
       </section>
-    </KlinikPageShell>
+    </>
   );
 }

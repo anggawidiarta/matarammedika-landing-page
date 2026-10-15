@@ -1,12 +1,13 @@
 import {
   LAYANAN_VALUES,
+  LIKERT,
   NAMA_MAX,
   SARAN_MAX,
   type LayananValue,
   type SurveyPayload,
 } from "@/lib/survey/constants";
 import { isValidCalendarDate } from "@/lib/survey/date";
-import { LIKERT, type Ratings } from "./constants";
+import type { Ratings } from "./constants";
 
 export type SurveyFieldError =
   | "layanan"
