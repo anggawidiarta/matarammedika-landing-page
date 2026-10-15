@@ -1,11 +1,12 @@
-import { useId, useRef, useState, type SubmitEvent } from "react";
+import { useEffect, useId, useRef, useState, type SubmitEvent } from "react";
 import { LIKERT, type LikertKey } from "@/lib/survey/constants";
 import {
   REQUIRED_COUNT,
   emptyRatings,
   type FormStatus,
+  toIso,
   type Ratings,
-} from "./constants";
+} from "./formUi";
 import { validateSurveyClient } from "./validateClient";
 import { surveyFieldFocus } from "./validationMessages";
 
@@ -24,6 +25,9 @@ export function useSurveyForm() {
   const [errorMessage, setErrorMessage] = useState("");
   const [layananError, setLayananError] = useState("");
 
+  // Set after mount: the page is prerendered, so a server-side "today" would be stale or mismatch.
+  useEffect(() => setTanggal((current) => current || toIso(new Date())), []);
+
   const answered =
     LIKERT.filter((item) => ratings[item.key] != null).length + (nps != null ? 1 : 0);
   const progress = answered / REQUIRED_COUNT;
@@ -40,7 +44,7 @@ export function useSurveyForm() {
 
   function resetForm() {
     setNama("");
-    setTanggal("");
+    setTanggal(toIso(new Date()));
     setLayanan("");
     setRatings(emptyRatings());
     setNps(null);

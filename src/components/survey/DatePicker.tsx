@@ -1,7 +1,7 @@
 import { useRef, useState, type KeyboardEvent } from "react";
 import { CalendarDays, ChevronLeft, ChevronRight } from "lucide-react";
 import { isValidCalendarDate } from "@/lib/survey/date";
-import { triggerClass } from "./constants";
+import { toIso, triggerClass } from "./formUi";
 import { useDismiss } from "./useDismiss";
 
 const MONTHS = [
@@ -19,9 +19,6 @@ const MONTHS = [
   "Desember",
 ];
 const WEEKDAYS = ["Sen", "Sel", "Rab", "Kam", "Jum", "Sab", "Min"];
-
-const pad = (n: number) => String(n).padStart(2, "0");
-const toIso = (d: Date) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
 
 function parseIso(value: string): Date | null {
   if (!isValidCalendarDate(value)) return null;
