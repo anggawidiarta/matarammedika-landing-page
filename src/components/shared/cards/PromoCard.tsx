@@ -1,13 +1,13 @@
 import { Calendar, MessageCircle, Timer } from "lucide-react";
-import { PROMO_DESCRIPTION, PROMO_PERIOD, WA_KLINIK } from "@/data/site";
-import type { PromoItem } from "@/data/promo";
+import { WA_KLINIK } from "@/data/site";
+import { formatPromoPeriod, formatRupiah, type PromoCardData } from "@/lib/cms/promoDisplay";
 import promoClinicImg from "@/assets/photos/promo-clinic.webp";
 
-export default function PromoCard({ promo }: { promo: PromoItem }) {
+export default function PromoCard({ promo }: { promo: PromoCardData }) {
   return (
     <article className="relative flex flex-col items-center gap-5 rounded-[20px] bg-white pb-6 shadow-float">
       <img
-        src={promoClinicImg.src}
+        src={promo.imageUrl ?? promoClinicImg.src}
         loading="lazy"
         decoding="async"
         alt=""
@@ -26,19 +26,19 @@ export default function PromoCard({ promo }: { promo: PromoItem }) {
           {promo.title}
         </h3>
         <p className="font-body text-xl font-medium leading-snug text-blue sm:text-2xl">
-          {promo.price}
-          {promo.compare ? (
+          {formatRupiah(promo.promoPrice)}
+          {promo.normalPrice > promo.promoPrice ? (
             <span className="ml-2 text-sm font-normal text-muted line-through">
-              {promo.compare}
+              {formatRupiah(promo.normalPrice)}
             </span>
           ) : null}
         </p>
         <p className="flex items-center gap-1 font-body text-base leading-6 text-pretty text-muted">
           <Calendar size={20} aria-hidden strokeWidth={2} />
-          Periode : {PROMO_PERIOD}
+          Periode : {formatPromoPeriod(promo.startDate, promo.endDate)}
         </p>
         <p className="font-body text-base leading-6 text-pretty text-muted">
-          {PROMO_DESCRIPTION}
+          {promo.body}
         </p>
       </div>
       <a

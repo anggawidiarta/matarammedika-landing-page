@@ -1,7 +1,6 @@
 import type { ReactNode } from "react";
 import { fasilitasUmum, type FasilitasItem } from "@/data/fasilitas";
 import { layananHomePreview, type LayananItem } from "@/data/layanan";
-import { promoKlinikPreview } from "@/data/promo";
 import IconFeatureCard from "@/components/shared/cards/IconFeatureCard";
 import PromoCard from "@/components/shared/cards/PromoCard";
 import admedika from "@/assets/asuransi/admedika.webp";
@@ -16,6 +15,7 @@ import pln from "@/assets/asuransi/pln.webp";
 import telkomedika from "@/assets/asuransi/telkomedika.webp";
 import ykkbi from "@/assets/asuransi/ykkbi.webp";
 import { WA_KLINIK } from "@/data/site";
+import type { PromoCardData } from "@/lib/cms/promoDisplay";
 import bannerFamilyImg from "@/assets/photos/banner-family.webp";
 import bannerTextureImg from "@/assets/photos/banner-texture.webp";
 import KlinikPageTitle from "@/components/shared/sections/KlinikPageTitle";
@@ -85,10 +85,12 @@ export default function LandingPageKlinik({
   children,
   layananPreview = layananHomePreview,
   fasilitasPreview = fasilitasUmum,
+  promoPreview = [],
 }: {
   children: ReactNode;
   layananPreview?: LayananItem[];
   fasilitasPreview?: FasilitasItem[];
+  promoPreview?: PromoCardData[];
 }) {
   return (
     <>
@@ -192,11 +194,17 @@ export default function LandingPageKlinik({
             caption="Kami menyediakan berbagai promo , Seperti"
             href="/promo-klinik"
           />
-          <div className="grid gap-10 lg:grid-cols-3">
-            {promoKlinikPreview.map((promo) => (
-              <PromoCard key={promo.id} promo={promo} />
-            ))}
-          </div>
+          {promoPreview.length > 0 ? (
+            <div className="grid gap-10 lg:grid-cols-3">
+              {promoPreview.map((promo) => (
+                <PromoCard key={promo.id} promo={promo} />
+              ))}
+            </div>
+          ) : (
+            <p className="py-10 text-center font-body text-lg text-muted">
+              Belum ada promo aktif saat ini.
+            </p>
+          )}
 
           <div className="relative mt-6 flex min-h-[329px] flex-col overflow-hidden rounded-[32px] bg-gradient-promo text-white lg:flex-row lg:items-center">
             <img

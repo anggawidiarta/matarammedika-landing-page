@@ -9,10 +9,13 @@ import Layout from "@/layouts/Layout.astro";
 import { PUBLIC_CACHE_CONTROL } from "@/lib/http";
 import { itemsForSection, toFeatureItem } from "@/lib/cms/featureItems";
 import { loadPublishedFeatures } from "@/lib/cms/loadPublishedFeatures";
+import { loadPublishedPromos } from "@/lib/cms/promo";
+import { toPromoCards } from "@/lib/cms/promoDisplay";
 
-const [layananCms, fasilitasCms] = await Promise.all([
+const [layananCms, fasilitasCms, promoCms] = await Promise.all([
   loadPublishedFeatures("layanan"),
   loadPublishedFeatures("fasilitas"),
+  loadPublishedPromos(),
 ]);
 
 const specialistItems = layananCms
@@ -24,11 +27,18 @@ const specialistItems = layananCms
 const layananPreview = specialistItems.length > 0 ? specialistItems : layananHomePreview;
 
 const fasilitasPreview = itemsForSection(fasilitasCms, "umum", fasilitasUmum);
+const promoPreview = toPromoCards(promoCms ?? [])
+  .filter((promo) => promo.status !== "ended")
+  .slice(0, 3);
 Astro.response.headers.set("Cache-Control", PUBLIC_CACHE_CONTROL);
 ---
 
 <Layout activeLabel="Beranda" headerTone="tint">
-  <HomePage layananPreview={layananPreview} fasilitasPreview={fasilitasPreview}>
+  <HomePage
+    layananPreview={layananPreview}
+    fasilitasPreview={fasilitasPreview}
+    promoPreview={promoPreview}
+  >
     <HomeBerandaHero client:load />
     <HomeDoctorShowcase client:visible />
   </HomePage>

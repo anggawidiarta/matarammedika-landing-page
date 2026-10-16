@@ -1,9 +1,15 @@
 ---
-export const prerender = true;
+export const prerender = false;
 import PromoPage from "@/components/promo/PromoPage";
 import Layout from "@/layouts/Layout.astro";
+import { PUBLIC_CACHE_CONTROL } from "@/lib/http";
+import { loadPublishedPromos } from "@/lib/cms/promo";
+import { toPromoCards } from "@/lib/cms/promoDisplay";
+
+const promos = toPromoCards((await loadPublishedPromos()) ?? []);
+Astro.response.headers.set("Cache-Control", PUBLIC_CACHE_CONTROL);
 ---
 
 <Layout activeLabel="Promo">
-  <PromoPage />
+  <PromoPage promos={promos} />
 </Layout>
