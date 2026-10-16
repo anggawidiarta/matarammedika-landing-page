@@ -30,7 +30,7 @@ export default function HomeBerandaHero() {
     <div>
       <Segmented active={unit} onChange={setUnit} />
 
-      <div className="grid mt-[72px]">
+      <div className="mt-[72px] grid">
         {(["klinik", "apotek"] as const).map((key) => {
           const copy = HERO[key];
           const visible = unit === key;
@@ -39,16 +39,16 @@ export default function HomeBerandaHero() {
               key={key}
               className={`${panelMotion} ${
                 visible
-                  ? "z-10 opacity-100 translate-y-0 blur-0"
-                  : "z-0 opacity-0 translate-y-1.5 blur-[4px]"
+                  ? "blur-0 z-10 translate-y-0 opacity-100"
+                  : "z-0 translate-y-1.5 opacity-0 blur-[4px]"
               }`}
               aria-hidden={!visible}
               inert={!visible ? true : undefined}
             >
-              <h1 className="max-w-[688px] bg-gradient-blue-green-text bg-clip-text font-body text-[32px] font-bold leading-snug text-balance text-transparent sm:text-[36px] lg:text-[40px] lg:leading-normal">
+              <h1 className="bg-gradient-blue-green-text font-body max-w-[688px] bg-clip-text text-[32px] leading-snug font-bold text-balance text-transparent sm:text-[36px] lg:text-[40px] lg:leading-normal">
                 {copy.title}
               </h1>
-              <p className="mt-4 max-w-[655px] font-body text-base leading-6 text-pretty text-muted">
+              <p className="font-body text-muted mt-4 max-w-[655px] text-base leading-6 text-pretty">
                 {copy.body}
               </p>
               <div className="mt-8">
