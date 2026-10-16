@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { fasilitasUmum, type FasilitasItem } from "@/data/fasilitas";
 import { layananHomePreview, type LayananItem } from "@/data/layanan";
 import IconFeatureCard from "@/components/shared/cards/IconFeatureCard";
-import PromoCard from "@/components/shared/cards/PromoCard";
+import PromoGrid from "@/components/shared/sections/PromoGrid";
 import admedika from "@/assets/asuransi/admedika.webp";
 import bcaLife from "@/assets/asuransi/bca-life.webp";
 import bni from "@/assets/asuransi/bni.webp";
@@ -95,13 +95,13 @@ export default function LandingPageKlinik({
   return (
     <>
       <section id="beranda" className="bg-surface-tint">
-        <div className="mx-auto grid max-w-[1600px] items-center gap-10 px-6 py-12 lg:grid-cols-[minmax(0,1fr)_413px] lg:justify-between lg:gap-16 lg:px-10 xl:gap-24 xl:px-14 lg:pb-24 lg:pt-10">
+        <div className="page-container grid items-center gap-10 py-12 lg:grid-cols-[minmax(0,1fr)_413px] lg:justify-between lg:gap-16 xl:gap-24 lg:pb-24 lg:pt-10">
           {children}
         </div>
       </section>
 
       <section className="py-16 bg-surface">
-        <div className="mx-auto flex max-w-[1400px] flex-col items-center gap-10 px-6">
+        <div className="page-container flex flex-col items-center gap-10">
           <KlinikPageTitle
             as="h2"
             title="Kerjasama Asuransi"
@@ -115,7 +115,7 @@ export default function LandingPageKlinik({
       </section>
 
       <section id="layanan" className="py-20 bg-surface-tint">
-        <div className="mx-auto flex max-w-[1400px] flex-col gap-10 px-6">
+        <div className="page-container flex flex-col gap-10">
           <KlinikPageTitle
             as="h2"
             title="Daftar Layanan"
@@ -164,7 +164,7 @@ export default function LandingPageKlinik({
       </section>
 
       <section id="fasilitas" className="py-20 bg-surface">
-        <div className="mx-auto flex max-w-[1400px] flex-col gap-10 px-6">
+        <div className="page-container flex flex-col gap-10">
           <SectionTitleWithLink
             title="Daftar Fasilitas"
             caption="Klinik kami menyediakan berbagai fasilitas kesehatan lengkap"
@@ -188,18 +188,14 @@ export default function LandingPageKlinik({
       </section>
 
       <section id="promo" className="py-20 bg-surface-tint">
-        <div className="mx-auto flex max-w-[1400px] flex-col gap-10 px-6">
+        <div className="page-container flex flex-col gap-10">
           <SectionTitleWithLink
             title="Informasi Promo"
-            caption="Kami menyediakan berbagai promo , Seperti"
+            caption="Layanan kesehatan berkualitas dengan harga lebih hemat. Klaim sebelum waktunya habis."
             href="/promo-klinik"
           />
           {promoPreview.length > 0 ? (
-            <div className="grid gap-10 lg:grid-cols-3">
-              {promoPreview.map((promo) => (
-                <PromoCard key={promo.id} promo={promo} />
-              ))}
-            </div>
+            <PromoGrid promos={promoPreview} />
           ) : (
             <p className="py-10 text-center font-body text-lg text-muted">
               Belum ada promo aktif saat ini.

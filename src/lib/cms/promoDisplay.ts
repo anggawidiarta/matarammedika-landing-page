@@ -80,6 +80,17 @@ export function toPromoCards(items: PromoItem[], today: string = todayInClinicZo
   ];
 }
 
+/** Last instant of the promo's final day in the clinic's time zone (WITA, UTC+8, no DST). */
+export function promoEndsAt(endDate: string): number {
+  return new Date(`${endDate}T23:59:59.999+08:00`).getTime();
+}
+
+/** Whole-percent discount, or 0 when there is no real discount. */
+export function promoDiscountPercent(normalPrice: number, promoPrice: number): number {
+  if (normalPrice <= 0 || promoPrice >= normalPrice) return 0;
+  return Math.round(((normalPrice - promoPrice) / normalPrice) * 100);
+}
+
 export function formatRupiah(amount: number): string {
   return `Rp${amount.toLocaleString("id-ID")}`;
 }
