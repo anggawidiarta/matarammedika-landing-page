@@ -11,28 +11,37 @@ type CmsRow = {
   section: string;
   title: string;
   body: string;
-  icon_kind: string;
-  icon_name: string;
-  icon_tone: string | null;
+  data: unknown;
 };
 
-function isLucideName(name: string): name is KlinikLucideName {
+type RawIcon = { kind?: unknown; name?: unknown; tone?: unknown };
+
+function readIcon(data: unknown): RawIcon | null {
+  if (typeof data !== "object" || data === null) return null;
+  const icon = (data as { icon?: unknown }).icon;
+  return typeof icon === "object" && icon !== null ? (icon as RawIcon) : null;
+}
+
+function isLucideName(name: unknown): name is KlinikLucideName {
+  if (typeof name !== "string") return false;
   return (KLINIK_ICON_NAMES as readonly string[]).includes(name);
 }
 
-function isCircleTone(tone: string): tone is CircleTone {
+function isCircleTone(tone: unknown): tone is CircleTone {
+  if (typeof tone !== "string") return false;
   return (CIRCLE_TONES as readonly string[]).includes(tone);
 }
 
 export function mapCmsRowToPublicItem(row: CmsRow): CmsPublicItem | null {
-  if (!isLucideName(row.icon_name)) return null;
+  const raw = readIcon(row.data);
+  if (!raw || !isLucideName(raw.name)) return null;
 
   let icon: CmsPublicIcon;
-  if (row.icon_kind === "lucideCircle") {
-    if (!row.icon_tone || !isCircleTone(row.icon_tone)) return null;
-    icon = { kind: "lucideCircle", name: row.icon_name, tone: row.icon_tone };
-  } else if (row.icon_kind === "lucide") {
-    icon = { kind: "lucide", name: row.icon_name };
+  if (raw.kind === "lucideCircle") {
+    if (!isCircleTone(raw.tone)) return null;
+    icon = { kind: "lucideCircle", name: raw.name, tone: raw.tone };
+  } else if (raw.kind === "lucide") {
+    icon = { kind: "lucide", name: raw.name };
   } else {
     return null;
   }

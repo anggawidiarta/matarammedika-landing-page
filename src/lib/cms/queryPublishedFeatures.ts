@@ -7,11 +7,11 @@ export async function queryPublishedFeatures(
 ): Promise<CmsPublicItem[]> {
   const supabase = getServiceSupabase();
   const { data, error } = await supabase
-    .from("cms_feature_items")
-    .select("id, section, title, body, icon_kind, icon_name, icon_tone")
-    .eq("content_type", contentType)
+    .from("cms_items")
+    .select("id, section, title, body, data")
+    .eq("module", contentType)
     .eq("is_published", true)
-    .eq("is_deleted", false)
+    .is("deleted_at", null)
     .order("section", { ascending: true })
     .order("sort_order", { ascending: true })
     .order("title", { ascending: true });
