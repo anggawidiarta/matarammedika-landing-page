@@ -5,7 +5,7 @@ export default function DokterKlinik() {
   return (
     <>
       <main className="bg-surface-tint pb-24">
-        <div className="mx-auto flex w-full max-w-[1400px] flex-col items-center gap-10 px-5 pt-10 sm:gap-12 sm:px-6">
+        <div className="page-container flex flex-col items-center gap-10 pt-10 sm:gap-12">
           <KlinikPageTitle
             title="Informasi Dokter"
             caption="Tenaga medis profesional yang berdedikasi memberikan pelayanan terbaik"

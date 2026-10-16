@@ -1,8 +1,4 @@
-import {
-  fasilitasLainnya,
-  fasilitasUmum,
-  type FasilitasItem,
-} from "@/data/fasilitas";
+import { fasilitasLainnya, fasilitasUmum, type FasilitasItem } from "@/data/fasilitas";
 import FeatureSection from "@/components/shared/cards/FeatureSection";
 import KlinikPageTitle from "@/components/shared/sections/KlinikPageTitle";
 
@@ -15,7 +11,7 @@ export default function FasilitasKlinik({
 }) {
   return (
     <>
-      <main className="mx-auto flex max-w-[1400px] flex-col gap-10 px-6 pt-8 pb-24">
+      <main className="page-container flex flex-col gap-10 pt-8 pb-24">
         <KlinikPageTitle
           title="Daftar Fasilitas"
           caption="Klinik kami menyediakan berbagai fasilitas kesehatan lengkap"

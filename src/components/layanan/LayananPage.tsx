@@ -1,8 +1,4 @@
-import {
-  layananSpecialists,
-  layananUmumGigi,
-  type LayananItem,
-} from "@/data/layanan";
+import { layananSpecialists, layananUmumGigi, type LayananItem } from "@/data/layanan";
 import FeatureSection from "@/components/shared/cards/FeatureSection";
 import KlinikPageTitle from "@/components/shared/sections/KlinikPageTitle";
 
@@ -17,7 +13,7 @@ export default function LayananKlinik({
 }) {
   return (
     <>
-      <main className="mx-auto flex max-w-[1400px] flex-col gap-10 px-6 pt-8 pb-24">
+      <main className="page-container flex flex-col gap-10 pt-8 pb-24">
         <KlinikPageTitle
           title="Daftar Layanan"
           caption="Klinik kami menyediakan berbagai layanan kesehatan lengkap yang ditangani oleh tenaga medis profesional, memberikan perawatan terbaik bagi setiap pasien."

@@ -20,14 +20,14 @@ const missionItems = [
 export default function ProfilKlinik() {
   return (
     <>
-      <main className="mx-auto flex max-w-[1400px] flex-col gap-10 px-6 pt-8 pb-24">
+      <main className="page-container flex flex-col gap-10 pt-8 pb-24">
         <KlinikPageTitle
           title="Profile"
           caption="Ringkasan informasi tentang Klinik Mataram Medika"
         />
 
         <section className="flex flex-col gap-3">
-          <h2 className="text-xl font-medium leading-snug text-black font-body text-balance sm:text-2xl">
+          <h2 className="font-body text-xl leading-snug font-medium text-balance text-black sm:text-2xl">
             TENTANG KAMI
           </h2>
           <ContentCard>
@@ -37,7 +37,7 @@ export default function ProfilKlinik() {
 
         <section className="grid gap-6 lg:grid-cols-2">
           <div className="flex flex-col gap-3">
-            <h2 className="text-xl font-medium leading-snug text-black font-body text-balance sm:text-2xl">
+            <h2 className="font-body text-xl leading-snug font-medium text-balance text-black sm:text-2xl">
               VISI
             </h2>
             <ContentCard>
@@ -45,11 +45,11 @@ export default function ProfilKlinik() {
             </ContentCard>
           </div>
           <div className="flex flex-col gap-3">
-            <h2 className="text-xl font-medium leading-snug text-black font-body text-balance sm:text-2xl">
+            <h2 className="font-body text-xl leading-snug font-medium text-balance text-black sm:text-2xl">
               MISI
             </h2>
             <ContentCard>
-              <ol className="pl-5 space-y-0 list-decimal">
+              <ol className="list-decimal space-y-0 pl-5">
                 {missionItems.map((item) => (
                   <li key={item} className="text-justify">
                     {item}
@@ -60,18 +60,22 @@ export default function ProfilKlinik() {
           </div>
         </section>
 
-        <section className="relative flex min-h-[329px] flex-col items-center justify-center overflow-hidden rounded-[32px] bg-gradient-blue-green px-8 py-12 text-center text-white lg:px-16">
+        <section className="bg-gradient-blue-green relative flex min-h-[329px] flex-col items-center justify-center overflow-hidden rounded-[32px] px-8 py-12 text-center text-white lg:px-16">
           <img
             src={bannerTextureImg.src}
+            width={bannerTextureImg.width}
+            height={bannerTextureImg.height}
+            loading="lazy"
+            decoding="async"
             alt=""
             className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.06]"
           />
           <div className="relative z-10 flex max-w-[747px] flex-col items-center gap-10">
             <div className="flex flex-col gap-2">
-              <h2 className="font-body text-[28px] font-semibold leading-snug text-balance sm:text-[32px] sm:leading-normal">
+              <h2 className="font-body text-[28px] leading-snug font-semibold text-balance sm:text-[32px] sm:leading-normal">
                 Kontak Kami Untuk Reservasi Pelayanan kami sekarang
               </h2>
-              <p className="text-base leading-6 opacity-80 font-body text-pretty">
+              <p className="font-body text-base leading-6 text-pretty opacity-80">
                 Kesehatan Anda adalah prioritas kami. Reservasi pelayanan kami sekarang
                 <br />
                 dan dapatkan perawatan terbaik dari tenaga medis profesional.
@@ -79,7 +83,7 @@ export default function ProfilKlinik() {
             </div>
             <a
               href={WA_KLINIK}
-              className="inline-flex gap-2 items-center px-7 py-4 text-lg font-semibold bg-white rounded-full font-accent text-blue shadow-cta"
+              className="font-accent text-blue shadow-cta inline-flex items-center gap-2 rounded-full bg-white px-7 py-4 text-lg font-semibold"
             >
               <MessageCircle
                 size={24}
