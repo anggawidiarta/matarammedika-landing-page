@@ -70,7 +70,10 @@ function toPromoCard(item: PromoItem, today: string): PromoCardData | null {
 }
 
 /** Drops scheduled promos and lists ended ones last, keeping CMS order within each group. */
-export function toPromoCards(items: PromoItem[], today: string = todayInClinicZone()): PromoCardData[] {
+export function toPromoCards(
+  items: PromoItem[],
+  today: string = todayInClinicZone(),
+): PromoCardData[] {
   const cards = items
     .map((item) => toPromoCard(item, today))
     .filter((card): card is PromoCardData => card !== null);
@@ -106,4 +109,17 @@ export function formatPromoPeriod(startDate: string, endDate: string): string {
     });
   };
   return `${format(startDate)} - ${format(endDate)}`;
+}
+
+export function buildPromoClaimLink(waBaseUrl: string, promo: PromoItem): string {
+  const message = [
+    "Halo Klinik Mataram Medika, saya ingin klaim promo:",
+    "",
+    `*${promo.title}*`,
+    `Harga promo: ${formatRupiah(promo.promoPrice)}`,
+    `Periode: ${formatPromoPeriod(promo.startDate, promo.endDate)}`,
+    "",
+    "Mohon info jadwal dan langkah selanjutnya. Terima kasih.",
+  ].join("\n");
+  return `${waBaseUrl}?text=${encodeURIComponent(message)}`;
 }
