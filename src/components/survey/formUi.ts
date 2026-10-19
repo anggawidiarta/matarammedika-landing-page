@@ -1,6 +1,6 @@
 import { LIKERT } from "@/lib/survey/constants";
 
-export const REQUIRED_COUNT = LIKERT.length + 1;
+export const REQUIRED_COUNT = LIKERT.length + 2;
 
 export type Ratings = Record<(typeof LIKERT)[number]["key"], number | null>;
 export type FormStatus = "idle" | "loading" | "error" | "success";

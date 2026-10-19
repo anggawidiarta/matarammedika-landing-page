@@ -25,7 +25,7 @@ export default function PenilaianSection({
           untuk setiap aspek di bawah.
         </p>
       </div>
-      <div className="flex flex-col gap-4 min-w-0">
+      <div className="flex flex-col min-w-0">
         {LIKERT.map((item, index) => (
           <LikertRatingRow
             key={item.key}

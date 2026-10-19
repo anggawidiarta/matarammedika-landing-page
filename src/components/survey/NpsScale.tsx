@@ -17,7 +17,7 @@ export default function NpsScale({
           Seberapa mungkin Anda merekomendasikan Klinik Mataram Medika kepada
           keluarga atau tetangga?
         </legend>
-        <div className="grid grid-cols-4 gap-2 min-w-0 sm:grid-cols-6 lg:grid-cols-11">
+        <div className="grid grid-cols-6 gap-2 min-w-0 lg:grid-cols-11">
           {Array.from({ length: 11 }, (_, score) => {
             const id = `${formId}-nps-${score}`;
             return (

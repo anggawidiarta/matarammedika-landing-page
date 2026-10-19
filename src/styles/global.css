@@ -5,6 +5,11 @@ body {
   margin: 0;
 }
 
+/* Rendered height of the sticky KlinikHeader; update when its padding or logo size changes. */
+:root {
+  --header-h: 95px;
+}
+
 @utility page-container {
   margin-inline: auto;
   width: 100%;

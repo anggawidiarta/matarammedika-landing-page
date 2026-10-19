@@ -1,16 +1,11 @@
 ---
 export const prerender = true;
-import KlinikPageTitle from "@/components/shared/sections/KlinikPageTitle";
 import SurveyApp from "@/components/survey/SurveyApp";
 import Layout from "@/layouts/Layout.astro";
 ---
 
 <Layout activeLabel="Survey Kepuasan">
-  <main class="mx-auto flex max-w-[760px] flex-col gap-8 px-6 pt-8 pb-24">
-    <KlinikPageTitle
-      title="Survey Kepuasan Pelanggan"
-      caption="Isi singkat ini membantu kami merawat pelayanan klinik. Nama boleh dikosongkan. Perkiraan waktu: sekitar tiga menit."
-    />
+  <main class="page-container pt-8 pb-24">
     <SurveyApp client:load />
   </main>
 </Layout>

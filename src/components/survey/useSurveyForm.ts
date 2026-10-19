@@ -7,6 +7,7 @@ import {
   toIso,
   type Ratings,
 } from "./formUi";
+import { clearDraft, loadDraft, saveDraft } from "./surveyDraft";
 import { validateSurveyClient } from "./validateClient";
 import { surveyFieldFocus } from "./validationMessages";
 
@@ -25,11 +26,31 @@ export function useSurveyForm() {
   const [errorMessage, setErrorMessage] = useState("");
   const [layananError, setLayananError] = useState("");
 
-  // Set after mount: the page is prerendered, so a server-side "today" would be stale or mismatch.
-  useEffect(() => setTanggal((current) => current || toIso(new Date())), []);
+  const [draftLoaded, setDraftLoaded] = useState(false);
+
+  // Runs after mount: the page is prerendered, so reading storage or "today" during render would mismatch.
+  useEffect(() => {
+    const draft = loadDraft();
+    if (draft) {
+      setNama(draft.nama);
+      setLayanan(draft.layanan);
+      setRatings(draft.ratings);
+      setNps(draft.nps);
+      setSaran(draft.saran);
+    }
+    setTanggal(draft?.tanggal || toIso(new Date()));
+    setDraftLoaded(true);
+  }, []);
+
+  useEffect(() => {
+    if (!draftLoaded || status === "success") return;
+    saveDraft({ nama, tanggal, layanan, ratings, nps, saran });
+  }, [draftLoaded, status, nama, tanggal, layanan, ratings, nps, saran]);
 
   const answered =
-    LIKERT.filter((item) => ratings[item.key] != null).length + (nps != null ? 1 : 0);
+    LIKERT.filter((item) => ratings[item.key] != null).length +
+    (nps != null ? 1 : 0) +
+    (layanan !== "" ? 1 : 0);
   const progress = answered / REQUIRED_COUNT;
 
   function clearError() {
@@ -120,6 +141,7 @@ export function useSurveyForm() {
       }
 
       if (response.ok && body.ok) {
+        clearDraft();
         setStatus("success");
         return;
       }

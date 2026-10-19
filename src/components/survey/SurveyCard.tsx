@@ -9,7 +9,7 @@ export default function SurveyCard({
 }) {
   return (
     <section
-      className={`flex flex-col px-6 py-6 min-w-0 bg-white rounded-3xl shadow-card sm:px-8 ${className}`}
+      className={`flex flex-col px-4 py-6 min-w-0 bg-white rounded-3xl shadow-card sm:px-8 ${className}`}
     >
       {children}
     </section>

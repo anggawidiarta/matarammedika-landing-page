@@ -35,7 +35,7 @@ export default function SurveyForm({ form }: { form: SurveyFormState }) {
 
   return (
     <form className="flex flex-col gap-6" onSubmit={handleSubmit} noValidate>
-      <SurveyProgress answered={answered} progress={progress} />
+      <SurveyProgress variant="bar" answered={answered} progress={progress} />
 
       {status === "error" ? <SurveyErrorAlert message={errorMessage} alertRef={alertRef} /> : null}
 
