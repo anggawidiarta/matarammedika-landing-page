@@ -1,32 +1,74 @@
 schema: spec-driven
 
-# Project context (optional)
-# Add only constraints that should guide OpenSpec artifacts and workflows.
-# Include constraints an agent cannot infer by reading the code.
-# Keep general project documentation and discoverable codebase facts out.
-# Example:
-#   context: |
-#     Designs and tasks must cover Windows, macOS, and Linux
-#     Write all artifacts in Spanish
+context: |
+  Landing page publik Apotek & Klinik Mataram Medika. Pengunjung mayoritas dari
+  perangkat mobile dengan koneksi tidak selalu cepat.
 
-# Per-artifact rules (optional)
-# Add custom rules for specific artifacts.
-# Example:
-#   rules:
-#     proposal:
-#       - Keep proposals under 500 words
-#       - Always state what is out of scope
-#     tasks:
-#       - Break tasks into chunks of max 2 hours
+  Bahasa:
+  - Semua artefak OpenSpec (proposal, design, specs, tasks) ditulis dalam bahasa
+    Indonesia. Istilah teknis, nama berkas, dan identifier kode tetap apa adanya.
+  - Teks UI untuk pengunjung berbahasa Indonesia; kode dan identifier berbahasa Inggris.
 
-# Per-operation guidance (optional)
-# Add advisory guidance for how apply and archive work should be conducted.
-# This is separate from artifact rules above.
-# Example:
-#   operations:
-#     apply:
-#       guidance:
-#         - Keep test summaries concise
-#     archive:
-#       guidance:
-#         - Summarize the archive outcome before finishing
+  Stack: Astro 7 (output server, adapter @astrojs/node standalone), React 19 sebagai
+  islands, Tailwind CSS 4 via @tailwindcss/vite, Supabase (supabase-js), zod 4,
+  lucide-react, TypeScript. Node >= 22.12.
+
+  Batasan yang tidak terlihat dari kode:
+  - Data CMS (tabel cms_items, promo) dikelola oleh project terpisah
+    matarammedika-admin pada database Supabase yang sama. Landing page hanya
+    membaca konten yang dipublikasikan; perubahan skema tabel CMS harus
+    dikoordinasikan dengan project admin dan tidak dilakukan dari repo ini.
+  - Landing page memakai service-role key, sehingga RLS tidak melindungi query
+    dari server. Setiap query wajib membatasi baris dan kolom sendiri.
+  - Konten CMS bisa kosong atau gagal dimuat; halaman harus tetap tampil memakai
+    data statis di src/data sebagai fallback.
+  - Survey kepuasan menyimpan data pasien (nama, saran, tanggal kunjungan).
+    Perlakukan sebagai data sensitif: minimalkan yang disimpan, jangan log isinya,
+    IP hanya disimpan dalam bentuk hash ber-pepper.
+  - Tidak ada test runner. Verifikasi minimum adalah `npm run check` dan
+    `npm run build`, ditambah pengecekan manual di dev server.
+
+rules:
+  proposal:
+    - Jelaskan "Why" dari sudut pandang pengunjung atau pihak klinik, bukan dari sudut implementasi.
+    - Selalu cantumkan bagian "Di luar lingkup".
+    - Bagian Impact wajib menyebut dampak pada performa (JS yang dikirim ke client, gambar, font), privasi/keamanan, dan apakah perlu perubahan di matarammedika-admin atau skema Supabase.
+    - Tolak penambahan dependensi baru kecuali manfaatnya jelas dan tidak bisa dicapai dengan Astro, React, Tailwind, atau zod yang sudah ada; sebutkan alasannya jika tetap ditambahkan.
+  design:
+    - Tentukan untuk setiap halaman atau komponen baru apakah cukup .astro statis atau perlu React island, dan pilih directive hydration paling ringan (tanpa directive > client:visible > client:idle > client:load). Gunakan client:load hanya untuk elemen interaktif di atas fold.
+    - Data diambil di server (frontmatter .astro atau src/lib), bukan di client. Komponen React menerima data siap pakai lewat props.
+    - Query Supabase memilih kolom eksplisit (tanpa select("*")), memfilter is_published dan deleted_at, dan dibungkus ttlCached bila datanya publik dan bisa di-cache.
+    - Tentukan strategi cache setiap route publik (PUBLIC_CACHE_CONTROL atau alasan tidak di-cache) dan fallback jika CMS gagal.
+    - Untuk endpoint yang menerima input, uraikan validasi zod di server, batas ukuran payload, rate limit, dan bentuk respons error yang tidak membocorkan detail internal.
+    - Sebutkan dampak SEO bila menambah atau mengubah halaman (title, meta description, canonical, heading, structured data bila relevan).
+  specs:
+    - Gunakan format requirement dengan SHALL/MUST dan skenario WHEN/THEN yang dapat diuji manual.
+    - Sertakan skenario untuk kondisi gagal (CMS kosong atau error, input tidak valid, rate limit, storage tidak tersedia) di samping skenario sukses.
+    - Requirement aksesibilitas ditulis eksplisit untuk UI interaktif (label, fokus keyboard, pesan error yang terbaca screen reader).
+  tasks:
+    - Pecah task menjadi langkah kecil yang masing-masing bisa diverifikasi; maksimal sekitar 2 jam per task.
+    - Akhiri setiap change dengan task verifikasi - npm run check, npm run build, dan cek manual di dev server pada lebar mobile (360px) dan desktop.
+    - Untuk change yang menyentuh UI, tambahkan task cek aksesibilitas dasar (navigasi keyboard, kontras, alt text) dan cek tidak ada layout shift saat gambar/font dimuat.
+    - Untuk change yang menyentuh endpoint atau data, tambahkan task review keamanan (validasi input, secret tidak bocor ke client, error tidak membocorkan detail).
+
+operations:
+  apply:
+    guidance:
+      - Ikuti pola yang sudah ada - alias @/, helper di src/lib (jsonResponse, PUBLIC_CACHE_CONTROL, ttlCached, getServiceSupabase), data fallback di src/data, komponen bersama di src/components/shared.
+      - Default ke komponen .astro tanpa JavaScript. Pindah ke React island hanya bila butuh state atau interaksi, dan jaga island tetap kecil; jangan hydrate seluruh halaman.
+      - Gambar lokal disimpan di src/assets dan dirender lewat astro:assets (Image/Picture) dengan width, height, alt, dan loading="lazy" kecuali gambar LCP di atas fold. Format webp/avif.
+      - Font hanya lewat konfigurasi fonts di astro.config.mjs; jangan menambah link Google Fonts manual atau weight yang tidak dipakai.
+      - Import ikon lucide-react per ikon (named import), jangan import seluruh paket atau membuat map dinamis yang memaksa semua ikon masuk bundle.
+      - Styling memakai Tailwind dan token di src/styles/theme.css; hindari nilai warna/ukuran hardcode dan CSS inline baru.
+      - Secret hanya dibaca dari astro:env/server dan didaftarkan di env.schema astro.config.mjs. Jangan pernah membuat variabel PUBLIC_ untuk kunci Supabase atau pepper, dan jangan meng-import src/lib/supabase dari komponen yang di-hydrate.
+      - Validasi semua input dari client dengan zod di server, meski sudah divalidasi di client. Batasi panjang string dan rentang angka.
+      - Jangan render HTML dari CMS atau input pengguna dengan set:html atau dangerouslySetInnerHTML tanpa sanitasi.
+      - Link eksternal (WhatsApp, media sosial, maps) memakai rel="noopener noreferrer" dan URL dibangun dengan encodeURIComponent untuk teks dinamis.
+      - Log error di server cukup pesan dan objek error Supabase; jangan log payload survey, nama, atau IP mentah. Respons ke client hanya kode error generik.
+      - Gunakan HTML semantik (satu h1 per halaman, landmark, button vs link yang tepat), atribut alt dan label form, serta hormati prefers-reduced-motion untuk animasi.
+      - Jangan menambah komentar yang hanya mengulang isi kode; ikuti aturan komentar di CLAUDE.md.
+      - Jalankan npm run check dan npm run build sebelum menandai task selesai, dan laporkan hasilnya apa adanya.
+  archive:
+    guidance:
+      - Pastikan semua task tercentang dan npm run check serta npm run build lolos sebelum archive.
+      - Ringkas hasil archive dalam bahasa Indonesia, termasuk requirement yang ditambah atau diubah di specs utama.
