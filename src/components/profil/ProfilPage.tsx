@@ -1,8 +1,10 @@
 import { useState } from "react";
-import { MessageCircle, Quote } from "lucide-react";
+import { MessageCircle, Pill, Quote, Stethoscope } from "lucide-react";
 import ContentCard from "@/components/profil/ContentCard";
 import { gradientBg } from "@/components/shared/ui/gradient";
 import bannerTextureImg from "@/assets/photos/banner-texture.webp";
+import profilApotekImg from "@/assets/photos/profil-apotek.webp";
+import profilKlinikImg from "@/assets/photos/profil-klinik.webp";
 import Segmented from "@/components/shared/ui/Segmented";
 import KlinikPageTitle from "@/components/shared/sections/KlinikPageTitle";
 import type { ProfilContent, ProfilUnit } from "@/lib/cms/types";
@@ -16,6 +18,9 @@ type ProfilPageProps = {
 const UNIT_COPY = {
   klinik: {
     name: "Klinik Mataram Medika",
+    Icon: Stethoscope,
+    photo: profilKlinikImg,
+    photoAlt: "Ruang resepsi Klinik Mataram Medika dengan logo menyala di dinding",
     whatsapp: WA_KLINIK,
     ctaTitle: "Kontak Kami Untuk Reservasi Pelayanan kami sekarang",
     ctaBody:
@@ -24,6 +29,9 @@ const UNIT_COPY = {
   },
   apotek: {
     name: "Apotek Mataram Medika",
+    Icon: Pill,
+    photo: profilApotekImg,
+    photoAlt: "Tampak depan Apotek dan Klinik Mataram Medika di Jalan Catur Warga, Mataram",
     whatsapp: WA_APOTEK,
     ctaTitle: "Hubungi Apotek Kami untuk Pemesanan Obat",
     ctaBody:
@@ -66,14 +74,34 @@ export default function ProfilPage({ content, initialUnit }: ProfilPageProps) {
 
       <div key={unit} className="profil-panel-in flex flex-col gap-12">
         {about && (
-          <section className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] lg:gap-10">
-            <div className="flex flex-col gap-1">
-              <SectionHeading>TENTANG KAMI</SectionHeading>
-              <p className="font-body text-muted text-sm leading-6">{copy.name}</p>
+          <section className="shadow-card grid overflow-hidden rounded-3xl bg-white lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
+            <img
+              src={copy.photo.src}
+              width={copy.photo.width}
+              height={copy.photo.height}
+              alt={copy.photoAlt}
+              decoding="async"
+              className="h-56 w-full object-cover sm:h-72 lg:h-full lg:min-h-[400px]"
+            />
+            <div className="flex flex-col justify-center gap-5 px-6 py-8 sm:px-8 lg:gap-6 lg:px-12 lg:py-12">
+              <div className="flex items-center gap-4">
+                <span
+                  className={`${gradientBg} shadow-cta flex size-14 shrink-0 items-center justify-center rounded-full text-white`}
+                  aria-hidden
+                >
+                  <copy.Icon size={28} strokeWidth={1.75} />
+                </span>
+                <div className="flex flex-col gap-1">
+                  <SectionHeading>TENTANG KAMI</SectionHeading>
+                  <p className="font-body text-heading/70 text-sm leading-6 sm:text-base">
+                    {copy.name}
+                  </p>
+                </div>
+              </div>
+              <p className="font-body text-heading/80 text-base leading-7 text-pretty lg:text-lg lg:leading-8">
+                {about}
+              </p>
             </div>
-            <ContentCard>
-              <p className="max-w-[72ch]">{about}</p>
-            </ContentCard>
           </section>
         )}
 
