@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { MessageCircle, Pill, Quote, Stethoscope } from "lucide-react";
+import { Pill, Quote, Stethoscope } from "lucide-react";
 import ContentCard from "@/components/profil/ContentCard";
 import { gradientBg } from "@/components/shared/ui/gradient";
 import bannerTextureImg from "@/assets/photos/banner-texture.webp";
 import profilApotekImg from "@/assets/photos/profil-apotek.webp";
 import profilKlinikImg from "@/assets/photos/profil-klinik.webp";
 import Segmented from "@/components/shared/ui/Segmented";
+import WhatsAppIcon from "@/components/shared/ui/WhatsAppIcon";
 import KlinikPageTitle from "@/components/shared/sections/KlinikPageTitle";
 import type { ProfilContent, ProfilUnit } from "@/lib/cms/types";
 import { WA_APOTEK, WA_KLINIK } from "@/data/site";
@@ -175,12 +176,7 @@ export default function ProfilPage({ content, initialUnit }: ProfilPageProps) {
               href={copy.whatsapp}
               className="font-accent text-blue shadow-cta inline-flex items-center gap-2 rounded-full bg-white px-7 py-4 text-lg font-semibold transition-[transform,box-shadow] duration-200 ease-out hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white active:scale-[0.97] motion-reduce:transition-none"
             >
-              <MessageCircle
-                size={24}
-                className="fill-green text-green"
-                aria-hidden
-                strokeWidth={1.5}
-              />
+              <WhatsAppIcon className="bg-green" />
               {copy.ctaLabel}
             </a>
           </div>

@@ -20,7 +20,7 @@ import bannerTextureImg from "@/assets/photos/banner-texture.webp";
 import KlinikPageTitle from "@/components/shared/sections/KlinikPageTitle";
 import { ArrowIcon, GradientLink } from "@/components/shared/ui/GradientLink";
 import { renderIcon } from "@/components/shared/ui/iconDescriptor";
-import { MessageCircle } from "lucide-react";
+import WhatsAppIcon from "@/components/shared/ui/WhatsAppIcon";
 
 type AsuransiLogo = { name: string; src: string; width: number; height: number };
 
@@ -246,12 +246,7 @@ export default function LandingPageKlinik({
                 href={WA_KLINIK}
                 className="inline-flex min-h-12 gap-2 items-center px-7 py-4 text-lg font-semibold bg-white rounded-full w-fit font-accent text-promo shadow-cta transition-transform duration-200 ease-out hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white motion-safe:active:scale-[0.97] motion-reduce:transition-none"
               >
-                <MessageCircle
-                  size={24}
-                  className="fill-promo text-promo"
-                  aria-hidden
-                  strokeWidth={1.5}
-                />
+                <WhatsAppIcon className="bg-promo" />
                 Klaim Promo
               </a>
             </div>

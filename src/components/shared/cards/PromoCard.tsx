@@ -1,4 +1,5 @@
-import { MessageCircle, Timer } from "lucide-react";
+import { Timer } from "lucide-react";
+import WhatsAppIcon from "@/components/shared/ui/WhatsAppIcon";
 import { WA_KLINIK } from "@/data/site";
 import {
   buildPromoClaimLink,
@@ -79,7 +80,7 @@ export default function PromoCard({ promo }: { promo: PromoCardData }) {
               href={buildPromoClaimLink(WA_KLINIK, promo)}
               className={`${promo.claimClass} font-accent shadow-cta focus-visible:outline-blue inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold text-white transition-[transform,filter] duration-200 hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-2 motion-safe:active:scale-[0.97] sm:text-base`}
             >
-              <MessageCircle size={18} className="fill-white" aria-hidden strokeWidth={2} />
+              <WhatsAppIcon size={20} />
               Klaim Promo Sekarang
             </a>
           )}

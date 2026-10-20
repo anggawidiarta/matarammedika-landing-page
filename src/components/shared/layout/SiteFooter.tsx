@@ -1,8 +1,8 @@
-import { MessageCircle } from "lucide-react";
 import { WA_KLINIK } from "@/data/site";
 import iconFacebook from "@/assets/icons/facebook.svg";
 import iconInstagram from "@/assets/icons/instagram.svg";
 import Logo from "@/components/shared/ui/Logo";
+import WhatsAppIcon from "@/components/shared/ui/WhatsAppIcon";
 
 const linkClass =
   "inline-block rounded-sm py-1 underline-offset-4 transition-colors duration-200 ease-out hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white";
@@ -31,12 +31,7 @@ export default function SiteFooter() {
                 <img src={iconFacebook.src} alt="" width={32} height={32} />
               </a>
               <a href={WA_KLINIK} aria-label="WhatsApp" className={socialClass}>
-                <MessageCircle
-                  size={32}
-                  className="fill-[#25D366] text-[#25D366]"
-                  aria-hidden
-                  strokeWidth={1.5}
-                />
+                <WhatsAppIcon size={32} />
               </a>
             </div>
           </div>
