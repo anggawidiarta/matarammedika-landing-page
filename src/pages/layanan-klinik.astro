@@ -1,18 +1,14 @@
 ---
 export const prerender = false;
 import LayananPage from "@/components/layanan/LayananPage";
-import { layananSpecialists, layananUmumGigi } from "@/data/layanan";
 import Layout from "@/layouts/Layout.astro";
 import { PUBLIC_CACHE_CONTROL } from "@/lib/http";
 import { itemsForSection } from "@/lib/cms/featureItems";
 import { loadPublishedFeatures } from "@/lib/cms/loadPublishedFeatures";
 
 const cmsItems = await loadPublishedFeatures("layanan");
-const umumGigi = itemsForSection(cmsItems, "umum_gigi", [
-  layananUmumGigi.umum,
-  layananUmumGigi.gigi,
-]);
-const specialists = itemsForSection(cmsItems, "spesialis", layananSpecialists);
+const umumGigi = itemsForSection(cmsItems, "umum_gigi");
+const specialists = itemsForSection(cmsItems, "spesialis");
 Astro.response.headers.set("Cache-Control", PUBLIC_CACHE_CONTROL);
 ---
 

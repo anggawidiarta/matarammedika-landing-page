@@ -1,18 +1,14 @@
 ---
 export const prerender = false;
 import FasilitasPage from "@/components/fasilitas/FasilitasPage";
-import {
-  fasilitasLainnya,
-  fasilitasUmum,
-} from "@/data/fasilitas";
 import Layout from "@/layouts/Layout.astro";
 import { PUBLIC_CACHE_CONTROL } from "@/lib/http";
 import { itemsForSection } from "@/lib/cms/featureItems";
 import { loadPublishedFeatures } from "@/lib/cms/loadPublishedFeatures";
 
 const cmsItems = await loadPublishedFeatures("fasilitas");
-const umum = itemsForSection(cmsItems, "umum", fasilitasUmum);
-const lainnya = itemsForSection(cmsItems, "lainnya", fasilitasLainnya);
+const umum = itemsForSection(cmsItems, "umum");
+const lainnya = itemsForSection(cmsItems, "lainnya");
 Astro.response.headers.set("Cache-Control", PUBLIC_CACHE_CONTROL);
 ---
 

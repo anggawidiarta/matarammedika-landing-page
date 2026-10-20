@@ -3,11 +3,9 @@ export const prerender = false;
 import HomeBerandaHero from "@/components/home/HomeBerandaHero";
 import HomeDoctorShowcase from "@/components/home/HomeDoctorShowcase";
 import HomePage from "@/components/home/HomePage";
-import { fasilitasUmum } from "@/data/fasilitas";
-import { layananHomePreview } from "@/data/layanan";
 import Layout from "@/layouts/Layout.astro";
 import { PUBLIC_CACHE_CONTROL } from "@/lib/http";
-import { itemsForSection, toFeatureItem } from "@/lib/cms/featureItems";
+import { itemsForSection } from "@/lib/cms/featureItems";
 import { loadPublishedFeatures } from "@/lib/cms/loadPublishedFeatures";
 import { loadPublishedPromos } from "@/lib/cms/promo";
 import { toPromoCards } from "@/lib/cms/promoDisplay";
@@ -18,15 +16,8 @@ const [layananCms, fasilitasCms, promoCms] = await Promise.all([
   loadPublishedPromos(),
 ]);
 
-const specialistItems = layananCms
-  ? layananCms
-      .filter((item) => item.section === "spesialis")
-      .slice(0, 6)
-      .map(toFeatureItem)
-  : [];
-const layananPreview = specialistItems.length > 0 ? specialistItems : layananHomePreview;
-
-const fasilitasPreview = itemsForSection(fasilitasCms, "umum", fasilitasUmum);
+const layananPreview = itemsForSection(layananCms, "spesialis").slice(0, 6);
+const fasilitasPreview = itemsForSection(fasilitasCms, "umum");
 const promoPreview = toPromoCards(promoCms ?? [])
   .filter((promo) => promo.status !== "ended")
   .slice(0, 3);

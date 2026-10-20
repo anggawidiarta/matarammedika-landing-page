@@ -1,13 +1,13 @@
-import { fasilitasLainnya, fasilitasUmum, type FasilitasItem } from "@/data/fasilitas";
+import type { FeatureItem } from "@/types/feature";
 import FeatureSection from "@/components/shared/cards/FeatureSection";
 import KlinikPageTitle from "@/components/shared/sections/KlinikPageTitle";
 
 export default function FasilitasKlinik({
-  umum = fasilitasUmum,
-  lainnya = fasilitasLainnya,
+  umum,
+  lainnya,
 }: {
-  umum?: FasilitasItem[];
-  lainnya?: FasilitasItem[];
+  umum: FeatureItem[];
+  lainnya: FeatureItem[];
 }) {
   return (
     <>
@@ -17,8 +17,8 @@ export default function FasilitasKlinik({
           caption="Klinik kami menyediakan berbagai fasilitas kesehatan lengkap"
         />
 
-        <FeatureSection title="Fasilitas Umum" items={umum} />
-        <FeatureSection title="Fasilitas Lainnya" items={lainnya} />
+        {umum.length > 0 && <FeatureSection title="Fasilitas Umum" items={umum} />}
+        {lainnya.length > 0 && <FeatureSection title="Fasilitas Lainnya" items={lainnya} />}
       </main>
     </>
   );
