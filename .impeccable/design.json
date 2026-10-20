@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-20T00:00:00Z",
+  "title": "Design System: Apotek & Klinik Mataram Medika",
+  "extensions": {
+    "colorMeta": {
+      "brand-blue": { "role": "primary", "displayName": "Brand Blue", "canonical": "#0d6af6", "tonalRamp": ["#04204a", "#06357b", "#094aac", "#0c5fdd", "#3d88f8", "#7aadfa", "#b6d2fc", "#e7f0fe"] },
+      "brand-green": { "role": "secondary", "displayName": "Clinic Green", "canonical": "#3dac9c", "tonalRamp": ["#12342f", "#1e564e", "#2b786d", "#379b8c", "#64bdb0", "#94d1c9", "#c5e6e1", "#ecf7f5"] },
+      "promo-rose": { "role": "tertiary", "displayName": "Promo Rose", "canonical": "#ff356b", "tonalRamp": ["#4d1020", "#801a36", "#b2254b", "#e63060", "#ff5d89", "#ff90ae", "#ffc2d3", "#ffebf0"] },
+      "promo-blush": { "role": "tertiary", "displayName": "Promo Blush", "canonical": "#ff698d", "tonalRamp": ["#4d202a", "#803446", "#b24a63", "#e65e7f", "#ff87a4", "#ffacc0", "#ffd2dd", "#fff0f4"] },
+      "ink-navy": { "role": "neutral", "displayName": "Ink Navy", "canonical": "#031432", "tonalRamp": ["#01060f", "#020a19", "#020e23", "#03122d", "#35435b", "#747e8e", "#b3b8c2", "#e6e8ea"] },
+      "harbor-mist": { "role": "neutral", "displayName": "Harbor Mist", "canonical": "#6c87ae", "tonalRamp": ["#202934", "#364457", "#4c5e7a", "#617a9d", "#899fbe", "#aebdd2", "#d3dbe7", "#f0f3f7"] },
+      "clinic-white": { "role": "neutral", "displayName": "Clinic White", "canonical": "#ffffff", "tonalRamp": ["#4d4d4d", "#808080", "#b2b2b2", "#e6e6e6", "#f2f2f2", "#f7f7f7", "#fbfbfb", "#ffffff"] },
+      "morning-surface": { "role": "neutral", "displayName": "Morning Surface", "canonical": "#f9fbfc", "tonalRamp": ["#4b4b4c", "#7c7e7e", "#aeb0b0", "#e0e2e3", "#fafcfd", "#fcfdfd", "#fdfefe", "#feffff"] },
+      "sky-tint": { "role": "neutral", "displayName": "Sky Tint", "canonical": "#f2f7ff", "tonalRamp": ["#494a4d", "#797c80", "#a9adb2", "#dadee6", "#f5f9ff", "#f8fbff", "#fbfdff", "#fefeff"] },
+      "sky-highlight": { "role": "neutral", "displayName": "Sky Highlight", "canonical": "#eff5ff", "tonalRamp": ["#484a4d", "#787a80", "#a7acb2", "#d7dce6", "#f2f7ff", "#f6faff", "#fafcff", "#fdfeff"] },
+      "night-footer": { "role": "neutral", "displayName": "Night Footer", "canonical": "#0a0e31", "tonalRamp": ["#03040f", "#050718", "#070a22", "#090d2c", "#3b3e5a", "#787a8e", "#b6b7c1", "#e6e7ea"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Judul hero beranda saja." },
+      "headline": { "displayName": "Headline", "purpose": "Judul halaman dan judul banner CTA (28px mobile, 32px desktop)." },
+      "title": { "displayName": "Title", "purpose": "Judul section dan judul kartu fitur (20px mobile, 24px desktop)." },
+      "body": { "displayName": "Body", "purpose": "Paragraf dan deskripsi, sekitar 72ch maksimal." },
+      "body-small": { "displayName": "Body Small", "purpose": "Deskripsi kartu fitur, caption, footer." },
+      "label": { "displayName": "Label", "purpose": "Teks tombol, harga, angka badge (Sora, tabular-nums)." }
+    },
+    "shadows": [
+      { "name": "card", "value": "0 24px 16px rgb(3 9 50 / 0.04)", "purpose": "Kartu konten putih." },
+      { "name": "float", "value": "0 12px 16px rgb(63 128 240 / 0.08)", "purpose": "Kartu promo saat diam." },
+      { "name": "nav", "value": "0 12px 32px rgb(63 128 240 / 0.08)", "purpose": "Permukaan navigasi melayang." },
+      { "name": "cta", "value": "0 8px 11.5px rgb(65 132 247 / 0.24)", "purpose": "Tombol aksi, panel gradient, kartu promo saat hover." }
+    ],
+    "motion": [
+      { "name": "ease-out-standard", "value": "200ms ease-out", "purpose": "Transisi warna, transform tombol, dan link navigasi." },
+      { "name": "ease-emphasized", "value": "cubic-bezier(0.2, 0, 0, 1)", "purpose": "Animasi masuk panel (profil 300ms, menu select 180ms, showcase dokter 600ms)." },
+      { "name": "press", "value": "scale(0.96)", "purpose": "Umpan balik saat tombol ditekan; dimatikan di prefers-reduced-motion." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" },
+      { "name": "container-max", "value": "1600px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Gradient Button",
+      "kind": "button",
+      "refersTo": "button-gradient",
+      "description": "Aksi utama (Informasi, Lihat Selengkapnya, Reservasi).",
+      "html": "<a class=\"ds-btn-gradient\" href=\"#\">Lihat Selengkapnya <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14\"/><path d=\"m12 5 7 7-7 7\"/></svg></a>",
+      "css": ".ds-btn-gradient { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 16px 28px; border-radius: 9999px; background-image: linear-gradient(112deg, var(--color-blue, #0d6af6) 10.84%, var(--color-green, #3dac9c) 100%); color: #fff; font-family: var(--font-body, Poppins, sans-serif); font-size: 18px; font-weight: 600; text-decoration: none; box-shadow: 0 8px 11.5px rgb(65 132 247 / 0.24); transition: transform 200ms ease-out; } .ds-btn-gradient:hover { transform: translateY(-2px); } .ds-btn-gradient:active { transform: scale(0.96); } .ds-btn-gradient:focus-visible { outline: 2px solid var(--color-blue, #0d6af6); outline-offset: 2px; }"
+    },
+    {
+      "name": "White Button on Gradient",
+      "kind": "button",
+      "refersTo": "button-white",
+      "description": "Aksi WhatsApp di dalam banner gradient.",
+      "html": "<div class=\"ds-btn-white-stage\"><a class=\"ds-btn-white\" href=\"#\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"#3dac9c\" stroke=\"#3dac9c\" stroke-width=\"1.5\" aria-hidden=\"true\"><path d=\"M7.9 20A9 9 0 1 0 4 16.1L2 22Z\"/></svg>Reservasi</a></div>",
+      "css": ".ds-btn-white-stage { padding: 32px; border-radius: 32px; background-image: linear-gradient(112deg, #0d6af6 10.84%, #3dac9c 100%); } .ds-btn-white { display: inline-flex; align-items: center; gap: 8px; padding: 16px 28px; border-radius: 9999px; background: #fff; color: var(--color-blue, #0d6af6); font-family: var(--font-accent, Sora, sans-serif); font-size: 18px; font-weight: 600; text-decoration: none; box-shadow: 0 8px 11.5px rgb(65 132 247 / 0.24); transition: transform 200ms ease-out; } .ds-btn-white:hover { transform: translateY(-2px); } .ds-btn-white:active { transform: scale(0.97); } .ds-btn-white:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }"
+    },
+    {
+      "name": "Segmented Klinik/Apotek",
+      "kind": "custom",
+      "refersTo": "segmented",
+      "description": "Pengganti unit Klinik dan Apotek.",
+      "html": "<div class=\"ds-seg\" role=\"tablist\" aria-label=\"Pilih unit\"><button class=\"ds-seg-item ds-seg-left is-active\" role=\"tab\" aria-selected=\"true\">Klinik</button><button class=\"ds-seg-item ds-seg-right\" role=\"tab\" aria-selected=\"false\">Apotek</button></div>",
+      "css": ".ds-seg { display: flex; height: 32px; } .ds-seg-item { width: 80px; height: 32px; font-family: var(--font-body, Poppins, sans-serif); font-size: 16px; color: #6c87ae; background: transparent; border: 1px solid #6c87ae; cursor: pointer; transition: color 200ms ease-out, background-color 200ms ease-out, transform 200ms ease-out; } .ds-seg-left { border-radius: 14px 0 0 14px; } .ds-seg-right { border-radius: 0 14px 14px 0; border-left: 0; } .ds-seg-item.is-active { color: #fff; border-color: transparent; background-image: linear-gradient(112deg, #0d6af6 10.84%, #3dac9c 100%); } .ds-seg-item:active { transform: scale(0.96); } .ds-seg-item:focus-visible { outline: 2px solid #0d6af6; outline-offset: 2px; }"
+    },
+    {
+      "name": "Icon Feature Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Kartu layanan/fasilitas dengan ikon lingkaran bertona.",
+      "html": "<article class=\"ds-card\"><span class=\"ds-card-icon\"><svg width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z\"/></svg></span><div><h3 class=\"ds-card-title\">Umum</h3><p class=\"ds-card-body\">Pelayanan pemeriksaan kesehatan dasar dan konsultasi keluhan umum.</p></div></article>",
+      "css": ".ds-card { display: flex; flex-direction: column; gap: 24px; max-width: 360px; padding: 20px 32px; border-radius: 24px; background: #fff; box-shadow: 0 24px 16px rgb(3 9 50 / 0.04); font-family: var(--font-body, Poppins, sans-serif); } .ds-card-icon { display: flex; align-items: center; justify-content: center; width: 64px; height: 64px; border-radius: 9999px; background: rgb(47 128 237 / 0.1); color: #2f80ed; } .ds-card-title { margin: 0 0 12px; font-size: 24px; font-weight: 500; line-height: 1.375; color: #000; } .ds-card-body { margin: 0; font-size: 14px; line-height: 24px; color: #6c87ae; }"
+    },
+    {
+      "name": "Survey Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Field form survei kepuasan.",
+      "html": "<input class=\"ds-input\" placeholder=\"Nama lengkap\" />",
+      "css": ".ds-input { width: 100%; max-width: 360px; min-height: 48px; padding: 12px 16px; border-radius: 16px; border: 1px solid rgb(108 135 174 / 0.3); background: var(--color-surface-tint, #f2f7ff); color: #031432; font-family: var(--font-body, Poppins, sans-serif); font-size: 14px; outline: none; transition: border-color 200ms ease-out, box-shadow 200ms ease-out; } .ds-input::placeholder { color: rgb(108 135 174 / 0.7); } .ds-input:focus-visible { outline: 2px solid #0d6af6; outline-offset: 2px; }"
+    },
+    {
+      "name": "Navigation Links",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Navigasi utama header desktop.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Navigasi utama\"><a class=\"ds-nav-link\" href=\"#\">Beranda</a><a class=\"ds-nav-link\" href=\"#\">Layanan</a><a class=\"ds-nav-link is-active\" href=\"#\">Profil</a></nav>",
+      "css": ".ds-nav { display: flex; gap: 32px; font-family: var(--font-body, Poppins, sans-serif); font-size: 16px; } .ds-nav-link { border-radius: 6px; color: #6c87ae; opacity: 0.8; text-decoration: none; transition: color 200ms ease-out, opacity 200ms ease-out; } .ds-nav-link:hover { color: #031432; opacity: 1; } .ds-nav-link.is-active { color: #0d6af6; font-weight: 600; opacity: 1; } .ds-nav-link:focus-visible { outline: 2px solid #0d6af6; outline-offset: 2px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Bright Waiting Room",
+    "overview": "Ruang tunggu klinik yang terang dan tenang. Permukaan hampir putih dengan sedikit rona biru, kartu putih yang melayang tipis, dan satu cahaya hangat dari gradient biru ke hijau yang selalu menandai \"di sini Anda bisa bertindak\". Tidak ada yang berteriak; pengunjung yang sedang khawatir soal kesehatan harus langsung merasa diurus dan tahu ke mana harus menekan.\n\nKepadatan sedang dan lega: blok konten dipisah jarak lebar (40px antar blok, 80px antar section beranda), teks besar dan bulat dari Poppins, dan sudut yang lembut di mana-mana. Klinik dan Apotek adalah dua unit setara dalam satu dunia visual yang sama; perpindahannya lewat satu kontrol Segmented, bukan dua tema berbeda.\n\nPromo adalah satu-satunya tempat warna lain (merah muda) boleh masuk, karena promo memang harus terasa mendesak.",
+    "keyCharacteristics": [
+      "Permukaan terang bertingkat: morning surface → sky tint → kartu putih.",
+      "Gradient biru→hijau (112°) hanya untuk aksi dan momen unggulan.",
+      "Kartu putih membulat 24px dengan bayangan ambient biru-navy yang tipis.",
+      "Tombol aksi berbentuk pill, selalu ke WhatsApp atau halaman tujuan yang jelas.",
+      "Bahasa Indonesia, nada ramah, mobile-first."
+    ],
+    "rules": [
+      { "name": "The Gradient Means Go Rule", "body": "Gradient biru→hijau hanya untuk aksi (tombol, Segmented aktif, badge angka) dan satu panel unggulan per halaman (banner CTA, kartu Visi). Bukan latar dekoratif. Varian teks (`gradient-blue-green-text`, 141°) hanya ada di judul hero beranda dan kata sorotan judul halaman promo; jangan tambah pemakaian baru.", "section": "colors" },
+      { "name": "The Mist Is Not Body Rule", "body": "Harbor Mist kontrasnya sekitar 3,7:1 di atas putih. Pakai untuk caption, label kecil yang tidak esensial, atau teks ≥18px; paragraf yang harus dibaca memakai Ink Navy 80%.", "section": "colors" },
+      { "name": "The Rose Stays In Promo Rule", "body": "Merah muda hanya hidup di dalam kartu promo dan halaman promo.", "section": "colors" },
+      { "name": "The Balanced Heading Rule", "body": "Judul memakai `text-balance` dan paragraf `text-pretty`; tidak ada judul yang meninggalkan satu kata yatim di baris terakhir.", "section": "typography" },
+      { "name": "The No Justify Rule", "body": "Paragraf rata kiri. Rata kanan-kiri memunculkan celah tak rata di layar HP.", "section": "typography" },
+      { "name": "The One Elevation Rule", "body": "Satu elemen memilih border atau bayangan, tidak keduanya. Kartu putih tidak diberi garis tepi.", "section": "elevation" }
+    ],
+    "dos": [
+      "**Do** arahkan setiap halaman ke satu aksi WhatsApp yang jelas (tombol gradient atau tombol putih di atas panel gradient).",
+      "**Do** gunakan Ink Navy 80% untuk paragraf di kartu; Harbor Mist untuk caption saja.",
+      "**Do** pakai kartu putih 24px dengan Card shadow untuk blok konten.",
+      "**Do** beri setiap kontrol state hover, active, dan fokus keyboard yang terlihat, serta hormati `prefers-reduced-motion`.",
+      "**Do** sembunyikan bagian yang kosong dari CMS atau tampilkan pesan kosong yang sopan; jangan isi dengan contoh palsu."
+    ],
+    "donts": [
+      "**Don't** gunakan gradient sebagai latar dekoratif tanpa aksi, atau sebagai teks di luar judul hero beranda dan judul promo.",
+      "**Don't** bawa warna promo (merah muda) ke luar konteks promo.",
+      "**Don't** beri kartu putih garis tepi sekaligus bayangan.",
+      "**Don't** rata kanan-kiri paragraf.",
+      "**Don't** tampilkan testimoni, jumlah pasien, atau angka yang tidak berasal dari data nyata."
+    ]
+  }
+}
