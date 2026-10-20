@@ -1,9 +1,18 @@
 ---
-export const prerender = true;
+export const prerender = false;
 import ProfilPage from "@/components/profil/ProfilPage";
 import Layout from "@/layouts/Layout.astro";
+import { PUBLIC_CACHE_CONTROL } from "@/lib/http";
+import { loadProfilContent } from "@/lib/cms/profil";
+
+const [klinik, apotek] = await Promise.all([
+  loadProfilContent("klinik"),
+  loadProfilContent("apotek"),
+]);
+const initialUnit = Astro.url.searchParams.get("unit") === "apotek" ? "apotek" : "klinik";
+Astro.response.headers.set("Cache-Control", PUBLIC_CACHE_CONTROL);
 ---
 
 <Layout activeLabel="Profil">
-  <ProfilPage />
+  <ProfilPage client:load content={{ klinik, apotek }} initialUnit={initialUnit} />
 </Layout>

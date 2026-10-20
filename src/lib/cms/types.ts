@@ -13,3 +13,11 @@ export type CmsPublicItem = {
 export type CmsPublicResponse =
   | { ok: true; items: CmsPublicItem[] }
   | { ok: false; error: "server" };
+
+export type ProfilUnit = "klinik" | "apotek";
+
+export type ProfilContent = {
+  about: string | null;
+  vision: string | null;
+  missions: string[];
+};
