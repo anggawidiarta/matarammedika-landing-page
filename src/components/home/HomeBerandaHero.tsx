@@ -48,7 +48,7 @@ export default function HomeBerandaHero() {
               <h1 className="bg-gradient-blue-green-text font-body max-w-[688px] bg-clip-text text-[32px] leading-snug font-bold text-balance text-transparent sm:text-[36px] lg:text-[40px] lg:leading-normal">
                 {copy.title}
               </h1>
-              <p className="font-body text-muted mt-4 max-w-[655px] text-base leading-6 text-pretty">
+              <p className="font-body text-heading/70 mt-4 max-w-[655px] text-base leading-6 text-pretty">
                 {copy.body}
               </p>
               <div className="mt-8">

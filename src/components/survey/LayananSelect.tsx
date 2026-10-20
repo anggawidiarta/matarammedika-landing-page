@@ -111,14 +111,14 @@ export default function LayananSelect({
         onClick={() => setOpen((current) => !current)}
         onKeyDown={onTriggerKeyDown}
       >
-        <span className={`truncate ${value ? "text-heading pr-8" : "text-muted/70"}`}>
+        <span className={`truncate ${value ? "text-heading pr-8" : "text-heading/60"}`}>
           {selectedLabel}
         </span>
         <ChevronDown
           aria-hidden
           size={18}
           strokeWidth={2}
-          className={`shrink-0 text-muted transition-transform duration-200 ease-out ${
+          className={`text-muted shrink-0 transition-transform duration-200 ease-out ${
             open ? "rotate-180" : "rotate-0"
           }`}
         />
@@ -128,7 +128,7 @@ export default function LayananSelect({
         <button
           type="button"
           aria-label="Hapus pilihan layanan"
-          className="absolute right-11 top-1/2 flex size-7 -translate-y-1/2 items-center justify-center rounded-full text-muted outline-none transition-colors duration-150 hover:bg-surface-highlight hover:text-heading focus-visible:outline-2 focus-visible:outline-blue"
+          className="text-muted hover:bg-surface-highlight hover:text-heading focus-visible:outline-blue absolute top-1/2 right-11 flex size-7 -translate-y-1/2 items-center justify-center rounded-full transition-colors duration-150 outline-none focus-visible:outline-2"
           onClick={() => {
             onChange("");
             setOpen(false);
@@ -159,9 +159,9 @@ export default function LayananSelect({
                   type="button"
                   role="option"
                   aria-selected={selected}
-                  className={`flex min-h-11 w-full items-center justify-between gap-3 rounded-xl px-3.5 py-2.5 text-left font-body text-sm transition-[background-color,color] duration-150 ease-out ${
+                  className={`font-body flex min-h-11 w-full items-center justify-between gap-3 rounded-xl px-3.5 py-2.5 text-left text-sm transition-[background-color,color] duration-150 ease-out ${
                     selected
-                      ? "bg-surface-highlight font-medium text-blue"
+                      ? "bg-surface-highlight text-blue font-medium"
                       : active
                         ? "bg-surface-tint text-heading"
                         : "text-heading hover:bg-surface-tint"
@@ -176,7 +176,7 @@ export default function LayananSelect({
                     strokeWidth={2}
                     className={`shrink-0 transition-[opacity,transform,filter] duration-200 ease-[cubic-bezier(0.2,0,0,1)] ${
                       selected
-                        ? "scale-100 opacity-100 blur-0"
+                        ? "blur-0 scale-100 opacity-100"
                         : "scale-[0.25] opacity-0 blur-[4px]"
                     }`}
                   />

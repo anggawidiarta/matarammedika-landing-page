@@ -34,7 +34,7 @@ export default function SurveySuccess({ onReset }: { onReset: () => void }) {
         >
           Terima kasih atas masukan Anda
         </h2>
-        <p className="font-body text-muted text-base leading-6">
+        <p className="font-body text-heading/70 text-base leading-6 text-pretty">
           Masukan Anda sudah tersimpan dan akan membantu kami memperbaiki pelayanan Klinik Mataram
           Medika.
         </p>
@@ -49,7 +49,7 @@ export default function SurveySuccess({ onReset }: { onReset: () => void }) {
         <button
           type="button"
           onClick={onReset}
-          className="border-muted font-body text-muted hover:border-blue hover:text-blue focus-visible:outline-blue inline-flex min-h-12 items-center justify-center rounded-full border px-7 py-3 text-base font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 active:translate-y-px"
+          className="border-muted font-body text-muted hover:border-blue hover:text-blue focus-visible:outline-blue inline-flex min-h-12 items-center justify-center rounded-full border px-7 py-3 text-base font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 motion-safe:active:scale-[0.97]"
         >
           Isi lagi
         </button>

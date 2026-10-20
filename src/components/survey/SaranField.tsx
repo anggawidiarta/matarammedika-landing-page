@@ -23,7 +23,7 @@ export default function SaranField({
           onChange={(event) => onChange(event.target.value.slice(0, SARAN_MAX))}
         />
       </SurveyField>
-      <p className="text-xs text-right font-body text-muted">
+      <p className="text-sm text-right font-body text-heading/70 tabular-nums">
         {value.length}/{SARAN_MAX}
       </p>
     </SurveyCard>

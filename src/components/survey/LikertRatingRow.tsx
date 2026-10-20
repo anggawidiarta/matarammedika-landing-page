@@ -24,7 +24,7 @@ export default function LikertRatingRow({
     >
       <div
         id={labelId}
-        className="font-body text-heading flex min-w-0 items-start gap-3 text-sm leading-snug font-medium [overflow-wrap:anywhere] sm:text-[15px]"
+        className="font-body text-heading flex min-w-0 items-start gap-3 text-sm leading-snug font-medium [overflow-wrap:anywhere] sm:text-base"
       >
         <span
           aria-hidden="true"

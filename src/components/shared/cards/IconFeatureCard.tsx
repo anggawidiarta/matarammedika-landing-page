@@ -4,8 +4,8 @@ type Layout = "stack" | "inline";
 type TitleSize = "xl" | "2xl";
 
 const titleSizeClass: Record<TitleSize, string> = {
-  "2xl": "font-body text-xl font-medium leading-snug text-black sm:text-2xl",
-  xl: "font-body text-lg font-medium leading-snug text-black sm:text-xl",
+  "2xl": "font-body text-xl font-medium leading-snug text-heading sm:text-2xl",
+  xl: "font-body text-lg font-medium leading-snug text-heading sm:text-xl",
 };
 
 export default function IconFeatureCard({
@@ -14,7 +14,7 @@ export default function IconFeatureCard({
   body,
   layout = "stack",
   titleSize = "2xl",
-  bodyClassName = "font-body text-sm leading-6 text-pretty text-muted",
+  bodyClassName = "font-body text-sm leading-6 text-pretty text-heading/70",
 }: {
   icon: ReactNode;
   title: string;

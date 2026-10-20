@@ -1,3 +1,4 @@
+import { CircleAlert } from "lucide-react";
 import { type Ref } from "react";
 
 export default function SurveyErrorAlert({
@@ -11,9 +12,10 @@ export default function SurveyErrorAlert({
     <div
       ref={alertRef}
       role="alert"
-      className="px-4 py-3 text-sm bg-white rounded-2xl border border-promo/40 font-body text-heading shadow-card"
+      className="flex items-start gap-3 px-4 py-3 text-sm bg-white rounded-2xl border border-promo/40 font-body text-heading shadow-card"
     >
-      {message}
+      <CircleAlert size={20} className="mt-0.5 shrink-0 text-promo" aria-hidden />
+      <span>{message}</span>
     </div>
   );
 }

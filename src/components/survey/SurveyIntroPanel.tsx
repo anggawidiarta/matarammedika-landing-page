@@ -7,15 +7,11 @@ export default function SurveyIntroPanel({ children }: { children?: ReactNode })
         className="bg-gradient-blue-green pointer-events-none absolute -top-20 -right-20 size-72 rounded-full opacity-15 blur-3xl"
         aria-hidden
       />
-      <div
-        className="bg-gradient-promo pointer-events-none absolute -bottom-24 left-1/3 size-64 rounded-full opacity-10 blur-3xl"
-        aria-hidden
-      />
       <div className="relative flex min-w-0 flex-col gap-3 sm:gap-4">
         <h1 className="font-body text-heading min-w-0 text-[28px] leading-snug font-semibold text-balance [overflow-wrap:anywhere] sm:text-[32px]">
           Survey Kepuasan Pelanggan
         </h1>
-        <p className="font-body text-muted text-sm leading-6 text-pretty sm:text-base">
+        <p className="font-body text-heading/75 text-sm leading-6 text-pretty sm:text-base">
           Isi singkat ini membantu kami merawat pelayanan klinik. Nama boleh dikosongkan. Perkiraan
           waktu: sekitar tiga menit.
         </p>

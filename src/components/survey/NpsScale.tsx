@@ -36,7 +36,7 @@ export default function NpsScale({
             );
           })}
         </div>
-        <div className="flex gap-3 justify-between min-w-0 text-xs font-body text-muted">
+        <div className="flex gap-3 justify-between min-w-0 text-sm font-body text-heading/70">
           <span>Tidak mungkin</span>
           <span className="text-right">Sangat mungkin</span>
         </div>

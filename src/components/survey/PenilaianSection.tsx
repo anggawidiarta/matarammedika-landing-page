@@ -18,7 +18,7 @@ export default function PenilaianSection({
         <h2 className="text-xl font-semibold font-body text-heading">
           Penilaian pelayanan
         </h2>
-        <p className="text-sm leading-relaxed font-body text-muted">
+        <p className="text-sm leading-relaxed font-body text-heading/70">
           Pilih angka <span className="font-medium text-heading">1</span> (sangat
           tidak puas) hingga{" "}
           <span className="font-medium text-heading">5</span> (sangat puas)

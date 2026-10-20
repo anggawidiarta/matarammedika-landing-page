@@ -35,7 +35,7 @@ export default function KlinikPageTitle({
         {showSegmented ? <Segmented active={segmentedActive} /> : null}
       </div>
       {caption ? (
-        <p className="max-w-[721px] font-body text-base leading-6 text-pretty text-muted opacity-80">
+        <p className="max-w-[721px] font-body text-base leading-6 text-pretty text-heading/70">
           {caption}
         </p>
       ) : null}

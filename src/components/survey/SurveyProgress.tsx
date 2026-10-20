@@ -26,7 +26,7 @@ export default function SurveyProgress({
         className="bg-surface sticky top-[var(--header-h)] z-40 -mx-6 flex flex-col gap-1.5 px-6 py-2 lg:hidden"
         aria-label="Progres penilaian"
       >
-        <p className="font-body text-muted text-xs">
+        <p className="font-body text-heading/70 text-sm">
           {answered} dari {REQUIRED_COUNT} isian wajib terisi
         </p>
         <ProgressTrack progress={progress} className="bg-surface-highlight h-1" />
@@ -36,7 +36,7 @@ export default function SurveyProgress({
 
   return (
     <div className="mt-2 hidden flex-col gap-3 lg:flex" aria-label="Progres penilaian">
-      <p className="font-body text-muted text-sm">
+      <p className="font-body text-heading/70 text-sm">
         <span className="font-accent text-heading text-4xl leading-none font-bold tabular-nums">
           {answered}
         </span>{" "}

@@ -33,7 +33,8 @@ const ctaClass = `${gradientBg} min-h-11 items-center justify-center rounded-ful
         navKlinik.map((item) => (
           <a
             href={item.href}
-            class={`whitespace-nowrap ${navLinkClass(item.label, activeLabel)}`}
+            aria-current={item.label === activeLabel ? "page" : undefined}
+            class={`whitespace-nowrap py-2 ${navLinkClass(item.label, activeLabel)}`}
           >
             {item.label}
           </a>
@@ -63,7 +64,11 @@ const ctaClass = `${gradientBg} min-h-11 items-center justify-center rounded-ful
         <nav class="flex flex-col gap-1" aria-label="Navigasi mobile">
           {
             navKlinik.map((item) => (
-              <a href={item.href} class={navLinkMobileClass(item.label, activeLabel)}>
+              <a
+                href={item.href}
+                aria-current={item.label === activeLabel ? "page" : undefined}
+                class={navLinkMobileClass(item.label, activeLabel)}
+              >
                 {item.label}
               </a>
             ))

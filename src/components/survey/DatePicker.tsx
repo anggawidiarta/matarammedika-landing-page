@@ -154,10 +154,10 @@ export default function DatePicker({
         onClick={() => (open ? setOpen(false) : openPanel())}
         onKeyDown={onTriggerKeyDown}
       >
-        <span className={`truncate ${selected ? "text-heading" : "text-muted/70"}`}>
+        <span className={`truncate ${selected ? "text-heading" : "text-heading/60"}`}>
           {selected ? formatLong(selected) : "Pilih tanggal"}
         </span>
-        <CalendarDays aria-hidden size={18} strokeWidth={2} className="shrink-0 text-muted" />
+        <CalendarDays aria-hidden size={18} strokeWidth={2} className="text-muted shrink-0" />
       </button>
 
       {open ? (
@@ -171,40 +171,41 @@ export default function DatePicker({
             id={panelId}
             role="dialog"
             aria-label="Pilih tanggal kunjungan"
-            className="select-menu-in fixed inset-x-4 bottom-4 z-30 rounded-3xl bg-white p-4 shadow-[0_0_0_1px_oklch(0_0_0/0.06),0_8px_24px_-6px_oklch(0_0_0/0.12),0_2px_6px_oklch(0_0_0/0.04)] sm:absolute sm:inset-x-auto sm:bottom-auto sm:left-0 sm:top-[calc(100%+0.5rem)] sm:w-80 sm:rounded-2xl sm:p-3"
+            className="select-menu-in fixed inset-x-4 bottom-4 z-30 rounded-3xl bg-white p-4 shadow-[0_0_0_1px_oklch(0_0_0/0.06),0_8px_24px_-6px_oklch(0_0_0/0.12),0_2px_6px_oklch(0_0_0/0.04)] sm:absolute sm:inset-x-auto sm:top-[calc(100%+0.5rem)] sm:bottom-auto sm:left-0 sm:w-80 sm:rounded-2xl sm:p-3"
           >
             <div className="mb-2 flex items-center justify-between gap-2">
               <button
                 type="button"
                 aria-label="Bulan sebelumnya"
-                className="flex size-11 items-center justify-center rounded-full text-muted outline-none transition-colors duration-150 hover:bg-surface-tint hover:text-heading focus-visible:outline-2 focus-visible:outline-blue sm:size-9"
+                className="text-muted hover:bg-surface-tint hover:text-heading focus-visible:outline-blue flex size-11 items-center justify-center rounded-full transition-colors duration-150 outline-none focus-visible:outline-2 sm:size-9"
                 onClick={() => stepMonth(-1)}
               >
                 <ChevronLeft aria-hidden size={18} strokeWidth={2} />
               </button>
-              <p
-                aria-live="polite"
-                className="font-body text-sm font-semibold text-heading"
-              >
+              <p aria-live="polite" className="font-body text-heading text-sm font-semibold">
                 {MONTHS[view.month]} {view.year}
               </p>
               <button
                 type="button"
                 aria-label="Bulan berikutnya"
-                className="flex size-11 items-center justify-center rounded-full text-muted outline-none transition-colors duration-150 hover:bg-surface-tint hover:text-heading focus-visible:outline-2 focus-visible:outline-blue sm:size-9"
+                className="text-muted hover:bg-surface-tint hover:text-heading focus-visible:outline-blue flex size-11 items-center justify-center rounded-full transition-colors duration-150 outline-none focus-visible:outline-2 sm:size-9"
                 onClick={() => stepMonth(1)}
               >
                 <ChevronRight aria-hidden size={18} strokeWidth={2} />
               </button>
             </div>
 
-            <div role="grid" aria-label={`${MONTHS[view.month]} ${view.year}`} onKeyDown={onGridKeyDown}>
+            <div
+              role="grid"
+              aria-label={`${MONTHS[view.month]} ${view.year}`}
+              onKeyDown={onGridKeyDown}
+            >
               <div role="row" className="grid grid-cols-7 text-center">
                 {WEEKDAYS.map((day) => (
                   <span
                     key={day}
                     role="columnheader"
-                    className="py-1 font-body text-xs font-medium text-muted"
+                    className="font-body text-muted py-1 text-xs font-medium"
                   >
                     {day}
                   </span>
@@ -224,11 +225,11 @@ export default function DatePicker({
                         tabIndex={iso === focused ? 0 : -1}
                         aria-selected={isSelected}
                         aria-current={isToday ? "date" : undefined}
-                        className={`flex size-11 items-center justify-center rounded-full font-body text-sm outline-none transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-blue sm:size-10 ${
+                        className={`font-body focus-visible:outline-blue flex size-11 items-center justify-center rounded-full text-sm transition-colors duration-150 outline-none focus-visible:outline-2 sm:size-10 ${
                           isSelected
                             ? "bg-blue font-semibold text-white"
                             : isToday
-                              ? "font-semibold text-blue ring-1 ring-blue/40 hover:bg-surface-highlight"
+                              ? "text-blue ring-blue/40 hover:bg-surface-highlight font-semibold ring-1"
                               : "text-heading hover:bg-surface-tint"
                         }`}
                         onClick={() => choose(iso)}
@@ -241,10 +242,10 @@ export default function DatePicker({
               </div>
             </div>
 
-            <div className="mt-2 flex items-center justify-between border-t border-muted/15 pt-2">
+            <div className="border-muted/15 mt-2 flex items-center justify-between border-t pt-2">
               <button
                 type="button"
-                className="min-h-11 rounded-xl px-3 font-body text-sm font-medium text-blue outline-none transition-colors duration-150 hover:bg-surface-highlight focus-visible:outline-2 focus-visible:outline-blue sm:min-h-9"
+                className="font-body text-blue hover:bg-surface-highlight focus-visible:outline-blue min-h-11 rounded-xl px-3 text-sm font-medium transition-colors duration-150 outline-none focus-visible:outline-2 sm:min-h-9"
                 onClick={() => choose(todayIso)}
               >
                 Hari ini
@@ -252,7 +253,7 @@ export default function DatePicker({
               {value ? (
                 <button
                   type="button"
-                  className="min-h-11 rounded-xl px-3 font-body text-sm font-medium text-muted outline-none transition-colors duration-150 hover:bg-surface-tint hover:text-heading focus-visible:outline-2 focus-visible:outline-blue sm:min-h-9"
+                  className="font-body text-muted hover:bg-surface-tint hover:text-heading focus-visible:outline-blue min-h-11 rounded-xl px-3 text-sm font-medium transition-colors duration-150 outline-none focus-visible:outline-2 sm:min-h-9"
                   onClick={() => choose("")}
                 >
                   Hapus

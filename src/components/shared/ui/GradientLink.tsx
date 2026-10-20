@@ -6,7 +6,7 @@ export function GradientLink({ href, children }: { href: string; children: React
   return (
     <a
       href={href}
-      className={`inline-flex gap-2 items-center px-7 py-4 text-lg font-semibold text-white rounded-full ${gradientBg} font-body shadow-cta`}
+      className={`inline-flex min-h-12 gap-2 items-center px-7 py-4 text-lg font-semibold text-white rounded-full ${gradientBg} font-body shadow-cta transition-transform duration-200 ease-out hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue motion-safe:active:scale-[0.97] motion-reduce:transition-none`}
     >
       {children}
     </a>

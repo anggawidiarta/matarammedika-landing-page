@@ -29,11 +29,11 @@ export default function KunjunganFields({
 
   return (
     <SurveyCard>
-      <h2 className="text-xl font-semibold font-body text-heading">Kunjungan</h2>
-      <p className="text-sm font-body text-muted">
+      <h2 className="font-body text-heading text-xl font-semibold">Kunjungan</h2>
+      <p className="font-body text-heading/70 text-sm">
         Nama dan tanggal boleh dikosongkan. Layanan wajib dipilih.
       </p>
-      <div className="grid gap-4 min-w-0 sm:grid-cols-2">
+      <div className="grid min-w-0 gap-4 sm:grid-cols-2">
         <SurveyField label="Nama" htmlFor={namaId}>
           <SurveyTextInput
             id={namaId}
@@ -43,18 +43,11 @@ export default function KunjunganFields({
             placeholder="Boleh dikosongkan"
             maxLength={NAMA_MAX}
             value={nama}
-            onChange={(event) =>
-              onNamaChange(event.target.value.slice(0, NAMA_MAX))
-            }
+            onChange={(event) => onNamaChange(event.target.value.slice(0, NAMA_MAX))}
           />
         </SurveyField>
         <SurveyField label="Tanggal kunjungan" htmlFor={tanggalId}>
-          <DatePicker
-            id={tanggalId}
-            name="tanggal"
-            value={tanggal}
-            onChange={onTanggalChange}
-          />
+          <DatePicker id={tanggalId} name="tanggal" value={tanggal} onChange={onTanggalChange} />
         </SurveyField>
         <SurveyField
           label="Layanan"
