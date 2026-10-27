@@ -6,7 +6,7 @@ import { gradientBg } from "@/components/shared/ui/gradient";
 import Logo from "@/components/shared/ui/Logo";
 
 interface Props {
-  activeLabel: NavKlinikLabel;
+  activeLabel: NavKlinikLabel | null;
   headerTone?: "tint" | "surface";
 }
 
@@ -34,7 +34,7 @@ const ctaClass = `${gradientBg} min-h-11 items-center justify-center rounded-ful
           <a
             href={item.href}
             aria-current={item.label === activeLabel ? "page" : undefined}
-            class={`whitespace-nowrap py-2 ${navLinkClass(item.label, activeLabel)}`}
+            class={`whitespace-nowrap py-2 ${navLinkClass(item.label, activeLabel ?? "")}`}
           >
             {item.label}
           </a>
@@ -67,7 +67,7 @@ const ctaClass = `${gradientBg} min-h-11 items-center justify-center rounded-ful
               <a
                 href={item.href}
                 aria-current={item.label === activeLabel ? "page" : undefined}
-                class={navLinkMobileClass(item.label, activeLabel)}
+                class={navLinkMobileClass(item.label, activeLabel ?? "")}
               >
                 {item.label}
               </a>

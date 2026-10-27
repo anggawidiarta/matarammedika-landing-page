@@ -1,0 +1,132 @@
+---
+export const prerender = false;
+import { SearchX } from "lucide-react";
+import { buttonClass } from "@/components/kelola/ui/Button";
+import { ArrowIcon, GradientLink } from "@/components/shared/ui/GradientLink";
+import KelolaLayout from "@/layouts/KelolaLayout.astro";
+import Layout from "@/layouts/Layout.astro";
+
+Astro.response.status = 404;
+Astro.response.headers.set("Cache-Control", "no-store");
+
+const inKelola = Astro.url.pathname === "/kelola" || Astro.url.pathname.startsWith("/kelola/");
+const focusRing =
+  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue";
+---
+
+{
+  inKelola ? (
+    <KelolaLayout title="Halaman tidak ditemukan" variant="gate">
+      <div class="kelola-enter flex w-full max-w-md flex-col items-stretch gap-6">
+        <div class="shadow-card rounded-2xl bg-white px-6 py-8 sm:px-10 sm:py-10">
+          <span
+            aria-hidden="true"
+            class="inline-flex size-12 items-center justify-center rounded-xl bg-surface-highlight text-blue"
+          >
+            <SearchX size={24} strokeWidth={1.75} />
+          </span>
+          <h1 class="mt-6 text-[28px] leading-snug font-semibold text-balance sm:text-[32px]">
+            Halaman tidak ditemukan
+          </h1>
+          <p class="mt-2 text-base leading-relaxed text-pretty text-heading/80">
+            Alamat yang Anda buka tidak ada di Kelola Konten. Periksa alamatnya, atau kembali ke
+            daftar konten.
+          </p>
+          <a href="/kelola/layanan" class={buttonClass("primary", "mt-8 w-full min-h-12 text-lg")}>
+            Ke Kelola Konten
+          </a>
+        </div>
+        <a
+          href="/"
+          class={`mx-auto inline-flex min-h-11 items-center rounded-lg px-3 text-sm font-medium text-heading/80 transition-colors duration-200 ease-out hover:text-heading motion-reduce:transition-none ${focusRing}`}
+        >
+          Kembali ke situs
+        </a>
+      </div>
+    </KelolaLayout>
+  ) : (
+    <Layout title="Halaman tidak ditemukan · Apotek & Klinik Mataram Medika" activeLabel={null}>
+      <main class="page-container pt-6 pb-20">
+        <section class="relative isolate flex flex-col items-center gap-8 overflow-hidden rounded-[24px] bg-surface-highlight px-6 py-16 text-center sm:px-10 sm:py-24">
+          <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10">
+            <svg class="absolute top-1/2 left-1/2 w-[900px] max-w-none -translate-x-1/2 -translate-y-[62%] text-blue" viewBox="0 0 900 900" fill="none">
+              <circle cx="450" cy="450" r="150" stroke="currentColor" stroke-opacity="0.12" />
+              <circle cx="450" cy="450" r="250" stroke="currentColor" stroke-opacity="0.09" />
+              <circle cx="450" cy="450" r="350" stroke="currentColor" stroke-opacity="0.06" />
+              <circle cx="450" cy="450" r="440" stroke="currentColor" stroke-opacity="0.04" />
+            </svg>
+            <span class="orn orn-a absolute top-[12%] left-[8%] text-blue sm:left-[14%]">
+              <svg viewBox="0 0 24 24" class="size-10 sm:size-14" fill="currentColor"><path d="M9 2h6a1 1 0 0 1 1 1v5h5a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1h-5v5a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-5H3a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h5V3a1 1 0 0 1 1-1Z" /></svg>
+            </span>
+            <span class="orn orn-b absolute right-[7%] bottom-[16%] text-green sm:right-[13%]">
+              <svg viewBox="0 0 24 24" class="size-12 sm:size-20" fill="currentColor"><path d="M9 2h6a1 1 0 0 1 1 1v5h5a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1h-5v5a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-5H3a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h5V3a1 1 0 0 1 1-1Z" /></svg>
+            </span>
+            <span class="orn orn-c absolute top-[22%] right-[10%] text-green sm:right-[22%]">
+              <svg viewBox="0 0 24 24" class="size-6 sm:size-8" fill="currentColor"><path d="M9 2h6a1 1 0 0 1 1 1v5h5a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1h-5v5a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-5H3a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h5V3a1 1 0 0 1 1-1Z" /></svg>
+            </span>
+            <span class="orn orn-d absolute bottom-[20%] left-[9%] text-blue sm:left-[20%]">
+              <svg viewBox="0 0 24 24" class="size-5 sm:size-6" fill="currentColor"><path d="M9 2h6a1 1 0 0 1 1 1v5h5a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1h-5v5a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-5H3a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h5V3a1 1 0 0 1 1-1Z" /></svg>
+            </span>
+          </div>
+
+          <span
+            aria-hidden="true"
+            class="inline-flex size-20 items-center justify-center rounded-full bg-white text-blue shadow-float"
+          >
+            <SearchX size={36} strokeWidth={1.75} />
+          </span>
+          <div class="flex max-w-xl flex-col items-center gap-3">
+            <h1 class="text-[28px] leading-snug font-semibold text-balance sm:text-[32px]">
+              Halaman tidak ditemukan
+            </h1>
+            <p class="text-base leading-relaxed text-pretty text-heading/80">
+              Maaf, alamat yang Anda buka tidak tersedia atau sudah dipindahkan. Silakan kembali ke
+              beranda.
+            </p>
+          </div>
+          <GradientLink href="/">
+            Kembali ke Beranda
+            <ArrowIcon />
+          </GradientLink>
+        </section>
+      </main>
+    </Layout>
+  )
+}
+
+<style>
+  .orn {
+    opacity: 0.14;
+    animation: orn-float 9s ease-in-out infinite;
+  }
+  .orn-a {
+    opacity: 0.18;
+  }
+  .orn-b {
+    opacity: 0.2;
+    animation-duration: 11s;
+    animation-delay: -4s;
+  }
+  .orn-c {
+    animation-duration: 8s;
+    animation-delay: -2s;
+  }
+  .orn-d {
+    animation-duration: 10s;
+    animation-delay: -6s;
+  }
+  @keyframes orn-float {
+    0%,
+    100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-10px) rotate(6deg);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .orn {
+      animation: none;
+    }
+  }
+</style>
