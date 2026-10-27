@@ -212,6 +212,20 @@ Link Poppins 14px → 16px di `xl`. Tidak aktif: Harbor Mist 80% opasitas, hover
 ### Promo Card (Signature)
 Kartu 16px dengan foto 16:9, gradasi gelap di bawah untuk judul putih, badge status di kiri atas, lingkaran diskon Promo Rose di kanan atas, harga Sora Brand Blue, harga normal dicoret, dan tombol klaim pill ke WhatsApp.
 
+## Area Kelola (`/kelola`)
+
+Permukaan Operate untuk staf klinik, bukan halaman pengunjung. Dunia visualnya sama dengan situs publik, tetapi dipakai untuk menyelesaikan tugas: pola yang sudah dikenal (tab, tabel, sakelar, dialog) lebih penting daripada ekspresi.
+
+- **Kerangka:** bilah atas putih bergaris bawah tipis dengan logo, tab modul berikon (Layanan, Fasilitas, Promo, Profil) bergaris bawah biru saat aktif, tautan "Lihat situs", Keluar, dan avatar inisial. Di HP tab turun ke baris kedua dengan ikon di atas label. Konten memakai `page-container`; tidak ada header, footer, atau navigasi publik.
+- **Kepala modul:** ikon modul di kotak 12px, judul, satu kalimat pengantar, ringkasan "N dari M … tampil di situs", dan tombol "Lihat di situs" ke halaman publik modul itu.
+- **Blok konten:** kartu putih 16px dengan Card shadow, tanpa border. Kolom tabel hanya yang esensial: urutan, isi utama (harga ikut di bawah judul promo), periode, status Instagram, sakelar tampil, dan aksi; lebar kolom tetap agar antar tabel sejajar. Tabel di 640px ke atas; di bawahnya setiap baris bertumpuk menjadi kartu dalam kartu yang sama (satu DOM, tanpa duplikasi).
+- **Sudut:** area ini lebih tegas dari situs publik: dialog dan kartu 16px, tombol, input, dan tombol ikon 8px, chip status 6px. Hanya sakelar dan avatar yang bulat penuh.
+- **Tombol:** gradient hanya untuk aksi utama (Simpan, Masuk, Posting). Aksi sekunder putih dengan cincin Ink Navy 15%. Destruktif memakai token `danger` (`#b42318`), bukan merah muda promo.
+- **Status:** chip kecil dengan titik warna dan teks (tidak hanya warna). Merah muda hanya muncul untuk status promo "Segera berakhir".
+- **Form:** dialog `<dialog>` native (layar penuh di bawah 640px), kolom Sky Tint 48px, galat di bawah kolom dengan `role="alert"`, fokus awal lewat `data-autofocus`. Pratinjau di form memakai komponen kartu publik asli (`IconFeatureCard`, `PromoCard`) di atas permukaan Sky Tint dan dibuat `inert`.
+- **Gerak:** 150-250ms, hanya untuk status (dialog masuk, sakelar); semua dimatikan di `prefers-reduced-motion`.
+- **Aksesibilitas:** target sentuh 44px, urutan item lewat tombol naik/turun (drag hanya tambahan di desktop), sakelar `role="switch"`, kontras mengikuti aturan "Mist Is Not Body".
+
 ## Do's and Don'ts
 
 ### Do:

@@ -14,14 +14,21 @@ context: |
   lucide-react, TypeScript. Node >= 22.12.
 
   Batasan yang tidak terlihat dari kode:
-  - Data CMS (tabel cms_items, promo) dikelola oleh project terpisah
-    matarammedika-admin pada database Supabase yang sama. Landing page hanya
-    membaca konten yang dipublikasikan; perubahan skema tabel CMS harus
-    dikoordinasikan dengan project admin dan tidak dilakukan dari repo ini.
+  - Data CMS (tabel cms_items, cms_promo_instagram_posts) dikelola langsung
+    dari repo ini lewat area tersembunyi /kelola (login SSO pusat, app key
+    admin). Skema tabelnya tetap bagian dari migrasi di supabase/migrations;
+    perubahan skema harus dikoordinasikan karena database dipakai bersama.
+    Repo matarammedika-admin tidak lagi memiliki fitur CMS.
   - Landing page memakai service-role key, sehingga RLS tidak melindungi query
     dari server. Setiap query wajib membatasi baris dan kolom sendiri.
-  - Konten CMS bisa kosong atau gagal dimuat; halaman harus tetap tampil memakai
-    data statis di src/data sebagai fallback.
+  - Konten CMS bisa kosong atau gagal dimuat; halaman publik tidak memakai
+    fallback statis, jadi bagian yang kosong disembunyikan atau diberi pesan
+    kosong yang sopan. Area /kelola menampilkan keadaan galat dengan tombol
+    muat ulang.
+  - Semua penulisan CMS lewat endpoint /api/kelola/* yang wajib melewati
+    middleware sesi SSO, validasi zod, dan pemeriksaan Origin terhadap
+    SITE_ORIGIN. SITE_ORIGIN wajib di produksi karena Astro tidak
+    mempercayai header Host di balik proxy.
   - Survey kepuasan menyimpan data pasien (nama, saran, tanggal kunjungan).
     Perlakukan sebagai data sensitif: minimalkan yang disimpan, jangan log isinya,
     IP hanya disimpan dalam bentuk hash ber-pepper.
@@ -54,7 +61,7 @@ rules:
 operations:
   apply:
     guidance:
-      - Ikuti pola yang sudah ada - alias @/, helper di src/lib (jsonResponse, PUBLIC_CACHE_CONTROL, ttlCached, getServiceSupabase), data fallback di src/data, komponen bersama di src/components/shared.
+      - Ikuti pola yang sudah ada - alias @/, helper di src/lib (jsonResponse, PUBLIC_CACHE_CONTROL, ttlCached, getServiceSupabase), komponen bersama di src/components/shared.
       - Default ke komponen .astro tanpa JavaScript. Pindah ke React island hanya bila butuh state atau interaksi, dan jaga island tetap kecil; jangan hydrate seluruh halaman.
       - Gambar lokal disimpan di src/assets dan dirender lewat astro:assets (Image/Picture) dengan width, height, alt, dan loading="lazy" kecuali gambar LCP di atas fold. Format webp/avif.
       - Font hanya lewat konfigurasi fonts di astro.config.mjs; jangan menambah link Google Fonts manual atau weight yang tidak dipakai.

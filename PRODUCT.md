@@ -10,7 +10,7 @@ web
 Pasien dan keluarga di Mataram dan sekitarnya (Lombok). Mereka mencari info layanan, dokter, fasilitas, dan promo, lalu reservasi atau bertanya lewat WhatsApp. Akses banyak lewat HP.
 
 ## Product Purpose
-Landing page Apotek & Klinik Mataram Medika (CV. Mataram Medika). Membantu pengunjung mengenal dua unit (Klinik dan Apotek), menemukan layanan, dokter, fasilitas, dan promo, mengisi survei kepuasan, dan menghubungi unit lewat WhatsApp. Konten layanan, fasilitas, promo, dan profil dikelola dari CMS admin (`cms_items`, dipisah per `source` klinik/apotek).
+Landing page Apotek & Klinik Mataram Medika (CV. Mataram Medika). Membantu pengunjung mengenal dua unit (Klinik dan Apotek), menemukan layanan, dokter, fasilitas, dan promo, mengisi survei kepuasan, dan menghubungi unit lewat WhatsApp. Konten layanan, fasilitas, promo, dan profil dikelola staf lewat CMS di area tersembunyi `/kelola` pada situs ini (`cms_items`, dipisah per `source` klinik/apotek).
 
 ## Positioning
 - Klinik: konsep "one stop service", dari deteksi dini, pencegahan, pengobatan, sampai terapi pemulihan.
@@ -18,7 +18,7 @@ Landing page Apotek & Klinik Mataram Medika (CV. Mataram Medika). Membantu pengu
 - Klinik dan Apotek berada di satu alamat: Jl. Catur Warga No. 13, Mataram.
 
 ## Operating Context
-Situs Astro (SSR) membaca konten terbit dari Supabase lewat service role; admin terpisah (`matarammedika-admin`) mengelola CMS. Halaman publik di-cache singkat. Klinik dan Apotek bisa diganti lewat switch (Segmented) di beranda dan profil.
+Situs Astro (SSR) membaca konten terbit dari Supabase lewat service role; staf mengelola konten lewat `/kelola` (login SSO pusat, hanya pengguna dengan akses `admin`), dan perubahan langsung menyegarkan cache publik. Halaman publik di-cache singkat. Klinik dan Apotek bisa diganti lewat switch (Segmented) di beranda dan profil.
 
 ## Capabilities and Constraints
 - Halaman: Beranda, Dokter, Layanan, Fasilitas, Promo, Survei Kepuasan, Profil.
