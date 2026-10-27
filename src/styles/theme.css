@@ -20,6 +20,9 @@
   --color-promo-red-light: #ffbaba;
   --color-promo-red: #ff0000;
 
+  /* Destructive actions in /kelola; promo pink/red stays inside promo contexts */
+  --color-danger: #b42318;
+
   /* Neutrals for badges */
   --color-gray: #a4a4a4;
   --color-gray-dark: #818181;

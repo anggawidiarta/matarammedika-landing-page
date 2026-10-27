@@ -1,0 +1,33 @@
+---
+export const prerender = false;
+import LoadError from "@/components/kelola/LoadError.astro";
+import ProfilManager from "@/components/kelola/ProfilManager";
+import KelolaLayout from "@/layouts/KelolaLayout.astro";
+import { listItems } from "@/lib/kelola/items";
+import type { KelolaItem } from "@/lib/kelola/types";
+
+const initialUnit = Astro.url.searchParams.get("unit") === "apotek" ? "apotek" : "klinik";
+
+let items: Record<"klinik" | "apotek", KelolaItem[]> = { klinik: [], apotek: [] };
+let failed = false;
+try {
+  const [klinik, apotek] = await Promise.all([
+    listItems({ module: "profil", source: "klinik" }),
+    listItems({ module: "profil", source: "apotek" }),
+  ]);
+  items = { klinik, apotek };
+} catch (error) {
+  console.error("[kelola] load profil failed", error);
+  failed = true;
+}
+---
+
+<KelolaLayout title="Profil" activeModule="profil">
+  {
+    failed ? (
+      <LoadError />
+    ) : (
+      <ProfilManager client:load initialItems={items} initialUnit={initialUnit} />
+    )
+  }
+</KelolaLayout>

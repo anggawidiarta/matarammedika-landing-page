@@ -35,11 +35,24 @@ function dayNumber(iso: string): number {
   return Date.UTC(year, month - 1, day) / 86_400_000;
 }
 
+export type PromoSchedule = "scheduled" | "ongoing" | "ending" | "ended";
+
+export function promoSchedule(
+  startDate: string,
+  endDate: string,
+  today: string = todayInClinicZone(),
+): PromoSchedule {
+  if (today < startDate) return "scheduled";
+  if (today > endDate) return "ended";
+  return dayNumber(endDate) - dayNumber(today) <= ENDING_SOON_DAYS ? "ending" : "ongoing";
+}
+
 /** Null while the promo has not started yet (not shown on the landing page). */
 function toPromoCard(item: PromoItem, today: string): PromoCardData | null {
-  if (today < item.startDate) return null;
+  const schedule = promoSchedule(item.startDate, item.endDate, today);
+  if (schedule === "scheduled") return null;
 
-  if (today > item.endDate) {
+  if (schedule === "ended") {
     return {
       ...item,
       status: "ended",
@@ -49,8 +62,8 @@ function toPromoCard(item: PromoItem, today: string): PromoCardData | null {
     };
   }
 
-  const daysLeft = dayNumber(item.endDate) - dayNumber(today);
-  if (daysLeft <= ENDING_SOON_DAYS) {
+  if (schedule === "ending") {
+    const daysLeft = dayNumber(item.endDate) - dayNumber(today);
     return {
       ...item,
       status: "ending",
@@ -92,6 +105,11 @@ export function promoEndsAt(endDate: string): number {
 export function promoDiscountPercent(normalPrice: number, promoPrice: number): number {
   if (normalPrice <= 0 || promoPrice >= normalPrice) return 0;
   return Math.round(((normalPrice - promoPrice) / normalPrice) * 100);
+}
+
+export function addDaysToIsoDate(iso: string, days: number): string {
+  const [year, month, day] = iso.split("-").map(Number);
+  return new Date(Date.UTC(year, month - 1, day + days)).toISOString().slice(0, 10);
 }
 
 export function formatRupiah(amount: number): string {

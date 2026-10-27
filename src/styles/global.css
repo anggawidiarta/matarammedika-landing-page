@@ -1,5 +1,10 @@
 @import "tailwindcss";
 @import "./theme.css";
+@import "./page-container.css";
+
+@source not "../components/kelola";
+@source not "../pages/kelola";
+@source not "../layouts/KelolaLayout.astro";
 
 body {
   margin: 0;
@@ -8,21 +13,6 @@ body {
 /* Rendered height of the sticky KlinikHeader; update when its padding or logo size changes. */
 :root {
   --header-h: 95px;
-}
-
-@utility page-container {
-  margin-inline: auto;
-  width: 100%;
-  max-width: 1600px;
-  padding-inline: 1.5rem;
-
-  @media (min-width: 64rem) {
-    padding-inline: 2.5rem;
-  }
-
-  @media (min-width: 80rem) {
-    padding-inline: 3.5rem;
-  }
 }
 
 @keyframes doctor-showcase-fade-in {

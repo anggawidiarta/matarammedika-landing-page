@@ -70,10 +70,10 @@ export default function ProfilPage({ content, initialUnit }: ProfilPageProps) {
           caption={`Ringkasan informasi tentang ${copy.name}`}
           showSegmented={false}
         />
-        <Segmented active={unit} onChange={handleUnitChange} />
+        <Segmented active={unit} onChange={handleUnitChange} panelId="profil-panel" />
       </div>
 
-      <div key={unit} className="profil-panel-in flex flex-col gap-12">
+      <div key={unit} id="profil-panel" role="tabpanel" className="profil-panel-in flex flex-col gap-12">
         {about && (
           <section className="shadow-card grid overflow-hidden rounded-3xl bg-white lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
             <img
@@ -124,7 +124,7 @@ export default function ProfilPage({ content, initialUnit }: ProfilPageProps) {
                     className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.06]"
                   />
                   <Quote size={36} strokeWidth={1.5} className="relative opacity-60" aria-hidden />
-                  <p className="font-body relative text-xl leading-snug font-medium text-balance sm:text-2xl sm:leading-snug">
+                  <p className="font-body relative text-xl leading-snug font-medium text-pretty sm:text-2xl sm:leading-snug">
                     {vision}
                   </p>
                 </div>

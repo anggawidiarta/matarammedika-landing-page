@@ -1,5 +1,12 @@
 const TTL_MS = 60_000;
 
+const resetters = new Set<() => void>();
+
+/** Drops every memoized CMS list so the next public request reads fresh rows (this process only). */
+export function invalidateCmsCaches(): void {
+  for (const reset of resetters) reset();
+}
+
 /**
  * Wraps a CMS list query with a short per-process memo.
  * Resolves to null when the list is empty or the query failed with nothing cached,
@@ -7,6 +14,9 @@ const TTL_MS = 60_000;
  */
 export function ttlCached<T>(label: string, load: () => Promise<T[]>): () => Promise<T[] | null> {
   let hit: { at: number; items: T[] | null } | null = null;
+  resetters.add(() => {
+    hit = null;
+  });
 
   return async () => {
     if (hit && Date.now() - hit.at < TTL_MS) return hit.items;

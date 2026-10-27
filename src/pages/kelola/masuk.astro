@@ -1,0 +1,102 @@
+---
+export const prerender = false;
+import { ArrowLeft, CircleAlert, Info, LogIn } from "lucide-react";
+import { MODULE_ICONS } from "@/components/kelola/moduleIcons";
+import { buttonClass } from "@/components/kelola/ui/Button";
+import Logo from "@/components/shared/ui/Logo";
+import KelolaLayout from "@/layouts/KelolaLayout.astro";
+import { MODULE_LABELS, MODULES } from "@/lib/kelola/constants";
+import { safeNextPath } from "@/lib/kelola/redirect";
+
+type Notice = { tone: "info" | "error"; text: string };
+
+const NOTICES: Record<string, Notice> = {
+  gagal: { tone: "error", text: "Login belum berhasil. Silakan coba masuk lagi." },
+  tanpa_akses: {
+    tone: "error",
+    text: "Akun Anda belum memiliki akses untuk mengelola konten. Hubungi pengelola sistem untuk meminta akses.",
+  },
+  kedaluwarsa: {
+    tone: "info",
+    text: "Sesi Anda sudah berakhir. Masuk kembali untuk melanjutkan.",
+  },
+  layanan_tidak_tersedia: {
+    tone: "error",
+    text: "Layanan masuk sedang tidak tersedia. Coba lagi beberapa saat lagi.",
+  },
+};
+
+const reason = Astro.url.searchParams.get("alasan");
+const notice = reason ? NOTICES[reason] : undefined;
+const next = safeNextPath(Astro.url.searchParams.get("next"));
+const loginHref = `/kelola/masuk/sso?next=${encodeURIComponent(next)}`;
+const focusRing =
+  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue";
+---
+
+<KelolaLayout title="Masuk" variant="gate">
+  <div class="kelola-enter flex w-full max-w-md flex-col items-stretch gap-6">
+    <div class="shadow-card rounded-2xl bg-white px-6 py-8 sm:px-10 sm:py-10">
+      <Logo />
+      <h1 class="mt-8 text-[28px] leading-snug font-semibold text-balance sm:text-[32px]">
+        Kelola Konten
+      </h1>
+      <p class="mt-2 text-base leading-relaxed text-pretty text-heading/80">
+        Masuk dengan akun Mataram Medika untuk mengubah konten yang tampil di situs.
+      </p>
+
+      {
+        notice && (
+          <div
+            role={notice.tone === "error" ? "alert" : "status"}
+            class:list={[
+              "mt-6 flex items-start gap-3 rounded-lg px-4 py-3 text-sm leading-6 text-heading",
+              notice.tone === "error" ? "bg-danger/8" : "bg-blue/8",
+            ]}
+          >
+            {notice.tone === "error" ? (
+              <CircleAlert size={20} aria-hidden="true" className="mt-0.5 shrink-0 text-danger" />
+            ) : (
+              <Info size={20} aria-hidden="true" className="mt-0.5 shrink-0 text-blue" />
+            )}
+            <p class="text-pretty">{notice.text}</p>
+          </div>
+        )
+      }
+
+      <a href={loginHref} class={buttonClass("primary", "mt-8 w-full min-h-12 text-lg")}>
+        <LogIn size={20} aria-hidden="true" />
+        Masuk
+      </a>
+
+      <div class="mt-8 border-t border-heading/8 pt-6">
+        <p class="text-sm font-medium text-heading/80">Yang bisa Anda kelola</p>
+        <ul class="mt-3 grid grid-cols-2 gap-2">
+          {
+            MODULES.map((module) => {
+              const Icon = MODULE_ICONS[module];
+              return (
+                <li class="flex min-h-9 items-center gap-2 rounded-md bg-surface-tint px-3 text-sm">
+                  <Icon size={16} strokeWidth={1.75} aria-hidden="true" className="text-blue" />
+                  {MODULE_LABELS[module]}
+                </li>
+              );
+            })
+          }
+        </ul>
+      </div>
+    </div>
+
+    <a
+      href="/"
+      class={`group mx-auto inline-flex min-h-11 items-center gap-2 rounded-lg px-3 text-sm font-medium text-heading/80 transition-colors duration-200 ease-out hover:text-heading motion-reduce:transition-none ${focusRing}`}
+    >
+      <ArrowLeft
+        size={18}
+        aria-hidden="true"
+        className="transition-transform duration-200 ease-out group-hover:-translate-x-0.5 motion-reduce:transition-none"
+      />
+      Kembali ke situs
+    </a>
+  </div>
+</KelolaLayout>

@@ -1,0 +1,41 @@
+---
+export const prerender = false;
+import { SUPABASE_URL } from "astro:env/server";
+import LoadError from "@/components/kelola/LoadError.astro";
+import PromoManager from "@/components/kelola/PromoManager";
+import KelolaLayout from "@/layouts/KelolaLayout.astro";
+import { PROMO_IMAGE_BUCKET } from "@/lib/kelola/constants";
+import { isInstagramConfigured, latestPostsByItem } from "@/lib/kelola/instagram";
+import { listItems } from "@/lib/kelola/items";
+import type { InstagramPost, KelolaItem } from "@/lib/kelola/types";
+
+const imageBaseUrl = `${SUPABASE_URL}/storage/v1/object/public/${PROMO_IMAGE_BUCKET}/`;
+const instagramEnabled = isInstagramConfigured();
+
+let items: KelolaItem[] = [];
+let posts: Record<string, InstagramPost> = {};
+let failed = false;
+try {
+  items = await listItems({ module: "promo", source: "klinik" });
+  if (instagramEnabled) posts = await latestPostsByItem();
+} catch (error) {
+  console.error("[kelola] load promo failed", error);
+  failed = true;
+}
+---
+
+<KelolaLayout title="Promo" activeModule="promo">
+  {
+    failed ? (
+      <LoadError />
+    ) : (
+      <PromoManager
+        client:load
+        initialItems={items}
+        imageBaseUrl={imageBaseUrl}
+        instagramEnabled={instagramEnabled}
+        initialPosts={posts}
+      />
+    )
+  }
+</KelolaLayout>

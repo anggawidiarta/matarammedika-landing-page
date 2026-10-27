@@ -8,6 +8,9 @@ import react from "@astrojs/react";
 // https://astro.build/config
 export default defineConfig({
   output: "server",
+  // Astro's built-in check compares Origin with a URL it cannot build correctly behind a TLS proxy,
+  // so it rejects every form POST. /kelola writes are guarded by guardJsonWrite/guardSameOrigin instead.
+  security: { checkOrigin: false },
   adapter: node({ mode: "standalone" }),
   integrations: [react()],
   env: {
@@ -16,6 +19,12 @@ export default defineConfig({
       SUPABASE_SERVICE_ROLE_KEY: envField.string({ context: "server", access: "secret" }),
       SURVEY_IP_HASH_PEPPER: envField.string({ context: "server", access: "secret" }),
       TRUST_PROXY: envField.string({ context: "server", access: "secret", optional: true }),
+      SSO_USERS_URL: envField.string({ context: "server", access: "secret", optional: true }),
+      SITE_ORIGIN: envField.string({ context: "server", access: "secret", optional: true }),
+      IG_USER_ID: envField.string({ context: "server", access: "secret", optional: true }),
+      IG_ACCESS_TOKEN: envField.string({ context: "server", access: "secret", optional: true }),
+      IG_GRAPH_VERSION: envField.string({ context: "server", access: "secret", optional: true }),
+      IG_GRAPH_HOST: envField.string({ context: "server", access: "secret", optional: true }),
     },
   },
   fonts: [
