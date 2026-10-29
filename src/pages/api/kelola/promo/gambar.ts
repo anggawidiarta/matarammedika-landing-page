@@ -1,13 +1,7 @@
 import type { APIRoute } from "astro";
+import { readJsonBody } from "@/lib/http";
 import { PROMO_IMAGE_MAX_BYTES } from "@/lib/kelola/constants";
-import {
-  fail,
-  guardJsonWrite,
-  guardSameOrigin,
-  ok,
-  readJsonBody,
-  readMultipart,
-} from "@/lib/kelola/http";
+import { fail, guardJsonWrite, guardSameOrigin, ok, readMultipart } from "@/lib/kelola/http";
 import { isPromoImageInUse, removePromoImage, uploadPromoImage } from "@/lib/kelola/promoImage";
 import { parseImagePath } from "@/lib/kelola/schemas";
 

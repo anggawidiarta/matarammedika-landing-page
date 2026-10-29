@@ -35,4 +35,5 @@ USER node
 EXPOSE 4321
 
 # Secrets (SUPABASE_*, SURVEY_IP_HASH_PEPPER, TRUST_PROXY) are read at runtime via astro:env, so supply them as container env in Dokploy rather than build args.
+# TRUST_PROXY is the number of trusted proxies in front of the container (1 for Traefik alone, 2 behind a CDN); see .env.example.
 CMD ["node", "./dist/server/entry.mjs"]

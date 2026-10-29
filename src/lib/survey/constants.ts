@@ -1,6 +1,7 @@
 export const LAYANAN_VALUES = ["Klinik", "Apotek", "Klinik & Apotek"] as const;
 export const SARAN_MAX = 500;
 export const NAMA_MAX = 120;
+export const SURVEY_BODY_MAX_BYTES = 8 * 1024;
 
 /** Single source of truth for Likert rating keys + UI labels (Zod + client form). */
 export const LIKERT = [

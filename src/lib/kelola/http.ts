@@ -1,5 +1,5 @@
 import { SITE_ORIGIN } from "astro:env/server";
-import { jsonResponse } from "@/lib/http";
+import { jsonResponse, readLimited } from "@/lib/http";
 
 export type KelolaErrorCode =
   "validation" | "not_found" | "conflict" | "unauthenticated" | "server";
@@ -11,8 +11,6 @@ const ERROR_STATUS: Record<KelolaErrorCode, number> = {
   conflict: 409,
   server: 500,
 };
-
-export const JSON_BODY_MAX_BYTES = 16 * 1024;
 
 export function ok(body: Record<string, unknown> = {}, status = 200) {
   return jsonResponse(status, { ok: true, ...body });
@@ -50,52 +48,6 @@ export function guardJsonWrite(request: Request): Response | null {
 
 export function guardSameOrigin(request: Request): Response | null {
   return isSameOrigin(request) ? null : fail("validation", 403);
-}
-
-export async function readLimited(
-  request: Request,
-  maxBytes: number,
-): Promise<Uint8Array<ArrayBuffer> | null> {
-  const declared = Number(request.headers.get("content-length"));
-  if (Number.isFinite(declared) && declared > maxBytes) return null;
-  if (!request.body) return new Uint8Array();
-
-  const reader = request.body.getReader();
-  const chunks: Uint8Array[] = [];
-  let total = 0;
-  for (;;) {
-    const { done, value } = await reader.read();
-    if (done) break;
-    total += value.byteLength;
-    if (total > maxBytes) {
-      await reader.cancel();
-      return null;
-    }
-    chunks.push(value);
-  }
-
-  const bytes = new Uint8Array(total);
-  let offset = 0;
-  for (const chunk of chunks) {
-    bytes.set(chunk, offset);
-    offset += chunk.byteLength;
-  }
-  return bytes;
-}
-
-export type JsonBody = { ok: true; data: unknown } | { ok: false; response: Response };
-
-export async function readJsonBody(
-  request: Request,
-  maxBytes = JSON_BODY_MAX_BYTES,
-): Promise<JsonBody> {
-  const bytes = await readLimited(request, maxBytes);
-  if (!bytes) return { ok: false, response: fail("validation", 413) };
-  try {
-    return { ok: true, data: JSON.parse(new TextDecoder().decode(bytes)) };
-  } catch {
-    return { ok: false, response: fail("validation") };
-  }
 }
 
 /** Multipart bodies are buffered under the same cap as JSON so an oversized upload never reaches the parser. */

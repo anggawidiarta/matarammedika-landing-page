@@ -1,8 +1,8 @@
 import type { APIRoute } from "astro";
-import { jsonResponse } from "@/lib/http";
+import { jsonResponse, readJsonBody } from "@/lib/http";
 import { getServiceSupabase } from "@/lib/supabase/server";
 import { hashClientIp, isRateLimited, resolveClientIp } from "@/lib/survey/rateLimit";
-import type { SurveyApiError } from "@/lib/survey/constants";
+import { SURVEY_BODY_MAX_BYTES, type SurveyApiError } from "@/lib/survey/constants";
 import { parseSurveyPayload } from "@/lib/survey/schema";
 
 export const prerender = false;
@@ -12,14 +12,10 @@ type SurveyResponseBody = { ok: true; id: string } | { ok: false; error: SurveyA
 const json = (status: number, body: SurveyResponseBody) => jsonResponse(status, body);
 
 export const POST: APIRoute = async ({ request, clientAddress }) => {
-  let raw: unknown;
-  try {
-    raw = await request.json();
-  } catch {
-    return json(400, { ok: false, error: "validation" });
-  }
+  const body = await readJsonBody(request, SURVEY_BODY_MAX_BYTES);
+  if (!body.ok) return body.response;
 
-  const parsed = parseSurveyPayload(raw);
+  const parsed = parseSurveyPayload(body.data);
   if (!parsed.ok) {
     return json(400, { ok: false, error: "validation" });
   }

@@ -10,7 +10,24 @@ export default defineConfig({
   output: "server",
   // Astro's built-in check compares Origin with a URL it cannot build correctly behind a TLS proxy,
   // so it rejects every form POST. /kelola writes are guarded by guardJsonWrite/guardSameOrigin instead.
-  security: { checkOrigin: false },
+  security: {
+    checkOrigin: false,
+    csp: {
+      directives: [
+        "default-src 'self'",
+        "img-src 'self' data: blob: https://*.supabase.co",
+        "font-src 'self'",
+        "connect-src 'self'",
+        "object-src 'none'",
+        "base-uri 'self'",
+        "form-action 'self'",
+      ],
+      // The React islands render a few inline style attributes (progress bar, icon sizes, WhatsApp mask); script and <style> stay hash-only.
+      styleDirective: {
+        resources: ["'self'", { resource: "'unsafe-inline'", kind: "attribute" }],
+      },
+    },
+  },
   adapter: node({ mode: "standalone" }),
   integrations: [react()],
   env: {
